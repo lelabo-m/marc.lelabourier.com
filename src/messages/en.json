@@ -2,5 +2,13 @@
   "HomePage": {
     "title": "Hello world!",
     "about": "Go to the about page"
+  },
+  "ContactSection": {
+    "title": "Contact Information"
+  },
+  "SummarySection": {
+    "title": "Summary",
+    "intro": "I’m a 30-year-old French developer with a hands-on background in computer science and software development, gained through practice, self-directed projects, and professional internships. My career has taken me from contributing to cutting-edge R&D to helping dynamic startups scale, where I honed my expertise in backend development, algorithms, data, and research while broadening my skills in frontend, design, and infrastructure. Collaboration, adaptability, and mentorship are central to how I work.",
+    "objective": "After overcoming significant personal health challenges, I’m now ready to rejoin the professional world with a part-time role (50-60%) that balances my commitment to work and my continued journey toward full recovery."
   }
 }

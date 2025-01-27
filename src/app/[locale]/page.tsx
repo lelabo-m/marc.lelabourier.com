@@ -1,11 +1,11 @@
 import { Github, Linkedin } from "@/components/icons";
 import { profile } from "@/data/profile";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Link } from "~/i18n/routing";
 
-export default function HomePage() {
-  const t = useTranslations("HomePage");
+export default async function HomePage() {
+  const t = await getTranslations("HomePage");
 
   return (
     <>
@@ -15,56 +15,8 @@ export default function HomePage() {
           <p className="text-xl text-gray-600">{profile.jobTitle}</p>
         </header>
 
-        <section className="mb-8">
-          <h2 className="mb-4 text-2xl font-semibold text-gray-800">
-            Contact Information
-          </h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="flex items-center">
-              <Mail className="mr-2 h-5 w-5 text-gray-600" />
-              {/* <span>{profile.email}</span> */}
-              <Link href={`mailto:${profile.email}`} className="text-blue-600">
-                {profile.email}
-              </Link>
-            </div>
-            <div className="flex items-center">
-              <Phone className="mr-2 h-5 w-5 text-gray-600" />
-              <span>{profile.phone}</span>
-            </div>
-            <div className="flex items-center">
-              <MapPin className="mr-2 h-5 w-5 text-gray-600" />
-              <span>{profile.location}</span>
-            </div>
-            <div className="flex items-center">
-              <Linkedin className="mr-2 h-5 w-5 text-gray-600" />
-              <a
-                href={profile.socialLinks.linkedin.href}
-                className="text-blue-600 hover:underline"
-              >
-                {profile.socialLinks.linkedin.text}
-              </a>
-            </div>
-            <div className="flex items-center">
-              <Github className="mr-2 h-5 w-5 text-gray-600" />
-              <a
-                href={profile.socialLinks.github.href}
-                className="text-blue-600 hover:underline"
-              >
-                {profile.socialLinks.github.text}
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="mb-8">
-          <h2 className="mb-4 text-2xl font-semibold text-gray-800">Summary</h2>
-          <p className="text-gray-700">
-            Experienced software engineer with a strong background in web
-            development and a passion for creating efficient, scalable
-            applications. Skilled in JavaScript, React, and Node.js, with a
-            track record of delivering high-quality projects on time.
-          </p>
-        </section>
+        <ContactSection />
+        <SummarySection />
 
         <section className="mb-8">
           <h2 className="mb-4 text-2xl font-semibold text-gray-800">
@@ -146,8 +98,12 @@ export default function HomePage() {
           </div>
         </section>
       </div>
+    </>
+  );
+}
 
-      {/* <main className="flex min-h-screen flex-col items-center justify-center">
+{
+  /* <main className="flex min-h-screen flex-col items-center justify-center">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
             {curriculumVitae.identity.firstName}{" "}
@@ -174,7 +130,67 @@ export default function HomePage() {
             </p>
           </h1>
         </div>
-      </main> */}
+      </main> */
+}
+
+async function ContactSection() {
+  const t = await getTranslations("ContactSection");
+
+  return (
+    <>
+      <section className="mb-8">
+        <h2 className="mb-4 text-2xl font-semibold text-gray-800">
+          {t("title")}
+        </h2>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="flex items-center">
+            <Mail className="mr-2 h-5 w-5 text-gray-600" />
+            <Link href={`mailto:${profile.email}`} className="text-blue-600">
+              {profile.email}
+            </Link>
+          </div>
+          <div className="flex items-center">
+            <Phone className="mr-2 h-5 w-5 text-gray-600" />
+            <span>{profile.phone}</span>
+          </div>
+          <div className="flex items-center">
+            <MapPin className="mr-2 h-5 w-5 text-gray-600" />
+            <span>{profile.location}</span>
+          </div>
+          <div className="flex items-center">
+            <Linkedin className="mr-2 h-5 w-5 text-gray-600" />
+            <a
+              href={profile.socialLinks.linkedin.href}
+              className="text-blue-600 hover:underline"
+            >
+              {profile.socialLinks.linkedin.text}
+            </a>
+          </div>
+          <div className="flex items-center">
+            <Github className="mr-2 h-5 w-5 text-gray-600" />
+            <a
+              href={profile.socialLinks.github.href}
+              className="text-blue-600 hover:underline"
+            >
+              {profile.socialLinks.github.text}
+            </a>
+          </div>
+        </div>
+      </section>
     </>
+  );
+}
+
+async function SummarySection() {
+  const t = await getTranslations("SummarySection");
+
+  return (
+    <section className="mb-8">
+      <h2 className="mb-4 text-2xl font-semibold text-gray-800">
+        {t("title")}
+      </h2>
+      <p className="text-gray-700">{t("intro")}</p>
+      <p className="mt-4 text-gray-700">{t("objective")}</p>
+    </section>
   );
 }
