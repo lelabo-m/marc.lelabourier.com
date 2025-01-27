@@ -13,6 +13,9 @@ It support internationalization for english and french.
 
 ## Design
 
+The design is inspired by the [TailwindCSS components](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/).
+Some components were also designed by using [vercel v0](https://v0.dev/).
+
 ### Brand Icons
 
 I used the [Simple Icons](https://simpleicons.org/) library for the brand icons.

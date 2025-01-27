@@ -1,4 +1,5 @@
 import { Github, Linkedin } from "@/components/icons";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { profile } from "@/data/profile";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { getTranslations } from "next-intl/server";
@@ -7,14 +8,14 @@ import { Link } from "~/i18n/routing";
 export default async function HomePage() {
   const t = await getTranslations("HomePage");
 
+  // const { props } = getImageProps({
+  //   src: "/profile.jpg",
+  //   alt: "Marc Le Labourier profile picture",
+  // });
   return (
     <>
       <div className="mx-auto max-w-4xl bg-white p-8 shadow-lg">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-800">{profile.name}</h1>
-          <p className="text-xl text-gray-600">{profile.jobTitle}</p>
-        </header>
-
+        <Header />
         <ContactSection />
         <SummarySection />
 
@@ -59,19 +60,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="mb-8">
-          <h2 className="mb-4 text-2xl font-semibold text-gray-800">
-            Education
-          </h2>
-          <div>
-            <h3 className="text-xl font-semibold text-gray-800">
-              Bachelor of Science in Computer Science
-            </h3>
-            <p className="text-gray-600">
-              University of Technology | Graduated: May 2016
-            </p>
-          </div>
-        </section>
+        <EducationSection />
 
         <section>
           <h2 className="mb-4 text-2xl font-semibold text-gray-800">Skills</h2>
@@ -133,6 +122,25 @@ export default async function HomePage() {
       </main> */
 }
 
+async function Header() {
+  return (
+    <header className="mb-8 flex items-center justify-between">
+      <div>
+        <h1 className="text-4xl font-bold text-gray-800">{profile.name}</h1>
+        <p className="text-xl text-gray-600">{profile.jobTitle}</p>
+      </div>
+      <Avatar className="size-30">
+        <AvatarImage
+          src="/profile.jpg"
+          alt="Marc Le Labourier profile picture"
+          className="object-cover"
+        />
+        <AvatarFallback>MLL</AvatarFallback>
+      </Avatar>
+    </header>
+  );
+}
+
 async function ContactSection() {
   const t = await getTranslations("ContactSection");
 
@@ -191,6 +199,33 @@ async function SummarySection() {
       </h2>
       <p className="text-gray-700">{t("intro")}</p>
       <p className="mt-4 text-gray-700">{t("objective")}</p>
+    </section>
+  );
+}
+
+async function EducationSection() {
+  const t = await getTranslations("EducationSection");
+  const degrees = ["epitech", "kent"] as const;
+
+  return (
+    <section className="mb-8">
+      <h2 className="mb-4 text-2xl font-semibold text-gray-800">
+        {t("title")}
+      </h2>
+
+      <div className="space-y-4">
+        {degrees.map((degree) => (
+          <div key={degree}>
+            <h3 className="text-xl font-semibold text-gray-800">
+              {t(`degrees.${degree}.title`)}
+            </h3>
+            <p className="text-gray-600">
+              {t(`degrees.${degree}.location`)} | {t(`degrees.${degree}.date`)}
+            </p>
+            <p>{t(`degrees.${degree}.description`)}</p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

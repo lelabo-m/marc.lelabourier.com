@@ -29,7 +29,8 @@
       "~/*": ["./src/*"],
       "@/public/*": ["./public/*"],
       "@/components/*": ["./src/app/components/*"],
-      "@/data/*": ["./src/app/data/*"]
+      "@/data/*": ["./src/app/data/*"],
+      "@/lib/*": ["./src/app/lib/*"]
     }
   },
   "include": [
