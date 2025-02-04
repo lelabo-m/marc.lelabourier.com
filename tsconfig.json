@@ -26,11 +26,11 @@
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
       "@/public/*": ["./public/*"],
-      "@/components/*": ["./src/app/components/*"],
-      "@/data/*": ["./src/app/data/*"],
-      "@/lib/*": ["./src/app/lib/*"]
+      "@/components/*": ["src/app/_components/*"],
+      "@/data/*": ["src/app/_data/*"],
+      "@/lib/*": ["src/app/_lib/*"],
+      "~/*": ["./src/*"]
     }
   },
   "include": [

@@ -1,5 +1,6 @@
 import Image from "next/image";
-import profilePicture from "~/../public/profile.jpg";
+
+import profilePicture from "@/public/profile.jpg";
 
 function ProfilePicture() {
   return (

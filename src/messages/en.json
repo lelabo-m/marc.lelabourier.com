@@ -10,5 +10,62 @@
     "title": "Summary",
     "intro": "I’m a 30-year-old French developer with a hands-on background in computer science and software development, gained through practice, self-directed projects, and professional internships. My career has taken me from contributing to cutting-edge R&D to helping dynamic startups scale, where I honed my expertise in backend development, algorithms, data, and research while broadening my skills in frontend, design, and infrastructure. Collaboration, adaptability, and mentorship are central to how I work.",
     "objective": "After overcoming significant personal health challenges, I’m now ready to rejoin the professional world with a part-time role (50-60%) that balances my commitment to work and my continued journey toward full recovery."
+  },
+  "ProfessionalExperienceSection": {
+    "title": "Professional Experience",
+    "singlespot1": {
+      "title": "Head of Backend, Data, and Research",
+      "company": "Singlespot",
+      "date": "Sep 2018 - Nov 2020",
+      "description": "Following the departure of the CTO and impending regulatory changes, took a leading role in Singlespot's pivot from an AdTech agency to a pure tech company specializing in mobile data collection and aggregation. Designed and led the development of a new, highly scalable data pipeline, managed backend and infrastructure projects, and co-led technical strategy alongside the CEOs.",
+      "highlights": "<highlight><b>Architected and led the refactoring of the entire data pipeline</b>, moving from a rigid system to a scalable, event-driven architecture using Apache Pulsar, Kubernetes, and Snowflake.</highlight><highlight><b>Conducted extensive technology research and stack selection</b>, leading a structured evaluation process with the senior development team.</highlight><highlight><b>Established partnerships with tech vendors</b>, securing early access to Snowflake's features and building strong support relations.</highlight><highlight><b>Led a team of backend engineers and researchers</b>, overseeing system design, development, testing, and deployment.</highlight><highlight><b>Optimized and scaled data ingestion</b>, ensuring the pipeline could handle 10M+ requests without failures.</highlight><highlight><b>Refactored the geolocation service</b>, developing a custom geolocation database with probabilistic recommendation features.</highlight><highlight><b>Introduced Rust for high-performance data processing</b>, enabling efficient handling of complex algorithms on large-scale datasets.</highlight><highlight><b>Managed the technical transition as the company pivoted</b>, scaling down from 50 to 12 employees while restructuring backend and data services.</highlight><highlight><b>Acted as a key negotiator in employee layoffs</b>, serving as a representative in CSE discussions with company leadership.</highlight>"
+    },
+    "singlespot2": {
+      "title": "Junior Backend Developer & Lead Data Engineer",
+      "company": "Singlespot",
+      "date": "Sep 2016 - Aug 2018",
+      "description": "Joined Singlespot, a growing AdTech startup, as a Data Engineer & Research Intern, later transitioning into a full-time role overseeing backend, data, and research initiatives. Focused on data exploitation, machine learning research, and audience-building automation for mobile advertising campaigns. Played a key role in scaling the company's data capabilities as the team grew from 5 to 50 employees.",
+      "highlights": "<highlight><b>Conducted research on data mining & machine learning, exploring audience segmentation</b>, recommendation engines, and intent prediction.</highlight><highlight><b>Designed and developed an audience-building tool</b>, enabling dynamic cohort segmentation for targeted ad campaigns.</highlight><highlight><b>Managed campaign data processing</b>, ensuring accurate audience creation, reporting, and performance tracking.</highlight><highlight><b>Mentored a career-switching intern</b>, guiding him to a junior software engineer role over two years.</highlight><highlight><b>Led the backend and data team</b>, overseeing infrastructure and automation beyond the core SDK pipeline.</highlight><highlight><b>Supervised research efforts</b>, working with a PhD and engineers to explore new data exploitation strategies.</highlight>"
+    },
+    "technicolor": {
+      "title": "Research Engineer Intern – 3D Object Protection",
+      "company": "Technicolor",
+      "date": "Sep 2014 - Jul 2015",
+      "description": "Conducted research and development on 3D object protection techniques for the film and gaming industries within Technicolor’s R&I center. Worked closely with senior researchers to implement and test protection algorithms, develop attack strategies, and contribute to patents and academic publications.",
+      "highlights": "<highlight><b>Implemented four patented protection algorithms</b> as MeshLab plugins, enhancing 3D asset security.</highlight><highlight>Researched and developed new attack strategies against 3D protections, <b>leading to three novel attack methodologies</b>.</highlight><highlight><b>Co-authored three patents</b> (two protection techniques and a real-time encryption technology for 3D models) and <b>an academic research paper</b> (not published).</highlight><highlight><b>Designed risk analysis, benchmark and validation frameworks</b> for evaluating protection and attacks techniques.</highlight><highlight>Collaborated with experts across <b>security, cryptography, 3D graphics, and content protection</b> to refine research methodologies.</highlight><highlight>Gained hands-on experience in <b>research methodology, patent writing, and scientific publication processes.</b></highlight>"
+    },
+    "epitech": {
+      "title": "Regional Teaching Assistant",
+      "company": "Epitech",
+      "date": "Jan 2014 - Jul 2014",
+      "description": "Provided academic support and mentorship to first-year and second-year students at Epitech. Assisted in organizing and supervising exams, practical classes, and technical workshops. Collaborated with the pedagogical team and student committees to enhance learning experiences and coordinate campus events.",
+      "highlights": "<highlight><b>Tutored first-year students</b> in programming, algorithms, Unix and system administration, fostering a peer-learning environment.</highlight><highlight><b>Supervised exams and practical classes</b>, ensuring fairness and adherence to evaluation standards.</highlight><highlight><b>Designed and delivered basic lectures</b> on foundational computer science topics.</highlight><highlight><b>Created and led security workshops</b>, introducing students to hacking and cybersecurity concepts.</highlight><highlight><b>Participated in project evaluations</b>, assessing student progress and validating skill acquisition.</highlight><highlight><b>Coordinated with faculty and administration</b> to organize open-days, events, and academic planning.</highlight>"
+    },
+    "creawave": {
+      "title": "Full Stack Developer Intern",
+      "company": "Creawave",
+      "date": "Jul 2013 - Dec 2013",
+      "description": "Joined an early-stage startup developing advanced phoneme-cutting algorithms for dynamic voice synthesis. Tasked with improving existing tools and designing a new platform to expand the company’s offerings, I worked autonomously to develop both backend and frontend solutions while closely collaborating with voice actors to refine workflows.",
+      "highlights": "<highlight><b>Developed a web platform</b> for ordering and managing voice recordings, integrating invoicing, email notifications, and a talent catalog.</highlight><highlight><b>Redesigned and expanded</b> the existing recording software, improving UI/UX, adding new features, and ensuring cross-platform compatibility (Windows & macOS).</highlight><highlight><b>Built a Django-based backend</b> to handle orders, comedian assignments, and automated processing of audio files.</highlight><highlight><b>Worked closely with voice actors</b>, collecting feedback and optimizing tools to improve usability and efficiency.</highlight><highlight><b>Self-taught Python, Django, and full-stack web development</b> to successfully deliver the project within six months.</highlight>"
+    }
+  },
+  "EducationSection": {
+    "title": "Education",
+    "degrees": {
+      "epitech": {
+        "title": "Master's degree in Computer Science and Information Technology",
+        "school": "EPITECH (European Institute of Information Technology)",
+        "location": "Rennes, Paris (France)",
+        "date": "2012 - 2017",
+        "description": ""
+      },
+      "kent": {
+        "title": "Master of Science in Advanced Computer Science (Computationnal Intelligence)",
+        "school": "University of Kent",
+        "location": "Canterbury (UK)",
+        "date": "2016",
+        "description": ""
+      }
+    }
   }
 }

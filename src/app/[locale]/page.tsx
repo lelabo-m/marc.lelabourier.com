@@ -1,65 +1,22 @@
+import { Mail, MapPin, Phone } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+
 import { Github, Linkedin } from "@/components/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { profile } from "@/data/profile";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { getTranslations } from "next-intl/server";
-import { Link } from "~/i18n/routing";
+import { Link } from "@/lib/i18n/routing";
+import { ProfessionalExperienceSection } from "./components";
 
 export default async function HomePage() {
   const t = await getTranslations("HomePage");
 
-  // const { props } = getImageProps({
-  //   src: "/profile.jpg",
-  //   alt: "Marc Le Labourier profile picture",
-  // });
   return (
     <>
       <div className="mx-auto max-w-4xl bg-white p-8 shadow-lg">
         <Header />
         <ContactSection />
         <SummarySection />
-
-        <section className="mb-8">
-          <h2 className="mb-4 text-2xl font-semibold text-gray-800">
-            Work Experience
-          </h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-semibold text-gray-800">
-                Senior Software Engineer
-              </h3>
-              <p className="text-gray-600">
-                TechCorp Inc. | Jan 2019 - Present
-              </p>
-              <ul className="mt-2 list-inside list-disc text-gray-700">
-                <li>Led development of a high-traffic e-commerce platform</li>
-                <li>
-                  Implemented CI/CD pipelines, reducing deployment time by 50%
-                </li>
-                <li>Mentored junior developers and conducted code reviews</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-gray-800">
-                Software Engineer
-              </h3>
-              <p className="text-gray-600">
-                WebSolutions LLC | Jun 2016 - Dec 2018
-              </p>
-              <ul className="mt-2 list-inside list-disc text-gray-700">
-                <li>Developed and maintained multiple client websites</li>
-                <li>
-                  Optimized database queries, improving application performance
-                  by 30%
-                </li>
-                <li>
-                  Collaborated with design team to implement responsive UI/UX
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
+        <ProfessionalExperienceSection />
         <EducationSection />
 
         <section>
@@ -145,47 +102,45 @@ async function ContactSection() {
   const t = await getTranslations("ContactSection");
 
   return (
-    <>
-      <section className="mb-8">
-        <h2 className="mb-4 text-2xl font-semibold text-gray-800">
-          {t("title")}
-        </h2>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="flex items-center">
-            <Mail className="mr-2 h-5 w-5 text-gray-600" />
-            <Link href={`mailto:${profile.email}`} className="text-blue-600">
-              {profile.email}
-            </Link>
-          </div>
-          <div className="flex items-center">
-            <Phone className="mr-2 h-5 w-5 text-gray-600" />
-            <span>{profile.phone}</span>
-          </div>
-          <div className="flex items-center">
-            <MapPin className="mr-2 h-5 w-5 text-gray-600" />
-            <span>{profile.location}</span>
-          </div>
-          <div className="flex items-center">
-            <Linkedin className="mr-2 h-5 w-5 text-gray-600" />
-            <a
-              href={profile.socialLinks.linkedin.href}
-              className="text-blue-600 hover:underline"
-            >
-              {profile.socialLinks.linkedin.text}
-            </a>
-          </div>
-          <div className="flex items-center">
-            <Github className="mr-2 h-5 w-5 text-gray-600" />
-            <a
-              href={profile.socialLinks.github.href}
-              className="text-blue-600 hover:underline"
-            >
-              {profile.socialLinks.github.text}
-            </a>
-          </div>
+    <section className="mb-8">
+      <h2 className="mb-4 text-2xl font-semibold text-gray-800">
+        {t("title")}
+      </h2>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="flex items-center">
+          <Mail className="mr-2 h-5 w-5 text-gray-600" />
+          <Link href={`mailto:${profile.email}`} className="text-blue-600">
+            {profile.email}
+          </Link>
         </div>
-      </section>
-    </>
+        <div className="flex items-center">
+          <Phone className="mr-2 h-5 w-5 text-gray-600" />
+          <span>{profile.phone}</span>
+        </div>
+        <div className="flex items-center">
+          <MapPin className="mr-2 h-5 w-5 text-gray-600" />
+          <span>{profile.location}</span>
+        </div>
+        <div className="flex items-center">
+          <Linkedin className="mr-2 h-5 w-5 text-gray-600" />
+          <a
+            href={profile.socialLinks.linkedin.href}
+            className="text-blue-600 hover:underline"
+          >
+            {profile.socialLinks.linkedin.text}
+          </a>
+        </div>
+        <div className="flex items-center">
+          <Github className="mr-2 h-5 w-5 text-gray-600" />
+          <a
+            href={profile.socialLinks.github.href}
+            className="text-blue-600 hover:underline"
+          >
+            {profile.socialLinks.github.text}
+          </a>
+        </div>
+      </div>
+    </section>
   );
 }
 

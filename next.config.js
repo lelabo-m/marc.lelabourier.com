@@ -5,7 +5,7 @@
 import createNextIntlPlugin from "next-intl/plugin";
 import "./src/env.js";
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin("./src/app/_lib/i18n/request.ts");
 
 /** @type {import("next").NextConfig} */
 const config = {};

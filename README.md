@@ -5,6 +5,14 @@ This repository contains the code of my own personal website.
 Right now, it's build with Next.js and TailwindCSS.
 It support internationalization for english and french.
 
+## TODO & FUTURE IMPROVEMENTS
+
+Things I need to do or not forget when needed.
+
+### Packages
+
+- [ ] search params state manager ([nuqs](https://nuqs.47ng.com/))
+
 ## Stack choice
 
 ### Internationalization (I18n)

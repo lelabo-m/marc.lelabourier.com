@@ -1,16 +1,17 @@
-import "~/styles/app.css";
-
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { routing } from "~/i18n/routing";
+
+import { routing } from "@/lib/i18n/routing";
+import "~/styles/app.css";
 
 export const metadata: Metadata = {
   title: "Marc Le Labourier | Full Stack Developer",
   description:
     "Marc Le Labourier own little space online. Maybe one day, a more complete description will be written. But for now, deal with it.",
+  // icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
 export default async function RootLocaleLayout({
