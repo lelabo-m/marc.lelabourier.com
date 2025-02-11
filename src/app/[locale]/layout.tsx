@@ -4,8 +4,10 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { routing } from "@/lib/i18n/routing";
 import "~/styles/app.css";
+import { AppSidebar } from "./sidebar";
 
 export const metadata: Metadata = {
   title: "Marc Le Labourier | Full Stack Developer",
@@ -35,7 +37,13 @@ export default async function RootLocaleLayout({
       <meta name="apple-mobile-web-app-title" content="Marc Le Labourier" />
       <body>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <SidebarProvider>
+            <AppSidebar />
+            <div className="mx-auto max-w-4xl bg-white p-8 shadow-lg">
+              <SidebarTrigger className="" />
+              {children}
+            </div>
+          </SidebarProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -20,38 +20,38 @@ export default async function HomePage() {
 
   return (
     <>
-      <div className="mx-auto max-w-4xl bg-white p-8 shadow-lg">
-        <Header />
-        <ContactSection />
-        <SummarySection />
-        <ProfessionalExperienceSection />
-        <EducationSection />
+      {/* <div className="mx-auto max-w-4xl bg-white p-8 shadow-lg"> */}
+      <Header />
+      <ContactSection />
+      <SummarySection />
+      <ProfessionalExperienceSection />
+      <EducationSection />
 
-        <section>
-          <h2 className="mb-4 text-2xl font-semibold text-gray-800">Skills</h2>
-          <div className="flex flex-wrap gap-2">
-            {[
-              "JavaScript",
-              "React",
-              "Node.js",
-              "Python",
-              "SQL",
-              "Git",
-              "AWS",
-              "Docker",
-              "GraphQL",
-              "TypeScript",
-            ].map((skill) => (
-              <span
-                key={skill}
-                className="rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-800"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </section>
-      </div>
+      <section>
+        <h2 className="mb-4 text-2xl font-semibold text-gray-800">Skills</h2>
+        <div className="flex flex-wrap gap-2">
+          {[
+            "JavaScript",
+            "React",
+            "Node.js",
+            "Python",
+            "SQL",
+            "Git",
+            "AWS",
+            "Docker",
+            "GraphQL",
+            "TypeScript",
+          ].map((skill) => (
+            <span
+              key={skill}
+              className="rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-800"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </section>
+      {/* </div> */}
     </>
   );
 }
@@ -79,7 +79,7 @@ async function ContactSection() {
   const t = await getTranslations("ContactSection");
 
   return (
-    <section className="mb-8">
+    <section className="mb-8" id="contact">
       <h2 className="mb-4 text-2xl font-semibold text-gray-800">
         {t("title")}
       </h2>
@@ -125,7 +125,7 @@ async function SummarySection() {
   const t = await getTranslations("SummarySection");
 
   return (
-    <section className="mb-8">
+    <section className="mb-8" id="summary">
       <h2 className="mb-4 text-2xl font-semibold text-gray-800">
         {t("title")}
       </h2>
@@ -142,7 +142,7 @@ async function EducationSection() {
   const degreeKeys = ["epitech", "kent"] as const;
 
   return (
-    <section className="mb-8">
+    <section className="mb-8" id="education">
       <h2 className="mb-4 text-2xl font-semibold text-gray-800">
         {t("title")}
       </h2>

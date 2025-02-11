@@ -28,6 +28,7 @@
     "paths": {
       "@/public/*": ["./public/*"],
       "@/components/*": ["src/app/_components/*"],
+      "@/hooks/*": ["src/app/_hooks/*"],
       "@/data/*": ["src/app/_data/*"],
       "@/lib/*": ["src/app/_lib/*"],
       "~/*": ["./src/*"]
