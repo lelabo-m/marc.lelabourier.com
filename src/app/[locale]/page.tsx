@@ -19,7 +19,7 @@ export default async function HomePage() {
   const t = await getTranslations("HomePage");
 
   return (
-    <>
+    <div className="snap-x">
       {/* <div className="mx-auto max-w-4xl bg-white p-8 shadow-lg"> */}
       <Header />
       <ContactSection />
@@ -52,7 +52,7 @@ export default async function HomePage() {
         </div>
       </section>
       {/* </div> */}
-    </>
+    </div>
   );
 }
 
@@ -79,7 +79,7 @@ async function ContactSection() {
   const t = await getTranslations("ContactSection");
 
   return (
-    <section className="mb-8" id="contact">
+    <section className="mb-8 snap-start scroll-mt-4" id="contact">
       <h2 className="mb-4 text-2xl font-semibold text-gray-800">
         {t("title")}
       </h2>
@@ -125,7 +125,7 @@ async function SummarySection() {
   const t = await getTranslations("SummarySection");
 
   return (
-    <section className="mb-8" id="summary">
+    <section className="mb-8 snap-start scroll-mt-4" id="summary">
       <h2 className="mb-4 text-2xl font-semibold text-gray-800">
         {t("title")}
       </h2>
@@ -142,7 +142,7 @@ async function EducationSection() {
   const degreeKeys = ["epitech", "kent"] as const;
 
   return (
-    <section className="mb-8" id="education">
+    <section className="mb-8 snap-start scroll-mt-4" id="education">
       <h2 className="mb-4 text-2xl font-semibold text-gray-800">
         {t("title")}
       </h2>

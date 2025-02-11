@@ -2,6 +2,7 @@ import {
   BriefcaseBusiness,
   Contact,
   GraduationCap,
+  Home,
   MessageSquareText,
 } from "lucide-react";
 
@@ -19,6 +20,11 @@ import Link from "next/link";
 
 // Menu items.
 const items = [
+  {
+    title: "Home",
+    url: "#",
+    icon: Home,
+  },
   {
     title: "Contact Information",
     url: "#contact",

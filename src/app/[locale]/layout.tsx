@@ -33,14 +33,14 @@ export default async function RootLocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${GeistSans.variable}`}>
+    <html lang={locale} className={`${GeistSans.variable} scroll-smooth`}>
       <meta name="apple-mobile-web-app-title" content="Marc Le Labourier" />
       <body>
         <NextIntlClientProvider messages={messages}>
           <SidebarProvider>
             <AppSidebar />
             <div className="mx-auto max-w-4xl bg-white p-8 shadow-lg">
-              <SidebarTrigger className="" />
+              <SidebarTrigger />
               {children}
             </div>
           </SidebarProvider>

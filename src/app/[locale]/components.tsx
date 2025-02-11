@@ -22,7 +22,10 @@ function ProfessionalExperienceSection() {
   ] as const;
 
   return (
-    <section className="mb-8" id="professional-experience">
+    <section
+      className="mb-8 snap-start scroll-mt-4"
+      id="professional-experience"
+    >
       <h2 className="mb-4 text-2xl font-semibold text-gray-800">
         {t("title")}
       </h2>
