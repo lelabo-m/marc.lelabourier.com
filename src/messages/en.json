@@ -54,17 +54,17 @@
     "degrees": {
       "epitech": {
         "title": "Master's degree in Computer Science and Information Technology",
-        "school": "EPITECH (European Institute of Information Technology)",
+        "institution": "EPITECH (European Institute of Information Technology)",
         "location": "Rennes, Paris (France)",
         "date": "2012 - 2017",
-        "description": ""
+        "description": "A dynamic, project-driven program that emphasizes real-world application and innovation. Designed to push the boundaries of traditional education, the course integrates hands-on learning with cutting-edge technologies, preparing graduates to excel in fast-paced, ever-evolving tech environments. With an emphasis on teamwork, self-directed problem-solving, and continuous adaptation, this program equips you with both the technical expertise and entrepreneurial mindset needed to thrive in today’s digital landscape."
       },
       "kent": {
         "title": "Master of Science in Advanced Computer Science (Computationnal Intelligence)",
-        "school": "University of Kent",
+        "institution": "University of Kent",
         "location": "Canterbury (UK)",
         "date": "2016",
-        "description": ""
+        "description": "Designed for graduates eager to delve deeply into artificial intelligence and intelligent systems. Blending rigorous theoretical foundations with practical, real-world applications, the program offers a flexible curriculum that emphasizes advanced AI techniques—from deep learning and neural networks to innovative machine learning methods. Focused on hands-on research and industry-relevant projects, this course equips you with the cutting-edge skills needed to tackle complex computational challenges and drive innovation in the rapidly evolving field of AI."
       }
     }
   }

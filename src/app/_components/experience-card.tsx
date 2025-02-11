@@ -32,12 +32,14 @@ const ExperienceCardHeader = ({
 }) => (
   <CardHeader>
     <CardTitle className="text-xl font-semibold">{jobTitle}</CardTitle>
-    <CardDescription className="text-lg">{companyName}</CardDescription>
-    <div className="my-2 flex items-center text-sm text-neutral-500 dark:text-neutral-400">
-      <Calendar className="mr-2 size-4" />
-      {date}
-    </div>
-    {children}
+    <CardDescription className="text-lg">
+      {companyName}
+      <div className="my-2 flex items-center text-sm text-neutral-500 dark:text-neutral-400">
+        <Calendar className="mr-2 size-4" />
+        {date}
+      </div>
+      {children}
+    </CardDescription>
   </CardHeader>
 );
 

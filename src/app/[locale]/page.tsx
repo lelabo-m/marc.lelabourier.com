@@ -1,8 +1,16 @@
-import { Mail, MapPin, Phone } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
+import { getMessages, getTranslations } from "next-intl/server";
 
+import {
+  EducationCard,
+  EducationCardContent,
+  EducationCardHeader,
+  EducationCardModuleGrid,
+} from "@/components/education-card";
 import { Github, Linkedin } from "@/components/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { degrees } from "@/data/degrees";
 import { profile } from "@/data/profile";
 import { Link } from "@/lib/i18n/routing";
 import { ProfessionalExperienceSection } from "./components";
@@ -46,37 +54,6 @@ export default async function HomePage() {
       </div>
     </>
   );
-}
-
-{
-  /* <main className="flex min-h-screen flex-col items-center justify-center">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            {curriculumVitae.identity.firstName}{" "}
-          {curriculumVitae.identity.lastName}
-            <div>
-              <h1>{t("title")}</h1>
-              <Link href="/about">{t("about")}</Link>
-            </div>
-            <ProfilePicture />
-            <h2>Education</h2>
-            <h3> Epitech (European Institute of Technologie)</h3>
-            <h4>Rennes, Paris (France)</h4> <h4>2012 - 2017</h4>
-            <p>
-              Bachelor and Master's degree in computer science. 3 internships
-              (24 months of intership) Field: Programmation (C / C++ / Python /
-              C#), Sécurité, système Unix, Agile, géstion de projets
-            </p>
-            <h3>University of Kent</h3>
-            <h4>Canterbury (England)</h4> <h4>2015 - 2016</h4>
-            <p>
-              Master of Science in Advanced Computer Science : Artificial
-              Intelligence. Field studied: Neural Networks, Data Mining, Natural
-              Computation, Computer graphics and Animation, IOT
-            </p>
-          </h1>
-        </div>
-      </main> */
 }
 
 async function Header() {
@@ -160,7 +137,9 @@ async function SummarySection() {
 
 async function EducationSection() {
   const t = await getTranslations("EducationSection");
-  const degrees = ["epitech", "kent"] as const;
+  const messages = await getMessages();
+
+  const degreeKeys = ["epitech", "kent"] as const;
 
   return (
     <section className="mb-8">
@@ -169,16 +148,47 @@ async function EducationSection() {
       </h2>
 
       <div className="space-y-4">
-        {degrees.map((degree) => (
-          <div key={degree}>
-            <h3 className="text-xl font-semibold text-gray-800">
-              {t(`degrees.${degree}.title`)}
-            </h3>
-            <p className="text-gray-600">
-              {t(`degrees.${degree}.location`)} | {t(`degrees.${degree}.date`)}
-            </p>
-            <p>{t(`degrees.${degree}.description`)}</p>
-          </div>
+        {degreeKeys.map((degree) => (
+          <EducationCard key={degree}>
+            <EducationCardHeader
+              degree={t(`degrees.${degree}.title`)}
+              institution={t(`degrees.${degree}.institution`)}
+              location={t(`degrees.${degree}.location`)}
+              date={t(`degrees.${degree}.date`)}
+            />
+            <EducationCardContent>
+              <div className="space-y-6">
+                <p className="text-sm">{t(`degrees.${degree}.description`)}</p>
+                <div>
+                  <h4 className="mb-2 font-semibold">Learn more about:</h4>
+                  <div className="flex space-x-4">
+                    <Button variant="outline" asChild>
+                      <a
+                        href={degrees[degree].cursusUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Cursus <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                    <Button variant="outline" asChild>
+                      <a
+                        href={degrees[degree].coursesUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Course Link <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="mb-2 font-semibold">Modules:</h4>
+                  <EducationCardModuleGrid courses={degrees[degree].courses} />
+                </div>
+              </div>
+            </EducationCardContent>
+          </EducationCard>
         ))}
       </div>
     </section>

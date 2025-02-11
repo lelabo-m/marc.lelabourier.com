@@ -35,7 +35,7 @@ function ProfessionalExperienceSection() {
               companyName={t(`${key}.company`)}
               date={t(`${key}.date`)}
             >
-              <p>{t(`${key}.description`)}</p>
+              <p className="mt-2 text-gray-700">{t(`${key}.description`)}</p>
             </ExperienceCardHeader>
 
             <ExperienceCardDetails>

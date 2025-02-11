@@ -31,6 +31,17 @@ const CardTitle = ({ ref, className, ...props }: Props) => (
   />
 );
 
+const CardSubtitle = ({ ref, className, ...props }: Props) => (
+  <div
+    ref={ref}
+    className={cn(
+      "my-2 flex items-center text-neutral-500 dark:text-neutral-400",
+      className,
+    )}
+    {...props}
+  />
+);
+
 const CardDescription = ({ ref, className, ...props }: Props) => (
   <div
     ref={ref}
@@ -57,5 +68,6 @@ export {
   CardDescription,
   CardFooter,
   CardHeader,
+  CardSubtitle,
   CardTitle,
 };

@@ -1,3 +1,4 @@
+import { AbstractIntlMessages } from "next-intl";
 import { ReactNode } from "react";
 
 type RichTextProps<Tag extends keyof any> = {
@@ -16,6 +17,12 @@ function RichText({ children }: RichTextProps<"p" | "b" | "i">) {
   );
 }
 
+function isAbstractIntlMessages(
+  value: string | AbstractIntlMessages,
+): value is AbstractIntlMessages {
+  return typeof value === "object" && value !== null;
+}
+
 export type { RichTextProps };
 
-export { RichText };
+export { isAbstractIntlMessages, RichText };
