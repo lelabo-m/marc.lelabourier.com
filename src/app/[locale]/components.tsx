@@ -8,7 +8,7 @@ import {
   ExperienceCardDetails,
   ExperienceCardHeader,
   ExperienceCardRichText,
-} from "~/app/_components/experience-card";
+} from "@/components/experience-card";
 
 function ProfessionalExperienceSection() {
   const t = useTranslations("ProfessionalExperienceSection");

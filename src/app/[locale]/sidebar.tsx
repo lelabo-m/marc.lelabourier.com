@@ -6,7 +6,6 @@ import {
   MessageSquareText,
 } from "lucide-react";
 
-import Link from "next/link";
 import {
   Sidebar,
   SidebarContent,
@@ -16,7 +15,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "~/app/_components/ui/sidebar";
+} from "@/components/ui/sidebar";
+import Link from "next/link";
 
 // Menu items.
 const items = [

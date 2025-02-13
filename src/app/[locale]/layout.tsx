@@ -4,10 +4,10 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { routing } from "@/lib/i18n/routing";
-import { ThemeProvider } from "~/app/_components/theme-provider";
-import { ThemeToggle } from "~/app/_components/theme-toggle";
-import { SidebarProvider, SidebarTrigger } from "~/app/_components/ui/sidebar";
 import "~/styles/app.css";
 import { AppSidebar } from "./sidebar";
 

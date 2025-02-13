@@ -1,22 +1,18 @@
 import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
 import { getMessages, getTranslations } from "next-intl/server";
 
-import { Link } from "@/lib/i18n/routing";
 import {
   EducationCard,
   EducationCardContent,
   EducationCardHeader,
   EducationCardModuleGrid,
-} from "~/app/_components/education-card";
-import { Github, Linkedin } from "~/app/_components/icons";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "~/app/_components/ui/avatar";
-import { Button } from "~/app/_components/ui/button";
-import { degrees } from "~/app/_data/degrees";
-import { profile } from "~/app/_data/profile";
+} from "@/components/education-card";
+import { Github, Linkedin } from "@/components/icons";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { degrees } from "@/data/degrees";
+import { profile } from "@/data/profile";
+import { Link } from "@/lib/i18n/routing";
 import { ProfessionalExperienceSection } from "./components";
 
 export default async function HomePage() {
@@ -112,7 +108,7 @@ async function ContactSection() {
           </a>
         </div>
         <div className="flex items-center">
-          <Github className="mr-2 h-5 w-5 text-gray-600" />
+          <Github className="text-muted-foreground mr-2 h-5 w-5" />
           <a
             href={profile.socialLinks.github.href}
             className="text-blue-600 hover:underline"
