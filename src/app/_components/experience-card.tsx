@@ -34,7 +34,7 @@ const ExperienceCardHeader = ({
     <CardTitle className="text-xl font-semibold">{jobTitle}</CardTitle>
     <CardDescription className="text-lg">
       {companyName}
-      <div className="my-2 flex items-center text-sm text-neutral-500 dark:text-neutral-400">
+      <div className="text-muted-foreground my-2 flex items-center text-sm">
         <Calendar className="mr-2 size-4" />
         {date}
       </div>
@@ -79,9 +79,9 @@ function ExperienceCardHighlightList({ children }: { children: ReactNode }) {
 
 function ExperienceCardHighlightItem({ children }: { children: ReactNode }) {
   return (
-    <li className="flex items-start first:mt-4">
-      <CircleCheckBig className="mt-1.5 h-4 w-4 shrink-0 text-gray-600" />
-      <p className="ml-2 text-gray-600">{children}</p>
+    <li className="text-foreground flex items-start first:mt-4">
+      <CircleCheckBig className="mt-1.5 h-4 w-4 shrink-0" />
+      <p className="ml-2">{children}</p>
     </li>
   );
 }

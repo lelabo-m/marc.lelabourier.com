@@ -1,18 +1,22 @@
 import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
 import { getMessages, getTranslations } from "next-intl/server";
 
+import { Link } from "@/lib/i18n/routing";
 import {
   EducationCard,
   EducationCardContent,
   EducationCardHeader,
   EducationCardModuleGrid,
-} from "@/components/education-card";
-import { Github, Linkedin } from "@/components/icons";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { degrees } from "@/data/degrees";
-import { profile } from "@/data/profile";
-import { Link } from "@/lib/i18n/routing";
+} from "~/app/_components/education-card";
+import { Github, Linkedin } from "~/app/_components/icons";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "~/app/_components/ui/avatar";
+import { Button } from "~/app/_components/ui/button";
+import { degrees } from "~/app/_data/degrees";
+import { profile } from "~/app/_data/profile";
 import { ProfessionalExperienceSection } from "./components";
 
 export default async function HomePage() {
@@ -28,7 +32,7 @@ export default async function HomePage() {
       <EducationSection />
 
       <section>
-        <h2 className="mb-4 text-2xl font-semibold text-gray-800">Skills</h2>
+        <h2 className="text-foreground mb-4 text-2xl font-semibold">Skills</h2>
         <div className="flex flex-wrap gap-2">
           {[
             "JavaScript",
@@ -60,8 +64,8 @@ async function Header() {
   return (
     <header className="mb-8 flex items-center justify-between">
       <div>
-        <h1 className="text-4xl font-bold text-gray-800">{profile.name}</h1>
-        <p className="text-xl text-gray-600">{profile.jobTitle}</p>
+        <h1 className="text-foreground text-4xl font-bold">{profile.name}</h1>
+        <p className="text-muted-foreground text-xl">{profile.jobTitle}</p>
       </div>
       <Avatar className="size-30">
         <AvatarImage
@@ -80,26 +84,26 @@ async function ContactSection() {
 
   return (
     <section className="mb-8 snap-start scroll-mt-4" id="contact">
-      <h2 className="mb-4 text-2xl font-semibold text-gray-800">
+      <h2 className="text-foreground mb-4 text-2xl font-semibold">
         {t("title")}
       </h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="flex items-center">
-          <Mail className="mr-2 h-5 w-5 text-gray-600" />
+          <Mail className="text-muted-foreground mr-2 h-5 w-5" />
           <Link href={`mailto:${profile.email}`} className="text-blue-600">
             {profile.email}
           </Link>
         </div>
         <div className="flex items-center">
-          <Phone className="mr-2 h-5 w-5 text-gray-600" />
+          <Phone className="text-muted-foreground mr-2 h-5 w-5" />
           <span>{profile.phone}</span>
         </div>
         <div className="flex items-center">
-          <MapPin className="mr-2 h-5 w-5 text-gray-600" />
+          <MapPin className="text-muted-foreground mr-2 h-5 w-5" />
           <span>{profile.location}</span>
         </div>
         <div className="flex items-center">
-          <Linkedin className="mr-2 h-5 w-5 text-gray-600" />
+          <Linkedin className="text-muted-foreground mr-2 h-5 w-5" />
           <a
             href={profile.socialLinks.linkedin.href}
             className="text-blue-600 hover:underline"
@@ -126,11 +130,11 @@ async function SummarySection() {
 
   return (
     <section className="mb-8 snap-start scroll-mt-4" id="summary">
-      <h2 className="mb-4 text-2xl font-semibold text-gray-800">
+      <h2 className="text-foreground mb-4 text-2xl font-semibold">
         {t("title")}
       </h2>
-      <p className="text-gray-700">{t("intro")}</p>
-      <p className="mt-4 text-gray-700">{t("objective")}</p>
+      <p className="text-foreground">{t("intro")}</p>
+      <p className="text-foreground mt-4">{t("objective")}</p>
     </section>
   );
 }
@@ -143,7 +147,7 @@ async function EducationSection() {
 
   return (
     <section className="mb-8 snap-start scroll-mt-4" id="education">
-      <h2 className="mb-4 text-2xl font-semibold text-gray-800">
+      <h2 className="text-foreground mb-4 text-2xl font-semibold">
         {t("title")}
       </h2>
 

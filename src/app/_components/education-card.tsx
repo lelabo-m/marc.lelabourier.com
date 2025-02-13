@@ -1,8 +1,8 @@
 "use client";
 import { createContext, ReactNode, use, useState } from "react";
 
-import { Course } from "@/data/degrees";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { Course } from "~/app/_data/degrees";
 import { CourseCard } from "./course";
 import { Button } from "./ui/button";
 import {

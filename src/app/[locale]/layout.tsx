@@ -4,8 +4,10 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { routing } from "@/lib/i18n/routing";
+import { ThemeProvider } from "~/app/_components/theme-provider";
+import { ThemeToggle } from "~/app/_components/theme-toggle";
+import { SidebarProvider, SidebarTrigger } from "~/app/_components/ui/sidebar";
 import "~/styles/app.css";
 import { AppSidebar } from "./sidebar";
 
@@ -33,17 +35,31 @@ export default async function RootLocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${GeistSans.variable} scroll-smooth`}>
+    <html
+      lang={locale}
+      className={`${GeistSans.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
       <meta name="apple-mobile-web-app-title" content="Marc Le Labourier" />
       <body>
         <NextIntlClientProvider messages={messages}>
-          <SidebarProvider>
-            <AppSidebar />
-            <div className="mx-auto max-w-4xl bg-white p-8 shadow-lg">
-              <SidebarTrigger />
-              {children}
-            </div>
-          </SidebarProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <SidebarProvider defaultOpen={false}>
+              <AppSidebar />
+              <div className="bg-background mx-auto max-w-4xl border p-8 shadow-lg">
+                <div className="flex items-center gap-4">
+                  <SidebarTrigger />
+                  <ThemeToggle />
+                </div>
+                {children}
+              </div>
+            </SidebarProvider>
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

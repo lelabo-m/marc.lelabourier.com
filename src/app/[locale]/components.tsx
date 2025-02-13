@@ -8,7 +8,7 @@ import {
   ExperienceCardDetails,
   ExperienceCardHeader,
   ExperienceCardRichText,
-} from "@/components/experience-card";
+} from "~/app/_components/experience-card";
 
 function ProfessionalExperienceSection() {
   const t = useTranslations("ProfessionalExperienceSection");
@@ -26,7 +26,7 @@ function ProfessionalExperienceSection() {
       className="mb-8 snap-start scroll-mt-4"
       id="professional-experience"
     >
-      <h2 className="mb-4 text-2xl font-semibold text-gray-800">
+      <h2 className="text-foreground mb-4 text-2xl font-semibold">
         {t("title")}
       </h2>
 
@@ -38,7 +38,7 @@ function ProfessionalExperienceSection() {
               companyName={t(`${key}.company`)}
               date={t(`${key}.date`)}
             >
-              <p className="mt-2 text-gray-700">{t(`${key}.description`)}</p>
+              <p className="text-foreground mt-2">{t(`${key}.description`)}</p>
             </ExperienceCardHeader>
 
             <ExperienceCardDetails>
