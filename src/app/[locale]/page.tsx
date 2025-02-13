@@ -1,4 +1,15 @@
-import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
+import {
+  Brain,
+  ExternalLink,
+  GraduationCap,
+  Heart,
+  Mail,
+  MapPin,
+  Phone,
+  Puzzle,
+  Shuffle,
+  Users,
+} from "lucide-react";
 import { getMessages, getTranslations } from "next-intl/server";
 
 import {
@@ -13,7 +24,10 @@ import { Button } from "@/components/ui/button";
 import { degrees } from "@/data/degrees";
 import { profile } from "@/data/profile";
 import { Link } from "@/lib/i18n/routing";
+import React from "react";
 import { ProfessionalExperienceSection } from "./components";
+import { SkillCard } from "./skills";
+import SkillsAndTechnologies from "./test";
 
 export default async function HomePage() {
   const t = await getTranslations("HomePage");
@@ -26,32 +40,8 @@ export default async function HomePage() {
       <SummarySection />
       <ProfessionalExperienceSection />
       <EducationSection />
-
-      <section>
-        <h2 className="text-foreground mb-4 text-2xl font-semibold">Skills</h2>
-        <div className="flex flex-wrap gap-2">
-          {[
-            "JavaScript",
-            "React",
-            "Node.js",
-            "Python",
-            "SQL",
-            "Git",
-            "AWS",
-            "Docker",
-            "GraphQL",
-            "TypeScript",
-          ].map((skill) => (
-            <span
-              key={skill}
-              className="rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-800"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </section>
-      {/* </div> */}
+      <SkillsSection />
+      <SkillsAndTechnologies />
     </div>
   );
 }
@@ -75,14 +65,22 @@ async function Header() {
   );
 }
 
+const Section = ({
+  id,
+  title,
+  children,
+}: React.ComponentProps<"section"> & { title: string }) => (
+  <section className="mb-8 snap-start scroll-mt-4" id={id}>
+    <h2 className="text-foreground mb-4 text-2xl font-semibold">{title}</h2>
+    {children}
+  </section>
+);
+
 async function ContactSection() {
   const t = await getTranslations("ContactSection");
 
   return (
-    <section className="mb-8 snap-start scroll-mt-4" id="contact">
-      <h2 className="text-foreground mb-4 text-2xl font-semibold">
-        {t("title")}
-      </h2>
+    <Section id="contact" title={t("title")}>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="flex items-center">
           <Mail className="text-muted-foreground mr-2 h-5 w-5" />
@@ -117,7 +115,7 @@ async function ContactSection() {
           </a>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -125,13 +123,10 @@ async function SummarySection() {
   const t = await getTranslations("SummarySection");
 
   return (
-    <section className="mb-8 snap-start scroll-mt-4" id="summary">
-      <h2 className="text-foreground mb-4 text-2xl font-semibold">
-        {t("title")}
-      </h2>
+    <Section id="summary" title={t("title")}>
       <p className="text-foreground">{t("intro")}</p>
       <p className="text-foreground mt-4">{t("objective")}</p>
-    </section>
+    </Section>
   );
 }
 
@@ -142,11 +137,7 @@ async function EducationSection() {
   const degreeKeys = ["epitech", "kent"] as const;
 
   return (
-    <section className="mb-8 snap-start scroll-mt-4" id="education">
-      <h2 className="text-foreground mb-4 text-2xl font-semibold">
-        {t("title")}
-      </h2>
-
+    <Section id="education" title={t("title")}>
       <div className="space-y-4">
         {degreeKeys.map((degree) => (
           <EducationCard key={degree}>
@@ -191,6 +182,45 @@ async function EducationSection() {
           </EducationCard>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }
+
+const SkillsSection = () => {
+  return (
+    <Section id="skills" title="Skills">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <SkillCard
+          title="Holistic Perspective"
+          icon={<Brain className="h-6 w-6" />}
+          description="Broad exposure across multiple fields, allowing for diverse problem-solving and critical thinking."
+        />
+        <SkillCard
+          title="Problem Solver & Optimizer"
+          icon={<Puzzle className="h-6 w-6" />}
+          description="Quick to identify issues and streamline processes, devising practical, team-focused solutions."
+        />
+        <SkillCard
+          title="Team Leadership & Collaboration"
+          icon={<Users className="h-6 w-6" />}
+          description="Lead by example, foster open communication, and ensure every team member's contribution is acknowledged."
+        />
+        <SkillCard
+          title="Adaptability & Negotiation"
+          icon={<Shuffle className="h-6 w-6" />}
+          description="Bridge gaps between technical specialists, adapt to various methodologies, and unite people around common goals."
+        />
+        <SkillCard
+          title="Ethical & Down-to-Earth Approach"
+          icon={<Heart className="h-6 w-6" />}
+          description="Work with integrity and in good faith, grounded in reciprocity and fairness."
+        />
+        <SkillCard
+          title="Mentorship & Teaching"
+          icon={<GraduationCap className="h-6 w-6" />}
+          description="Passionate about nurturing talent, from assisting first-year students to mentoring career-switching professionals. Foster a collaborative learning environment."
+        />
+      </div>
+    </Section>
+  );
+};
