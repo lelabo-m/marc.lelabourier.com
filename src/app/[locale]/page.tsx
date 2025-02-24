@@ -23,45 +23,74 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { degrees } from "@/data/degrees";
 import { profile } from "@/data/profile";
-import { Link } from "@/lib/i18n/routing";
 import React from "react";
 import { ProfessionalExperienceSection } from "./components";
 import { SkillCard } from "./skills";
 import SkillsAndTechnologies from "./test";
 
+const contacts = [
+  <>
+    <Mail />
+    <a href={`mailto:${profile.email}`}>{profile.email}</a>
+  </>,
+  <>
+    <Phone />
+    {profile.phone}
+  </>,
+  <>
+    <MapPin />
+    {profile.location}
+  </>,
+  <>
+    <Linkedin />
+    <a href={profile.socials.linkedin.href}>{profile.socials.linkedin.text}</a>
+  </>,
+  <>
+    <Github />
+    <a href={profile.socials.github.href}>{profile.socials.github.text}</a>
+  </>,
+];
 export default async function HomePage() {
   const t = await getTranslations("HomePage");
 
   return (
     <div className="snap-x">
-      {/* <div className="mx-auto max-w-4xl bg-white p-8 shadow-lg"> */}
-      <Header />
-      <ContactSection />
-      <SummarySection />
+      {/* Header */}
+      <header className="mb-8 flex items-center justify-between">
+        <div>
+          <h1 className="text-foreground text-4xl font-bold">{profile.name}</h1>
+          <p className="text-muted-foreground text-xl">{profile.jobTitle}</p>
+        </div>
+        <Avatar className="size-30">
+          <AvatarImage
+            src="/profile.jpg"
+            alt="Marc Le Labourier profile picture"
+            className="object-cover"
+          />
+          <AvatarFallback>MLL</AvatarFallback>
+        </Avatar>
+      </header>
+
+      {/* Contact Section */}
+      <Section id="contact" title={t("Contact.title")}>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {contacts.map((content, index) => (
+            <ContactElement key={index}>{content}</ContactElement>
+          ))}
+        </div>
+      </Section>
+
+      {/* Summary Section */}
+      <Section id="summary" title={t("Summary.title")}>
+        <p className="text-foreground">{t("Summary.intro")}</p>
+        <p className="text-foreground mt-4">{t("Summary.objective")}</p>
+      </Section>
+
       <ProfessionalExperienceSection />
       <EducationSection />
       <SkillsSection />
       <SkillsAndTechnologies />
     </div>
-  );
-}
-
-async function Header() {
-  return (
-    <header className="mb-8 flex items-center justify-between">
-      <div>
-        <h1 className="text-foreground text-4xl font-bold">{profile.name}</h1>
-        <p className="text-muted-foreground text-xl">{profile.jobTitle}</p>
-      </div>
-      <Avatar className="size-30">
-        <AvatarImage
-          src="/profile.jpg"
-          alt="Marc Le Labourier profile picture"
-          className="object-cover"
-        />
-        <AvatarFallback>MLL</AvatarFallback>
-      </Avatar>
-    </header>
   );
 }
 
@@ -76,59 +105,13 @@ const Section = ({
   </section>
 );
 
-async function ContactSection() {
-  const t = await getTranslations("ContactSection");
-
+const ContactElement = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Section id="contact" title={t("title")}>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div className="flex items-center">
-          <Mail className="text-muted-foreground mr-2 h-5 w-5" />
-          <Link href={`mailto:${profile.email}`} className="text-blue-600">
-            {profile.email}
-          </Link>
-        </div>
-        <div className="flex items-center">
-          <Phone className="text-muted-foreground mr-2 h-5 w-5" />
-          <span>{profile.phone}</span>
-        </div>
-        <div className="flex items-center">
-          <MapPin className="text-muted-foreground mr-2 h-5 w-5" />
-          <span>{profile.location}</span>
-        </div>
-        <div className="flex items-center">
-          <Linkedin className="text-muted-foreground mr-2 h-5 w-5" />
-          <a
-            href={profile.socialLinks.linkedin.href}
-            className="text-blue-600 hover:underline"
-          >
-            {profile.socialLinks.linkedin.text}
-          </a>
-        </div>
-        <div className="flex items-center">
-          <Github className="text-muted-foreground mr-2 h-5 w-5" />
-          <a
-            href={profile.socialLinks.github.href}
-            className="text-blue-600 hover:underline"
-          >
-            {profile.socialLinks.github.text}
-          </a>
-        </div>
-      </div>
-    </Section>
+    <div className="[&_svg]:text-muted-foreground flex items-center [&_a]:text-blue-600 [&_a]:hover:underline [&_svg]:mr-2 [&_svg]:h-5 [&_svg]:w-5">
+      {children}
+    </div>
   );
-}
-
-async function SummarySection() {
-  const t = await getTranslations("SummarySection");
-
-  return (
-    <Section id="summary" title={t("title")}>
-      <p className="text-foreground">{t("intro")}</p>
-      <p className="text-foreground mt-4">{t("objective")}</p>
-    </Section>
-  );
-}
+};
 
 async function EducationSection() {
   const t = await getTranslations("EducationSection");
