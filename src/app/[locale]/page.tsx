@@ -1,33 +1,45 @@
 import {
   Brain,
-  ExternalLink,
+  CircleCheckBig,
   GraduationCap,
   Heart,
   Mail,
   MapPin,
   Phone,
   Puzzle,
-  Shuffle,
   Users,
 } from "lucide-react";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 import {
   EducationCard,
   EducationCardContent,
   EducationCardHeader,
+  EducationCardLearnMoreButton,
   EducationCardModuleGrid,
 } from "@/components/education-card";
+import {
+  ExperienceCard,
+  ExperienceCardContent,
+  ExperienceCardHeader,
+} from "@/components/experience-card";
 import { Github, Linkedin } from "@/components/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { degrees } from "@/data/degrees";
-import { profile } from "@/data/profile";
+import {
+  Timeline,
+  TimelineContent,
+  TimelineItem,
+  TimelineSpacer,
+} from "@/components/ui/timeline";
+import { DegreeList, degrees } from "@/data/degrees";
+import { ExperienceList, experiences, profile } from "@/data/profile";
+import { getTranslationsType } from "@/lib/i18n/utils";
+import { cn, objectKeys } from "@/lib/utils";
 import React from "react";
-import { ProfessionalExperienceSection } from "./components";
 import { SkillCard } from "./skills";
 import SkillsAndTechnologies from "./test";
 
+type Test = typeof Mail;
 const contacts = [
   <>
     <Mail />
@@ -50,6 +62,18 @@ const contacts = [
     <a href={profile.socials.github.href}>{profile.socials.github.text}</a>
   </>,
 ];
+
+const skills = {
+  perspective: Brain,
+  optimizer: Puzzle,
+  team: Users,
+  adaptability: Users,
+  approach: Heart,
+  mentorship: GraduationCap,
+};
+
+type Translations = getTranslationsType<"HomePage">;
+
 export default async function HomePage() {
   const t = await getTranslations("HomePage");
 
@@ -86,9 +110,32 @@ export default async function HomePage() {
         <p className="text-foreground mt-4">{t("Summary.objective")}</p>
       </Section>
 
-      <ProfessionalExperienceSection />
-      <EducationSection />
-      <SkillsSection />
+      {/* Experience Section */}
+      <Section id="experience" title={t("Experiences.title")}>
+        <CardTimeline keys={experiences}>
+          {(exp) => <ProfessionalExperience exp={exp} t={t} />}
+        </CardTimeline>
+      </Section>
+
+      {/* Education Section */}
+      <Section id="education" title={t("Educations.title")}>
+        <CardTimeline keys={objectKeys(degrees)}>
+          {(degree) => <Degree degree={degree} t={t} />}
+        </CardTimeline>
+      </Section>
+
+      <Section id="skills" title="Skills">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {objectKeys(skills).map((skill) => (
+            <SkillCard
+              key={skill}
+              title={t(`Skills.${skill}.title`)}
+              icon={skills[skill]}
+              description={t(`Skills.${skill}.description`)}
+            />
+          ))}
+        </div>
+      </Section>
       <SkillsAndTechnologies />
     </div>
   );
@@ -97,9 +144,10 @@ export default async function HomePage() {
 const Section = ({
   id,
   title,
+  className,
   children,
 }: React.ComponentProps<"section"> & { title: string }) => (
-  <section className="mb-8 snap-start scroll-mt-4" id={id}>
+  <section className={cn("mb-8 snap-start scroll-mt-4", className)} id={id}>
     <h2 className="text-foreground mb-4 text-2xl font-semibold">{title}</h2>
     {children}
   </section>
@@ -113,97 +161,92 @@ const ContactElement = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-async function EducationSection() {
-  const t = await getTranslations("EducationSection");
-  const messages = await getMessages();
+const CardTimeline = <List extends readonly string[]>({
+  keys,
+  children,
+}: {
+  keys: List;
+  children: (key: List[number]) => React.ReactNode;
+}) => (
+  <Timeline>
+    <TimelineContent className="sm:max-w-4xl">
+      {keys.flatMap((key, index) =>
+        index !== 0
+          ? [
+              <TimelineSpacer key={`${key}-spacer`} />,
+              <TimelineItem key={`${key}-item`} className="w-full">
+                {children(key)}
+              </TimelineItem>,
+            ]
+          : [
+              <TimelineItem key={`${key}-item`} className="w-full">
+                {children(key)}
+              </TimelineItem>,
+            ],
+      )}
+    </TimelineContent>
+  </Timeline>
+);
 
-  const degreeKeys = ["epitech", "kent"] as const;
+const ProfessionalExperience = ({
+  exp,
+  t,
+}: {
+  exp: ExperienceList;
+  t: Translations;
+}) => (
+  <ExperienceCard>
+    <ExperienceCardHeader
+      jobTitle={t(`Experiences.${exp}.title`)}
+      companyName={t(`Experiences.${exp}.company`)}
+      date={t(`Experiences.${exp}.date`)}
+      description={t(`Experiences.${exp}.description`)}
+    />
+    <ExperienceCardContent>
+      <ul className="text-foreground flex flex-col gap-2 text-left">
+        {t.rich(`Experiences.${exp}.highlights`, {
+          highlight: (chunks) => (
+            <li className="flex items-start first:mt-4">
+              <CircleCheckBig className="mt-1.5 h-4 w-4 shrink-0" />
+              <p className="ml-2">{chunks}</p>
+            </li>
+          ),
+          b: (chunks) => <b className="font-semibold">{chunks}</b>,
+        })}
+      </ul>
+    </ExperienceCardContent>
+  </ExperienceCard>
+);
 
-  return (
-    <Section id="education" title={t("title")}>
-      <div className="space-y-4">
-        {degreeKeys.map((degree) => (
-          <EducationCard key={degree}>
-            <EducationCardHeader
-              degree={t(`degrees.${degree}.title`)}
-              institution={t(`degrees.${degree}.institution`)}
-              location={t(`degrees.${degree}.location`)}
-              date={t(`degrees.${degree}.date`)}
-            />
-            <EducationCardContent>
-              <div className="space-y-6">
-                <p className="text-sm">{t(`degrees.${degree}.description`)}</p>
-                <div>
-                  <h4 className="mb-2 font-semibold">Learn more about:</h4>
-                  <div className="flex space-x-4">
-                    <Button variant="outline" asChild>
-                      <a
-                        href={degrees[degree].cursusUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Cursus <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
-                    <Button variant="outline" asChild>
-                      <a
-                        href={degrees[degree].coursesUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Course Link <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="mb-2 font-semibold">Modules:</h4>
-                  <EducationCardModuleGrid courses={degrees[degree].courses} />
-                </div>
-              </div>
-            </EducationCardContent>
-          </EducationCard>
-        ))}
+const Degree = ({ degree, t }: { degree: DegreeList; t: Translations }) => (
+  <EducationCard className="w-full">
+    <EducationCardHeader
+      degree={t(`Educations.degrees.${degree}.title`)}
+      institution={t(`Educations.degrees.${degree}.institution`)}
+      location={t(`Educations.degrees.${degree}.location`)}
+      date={t(`Educations.degrees.${degree}.date`)}
+    />
+    <EducationCardContent>
+      <div className="flex flex-col gap-4">
+        <p className="text-left text-base">
+          {t(`Educations.degrees.${degree}.description`)}
+        </p>
+        <div className="flex items-baseline justify-between">
+          <h4 className="mb-2 font-semibold">Learn more about:</h4>
+          <div className="flex gap-4">
+            <EducationCardLearnMoreButton href={degrees[degree].cursusUrl}>
+              Cursus
+            </EducationCardLearnMoreButton>
+            <EducationCardLearnMoreButton href={degrees[degree].coursesUrl}>
+              Modules
+            </EducationCardLearnMoreButton>
+          </div>
+        </div>
+        <div>
+          <h4 className="mb-2 text-left font-semibold">Modules:</h4>
+          <EducationCardModuleGrid courses={degrees[degree].courses} />
+        </div>
       </div>
-    </Section>
-  );
-}
-
-const SkillsSection = () => {
-  return (
-    <Section id="skills" title="Skills">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <SkillCard
-          title="Holistic Perspective"
-          icon={<Brain className="h-6 w-6" />}
-          description="Broad exposure across multiple fields, allowing for diverse problem-solving and critical thinking."
-        />
-        <SkillCard
-          title="Problem Solver & Optimizer"
-          icon={<Puzzle className="h-6 w-6" />}
-          description="Quick to identify issues and streamline processes, devising practical, team-focused solutions."
-        />
-        <SkillCard
-          title="Team Leadership & Collaboration"
-          icon={<Users className="h-6 w-6" />}
-          description="Lead by example, foster open communication, and ensure every team member's contribution is acknowledged."
-        />
-        <SkillCard
-          title="Adaptability & Negotiation"
-          icon={<Shuffle className="h-6 w-6" />}
-          description="Bridge gaps between technical specialists, adapt to various methodologies, and unite people around common goals."
-        />
-        <SkillCard
-          title="Ethical & Down-to-Earth Approach"
-          icon={<Heart className="h-6 w-6" />}
-          description="Work with integrity and in good faith, grounded in reciprocity and fairness."
-        />
-        <SkillCard
-          title="Mentorship & Teaching"
-          icon={<GraduationCap className="h-6 w-6" />}
-          description="Passionate about nurturing talent, from assisting first-year students to mentoring career-switching professionals. Foster a collaborative learning environment."
-        />
-      </div>
-    </Section>
-  );
-};
+    </EducationCardContent>
+  </EducationCard>
+);

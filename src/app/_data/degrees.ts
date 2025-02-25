@@ -146,3 +146,5 @@ export const degrees = {
     ],
   },
 } satisfies Record<string, Degree>;
+
+export type DegreeList = keyof typeof degrees;

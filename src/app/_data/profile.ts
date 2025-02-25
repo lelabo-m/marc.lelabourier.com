@@ -15,3 +15,13 @@ export const profile = {
     },
   },
 };
+
+export const experiences = [
+  "singlespot1",
+  "singlespot2",
+  "technicolor",
+  "epitech",
+  "creawave",
+] as const;
+
+export type ExperienceList = (typeof experiences)[number];

@@ -1,48 +1,19 @@
 "use client";
-import { createContext, ReactNode, use, useState } from "react";
+import React, { ReactNode } from "react";
 
-import { Course } from "@data/degrees";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { Course } from "@/data/degrees";
+import { ExternalLink } from "lucide-react";
 import { CourseCard } from "./course";
 import { Button } from "./ui/button";
+import { CardHeader, CardSubtitle, CardTitle } from "./ui/card";
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardSubtitle,
-  CardTitle,
-} from "./ui/card";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "./ui/collapsible";
+  CollapsibleCard,
+  CollapsibleCardContent,
+  CollapsibleCardDetails,
+  CollapsibleCardTrigger,
+} from "./ui/collapsible-card";
 
-const EducationCardContext = createContext<{
-  isExpanded: boolean;
-  setIsExpanded: (isExpanded: boolean) => void;
-} | null>(null);
-
-const useEducationCardContext = () => {
-  const context = use(EducationCardContext);
-  if (!context) {
-    throw new Error(
-      "useEducationCardContext must be used within an EducationCard component",
-    );
-  }
-  return context;
-};
-
-const EducationCard = ({ children }: { children: ReactNode }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  return (
-    <Card>
-      <EducationCardContext value={{ isExpanded, setIsExpanded }}>
-        {children}
-      </EducationCardContext>
-    </Card>
-  );
-};
+const EducationCard = CollapsibleCard;
 
 const EducationCardHeader = ({
   degree,
@@ -56,41 +27,26 @@ const EducationCardHeader = ({
   date: string;
 }) => (
   <CardHeader>
-    <CardTitle>{degree}</CardTitle>
-    <CardSubtitle className="flex-col items-start">
-      <p>{institution}</p>
-      <p>
+    <CardTitle className="text-xl font-semibold">{degree}</CardTitle>
+    <CardSubtitle className="flex-col items-center">
+      <span>{institution}</span>
+      <span>
         {location} | {date}
-      </p>
+      </span>
     </CardSubtitle>
   </CardHeader>
 );
 
 const EducationCardContent = ({ children }: { children: ReactNode }) => {
-  const { isExpanded, setIsExpanded } = useEducationCardContext();
-
   return (
-    <CardContent>
-      <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
-        <CollapsibleTrigger asChild>
-          <Button
-            variant="ghost"
-            className="mb-4 w-full justify-between text-blue-500 hover:text-blue-600 focus:ring-2 focus:ring-blue-500"
-            aria-expanded={isExpanded}
-          >
-            {isExpanded
-              ? "Hide details and courses"
-              : "Show details and courses"}
-            {isExpanded ? (
-              <ChevronUp className="size-4" />
-            ) : (
-              <ChevronDown className="size-4" />
-            )}
-          </Button>
-        </CollapsibleTrigger>
-        <CollapsibleContent>{children}</CollapsibleContent>
-      </Collapsible>
-    </CardContent>
+    <CollapsibleCardContent>
+      <CollapsibleCardTrigger>
+        {(isExpanded) =>
+          isExpanded ? "Hide details and courses" : "Show details and courses"
+        }
+      </CollapsibleCardTrigger>
+      <CollapsibleCardDetails>{children}</CollapsibleCardDetails>
+    </CollapsibleCardContent>
   );
 };
 
@@ -102,9 +58,24 @@ const EducationCardModuleGrid = ({ courses }: { courses: Course[] }) => (
   </div>
 );
 
+const EducationCardLearnMoreButton = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
+  <Button variant="outline" asChild>
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      {children} <ExternalLink className="ml-2 h-4 w-4" />
+    </a>
+  </Button>
+);
+
 export {
   EducationCard,
   EducationCardContent,
   EducationCardHeader,
+  EducationCardLearnMoreButton,
   EducationCardModuleGrid,
 };
