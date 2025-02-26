@@ -3,15 +3,15 @@ import React, { ReactNode } from "react";
 
 import { Course } from "@/data/degrees";
 import { ExternalLink } from "lucide-react";
-import { CourseCard } from "./course";
-import { Button } from "./ui/button";
-import { CardHeader, CardSubtitle, CardTitle } from "./ui/card";
+import { Button } from "../ui/button";
+import { CardHeader, CardSubtitle, CardTitle } from "../ui/card";
 import {
   CollapsibleCard,
   CollapsibleCardContent,
   CollapsibleCardDetails,
   CollapsibleCardTrigger,
-} from "./ui/collapsible-card";
+} from "../ui/collapsible-card";
+import { CourseCard } from "./course";
 
 const EducationCard = CollapsibleCard;
 

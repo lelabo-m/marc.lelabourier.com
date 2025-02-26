@@ -32,7 +32,7 @@ const TimelineSpacer = ({
 }: React.ComponentProps<"span">) => (
   <span
     data-slot="timeline-spacer"
-    className={cn("my-3 h-36 w-[2px]", className)}
+    className={cn("my-3 h-16 w-[2px]", className)}
     {...props}
     style={{
       backgroundImage:

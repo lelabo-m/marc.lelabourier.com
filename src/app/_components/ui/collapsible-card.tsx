@@ -6,7 +6,7 @@ import {
   CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { createContext, use, useState } from "react";
+import React, { createContext, use, useState } from "react";
 import { Button } from "./button";
 import { Card, CardContent } from "./card";
 
@@ -84,7 +84,15 @@ const CollapsibleCardTrigger = ({
   );
 };
 
-const CollapsibleCardDetails = CollapsibleContent;
+const CollapsibleCardDetails = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
+  <CollapsibleContent>
+    <div className="p-4">{children}</div>
+  </CollapsibleContent>
+);
 
 export {
   CollapsibleCard,

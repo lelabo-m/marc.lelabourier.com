@@ -8,13 +8,13 @@ import {
   CardHeader,
   CardSubtitle,
   CardTitle,
-} from "./ui/card";
+} from "../ui/card";
 import {
   CollapsibleCard,
   CollapsibleCardContent,
   CollapsibleCardDetails,
   CollapsibleCardTrigger,
-} from "./ui/collapsible-card";
+} from "../ui/collapsible-card";
 
 const ExperienceCard = CollapsibleCard;
 

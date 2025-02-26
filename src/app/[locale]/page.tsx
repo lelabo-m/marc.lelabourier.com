@@ -17,12 +17,16 @@ import {
   EducationCardHeader,
   EducationCardLearnMoreButton,
   EducationCardModuleGrid,
-} from "@/components/education-card";
+} from "@/components/card/education";
 import {
   ExperienceCard,
   ExperienceCardContent,
   ExperienceCardHeader,
-} from "@/components/experience-card";
+} from "@/components/card/experience";
+import {
+  TechLevelIndicator,
+  TechStackCard,
+} from "@/components/card/tech-stack";
 import { Github, Linkedin } from "@/components/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -33,13 +37,12 @@ import {
 } from "@/components/ui/timeline";
 import { DegreeList, degrees } from "@/data/degrees";
 import { ExperienceList, experiences, profile } from "@/data/profile";
+import { stacks, techLevels } from "@/data/tech-stack";
 import { getTranslationsType } from "@/lib/i18n/utils";
-import { cn, objectKeys } from "@/lib/utils";
+import { cn, objectEntries, objectKeys } from "@/lib/utils";
 import React from "react";
-import { SkillCard } from "./skills";
-import SkillsAndTechnologies from "./test";
+import { SkillCard } from "../_components/card/skill";
 
-type Test = typeof Mail;
 const contacts = [
   <>
     <Mail />
@@ -124,6 +127,7 @@ export default async function HomePage() {
         </CardTimeline>
       </Section>
 
+      {/* Skills Section */}
       <Section id="skills" title="Skills">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {objectKeys(skills).map((skill) => (
@@ -136,7 +140,27 @@ export default async function HomePage() {
           ))}
         </div>
       </Section>
-      <SkillsAndTechnologies />
+
+      {/* Tech Stack Section */}
+      <Section id="stack" title={t("Technologies.title")}>
+        <blockquote className="my-4 border-l-2 pl-6 italic">
+          {t("Technologies.disclaimer")}
+        </blockquote>
+
+        <div className="flex gap-4">
+          {techLevels.map((level) => (
+            <div key={level} className="flex items-baseline gap-1">
+              <TechLevelIndicator level={level} />
+              <span className="text-foreground">{level}</span>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2">
+          {objectEntries(stacks).map(([domain, stack]) => (
+            <TechStackCard key={domain} {...stack} />
+          ))}
+        </div>
+      </Section>
     </div>
   );
 }
@@ -146,7 +170,7 @@ const Section = ({
   title,
   className,
   children,
-}: React.ComponentProps<"section"> & { title: string }) => (
+}: { title: string } & React.ComponentProps<"section">) => (
   <section className={cn("mb-8 snap-start scroll-mt-4", className)} id={id}>
     <h2 className="text-foreground mb-4 text-2xl font-semibold">{title}</h2>
     {children}
@@ -206,7 +230,7 @@ const ProfessionalExperience = ({
       <ul className="text-foreground flex flex-col gap-2 text-left">
         {t.rich(`Experiences.${exp}.highlights`, {
           highlight: (chunks) => (
-            <li className="flex items-start first:mt-4">
+            <li className="flex items-start">
               <CircleCheckBig className="mt-1.5 h-4 w-4 shrink-0" />
               <p className="ml-2">{chunks}</p>
             </li>

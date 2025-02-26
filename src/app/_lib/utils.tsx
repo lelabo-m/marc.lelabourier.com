@@ -12,3 +12,7 @@ export type RemoveReadonly<T> = {
 export function objectKeys<Obj extends {}>(obj: Obj): (keyof Obj)[] {
   return Object.keys(obj) as (keyof Obj)[];
 }
+
+export function objectEntries<Obj extends {}>(obj: Obj) {
+  return Object.entries(obj) as [keyof Obj, Obj[keyof Obj]][];
+}
