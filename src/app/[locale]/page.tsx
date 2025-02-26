@@ -68,7 +68,7 @@ const contacts = [
     {profile.location}
   </>,
   <>
-    <Linkedin />
+    <Linkedin className="" />
     <a href={profile.socials.linkedin.href}>{profile.socials.linkedin.text}</a>
   </>,
   <>
@@ -89,6 +89,12 @@ const skills = {
 type Translations = getTranslationsType<"HomePage">;
 
 export default async function HomePage() {
+  const buildDate = new Date();
+  const formattedDate = buildDate.toLocaleString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+
   const t = await getTranslations("HomePage");
 
   return (
@@ -186,6 +192,19 @@ export default async function HomePage() {
           ))}
         </div>
       </Section>
+      <footer className="mt-12 border-t border-gray-200 pt-6">
+        <div className="grid grid-cols-1 gap-4 text-sm text-gray-600 md:grid-cols-2 lg:grid-cols-3">
+          {contacts.map((content, index) => (
+            <ContactElement key={index}>{content}</ContactElement>
+          ))}
+        </div>
+        <div className="mt-4 flex flex-col items-center justify-between text-xs text-gray-500 md:flex-row">
+          <p>
+            © {buildDate.getFullYear()} Marc Le Labourier. All rights reserved.
+          </p>
+          <p className="mt-2 md:mt-0">Last updated: {formattedDate}</p>
+        </div>
+      </footer>
     </div>
   );
 }
