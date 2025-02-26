@@ -24,6 +24,11 @@ import {
   ExperienceCardHeader,
 } from "@/components/card/experience";
 import {
+  HobbyCategoryCard,
+  HobbyCategoryCardContent,
+  HobbyCategoryCardHeader,
+} from "@/components/card/hobby";
+import {
   TechLevelIndicator,
   TechStackCard,
 } from "@/components/card/tech-stack";
@@ -36,7 +41,13 @@ import {
   TimelineSpacer,
 } from "@/components/ui/timeline";
 import { DegreeList, degrees } from "@/data/degrees";
-import { ExperienceList, experiences, profile } from "@/data/profile";
+import {
+  ExperienceList,
+  experiences,
+  hobbies,
+  HobbyCategoryProps,
+  profile,
+} from "@/data/profile";
 import { stacks, techLevels } from "@/data/tech-stack";
 import { getTranslationsType } from "@/lib/i18n/utils";
 import { cn, objectEntries, objectKeys } from "@/lib/utils";
@@ -143,7 +154,7 @@ export default async function HomePage() {
 
       {/* Tech Stack Section */}
       <Section id="stack" title={t("Technologies.title")}>
-        <blockquote className="my-4 border-l-2 pl-6 italic">
+        <blockquote className="text-muted-foreground my-4 border-l-2 pl-6 italic">
           {t("Technologies.disclaimer")}
         </blockquote>
 
@@ -158,6 +169,20 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2">
           {objectEntries(stacks).map(([domain, stack]) => (
             <TechStackCard key={domain} {...stack} />
+          ))}
+        </div>
+      </Section>
+
+      {/* Hobbies & Interests Section */}
+      <Section id="hobbies" title={t("Hobbies.title")}>
+        <div className="mb-6 space-y-4">
+          {t.rich("Hobbies.description", {
+            p: (chunks) => <p>{chunks}</p>,
+          })}
+        </div>
+        <div className="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2">
+          {hobbies.map((hobby, index) => (
+            <HobbyCategory key={index} {...hobby} />
           ))}
         </div>
       </Section>
@@ -273,4 +298,28 @@ const Degree = ({ degree, t }: { degree: DegreeList; t: Translations }) => (
       </div>
     </EducationCardContent>
   </EducationCard>
+);
+
+const HobbyCategory = ({
+  category,
+  icon: IconComp,
+  items,
+}: HobbyCategoryProps) => (
+  <HobbyCategoryCard>
+    <HobbyCategoryCardHeader>
+      <div className="flex items-center">
+        <IconComp className="mr-2 h-6 w-6" />
+        {category}
+      </div>
+    </HobbyCategoryCardHeader>
+    <HobbyCategoryCardContent>
+      <ul className="list-inside list-disc">
+        {items.map((item, index) => (
+          <li key={index} className="mb-1">
+            {item}
+          </li>
+        ))}
+      </ul>
+    </HobbyCategoryCardContent>
+  </HobbyCategoryCard>
 );

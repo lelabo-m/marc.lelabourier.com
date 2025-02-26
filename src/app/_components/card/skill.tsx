@@ -18,7 +18,7 @@ const SkillCard = ({
       </CardTitle>
     </CardHeader>
     <CardContent>
-      <p className="text-muted-foreground">{description}</p>
+      <p>{description}</p>
     </CardContent>
   </Card>
 );
