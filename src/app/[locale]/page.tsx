@@ -36,6 +36,14 @@ import {
 } from "@/components/card/tech-stack";
 import { CustomIcon, Github, Linkedin } from "@/components/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Timeline,
   TimelineContent,
@@ -154,6 +162,145 @@ export default async function HomePage() {
         <CardTimeline keys={objectKeys(degrees)}>
           {(degree) => <Degree degree={degree} t={t} />}
         </CardTimeline>
+      </Section>
+
+      {/* Formations */}
+      <Section id="formations" title="Formations">
+        <p className="text-muted-foreground">
+          Professional development and specialized training
+        </p>
+
+        <div className="space-y-6">
+          {/* Entrepreneurial Program */}
+          <Card className="flex h-full flex-col">
+            <CardHeader className="pb-3">
+              <div className="flex items-start justify-between">
+                <div>
+                  <CardTitle className="text-lg font-semibold">
+                    Entrepreneurial Program in Publishing & Edition
+                  </CardTitle>
+                  <CardDescription className="mt-1 text-sm">
+                    Edistart'up
+                  </CardDescription>
+                </div>
+                <Badge variant="outline" className="text-xs font-medium">
+                  5 months
+                </Badge>
+              </div>
+              <div className="text-muted-foreground mt-1 flex items-center text-sm">
+                <span>
+                  edinovo FORMATION (Asfored) x LABO DE L'ÉDITION (PARIS&CO)
+                </span>
+              </div>
+              <div className="text-muted-foreground text-xs">
+                September 2021 - February 2022
+              </div>
+            </CardHeader>
+            <CardContent className="flex-grow pt-0">
+              <p className="mb-3 text-sm">
+                Participated in the inaugural cohort of a comprehensive program
+                designed to launch publishing houses or book-related businesses.
+              </p>
+              <p className="mb-3 text-sm">
+                Developed a deep understanding of the publishing ecosystem,
+                business model development, and market viability.
+              </p>
+              <div className="space-y-2">
+                <p className="text-sm font-medium">Program components:</p>
+                <ul className="list-disc space-y-1 pl-5 text-sm">
+                  <li>An online toolbox and 20 hours of e-learning modules</li>
+                  <li>
+                    7 in-person workshops with fellow entrepreneurs and industry
+                    experts
+                  </li>
+                  <li>
+                    7 hours of personalized mentoring and 14 hours of expert
+                    consulting
+                  </li>
+                  <li>
+                    Access to a dedicated coworking space at Le Labo de
+                    L'Edition
+                  </li>
+                </ul>
+              </div>
+              <div className="mt-3 text-sm">
+                <p>
+                  Gained practical expertise in project formulation, strategic
+                  pitching, and navigating the digital publishing landscape,
+                  while deepening entrepreneurial insights through discussions
+                  with seasoned experts, authors, and entrepreneurs.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Digital Publishing & Edition Rights */}
+          <Card className="flex h-full flex-col">
+            <CardHeader className="pb-3">
+              <div className="flex items-start justify-between">
+                <div>
+                  <CardTitle className="text-lg font-semibold">
+                    Digital Publishing & Edition Rights
+                  </CardTitle>
+                  <CardDescription className="mt-1 text-sm">
+                    Professional Training
+                  </CardDescription>
+                </div>
+                <Badge variant="outline" className="text-xs font-medium">
+                  35 hours
+                </Badge>
+              </div>
+              <div className="text-muted-foreground mt-1 flex items-center text-sm">
+                <span>edinovo FORMATION (Asfored)</span>
+              </div>
+              <div className="text-muted-foreground text-xs">
+                May – June 2021
+              </div>
+            </CardHeader>
+            <CardContent className="flex-grow pt-0">
+              <div className="space-y-3">
+                <div>
+                  <p className="mb-2 text-sm font-medium">Modules:</p>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex justify-between">
+                      <span>Discovering the Role of a Publisher</span>
+                      <span className="text-muted-foreground text-xs">
+                        7 hours | 17 May 2021
+                      </span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span>Fundamentals of Publishing Law</span>
+                      <span className="text-muted-foreground text-xs">
+                        7 hours | 25 May 2021
+                      </span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span>
+                        From Idea to Implementation of a Digital Editorial
+                        Project
+                      </span>
+                      <span className="text-muted-foreground text-xs">
+                        14 hours | 26–27 May 2021
+                      </span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span>Copyright Applied to Digital Publishing</span>
+                      <span className="text-muted-foreground text-xs">
+                        7 hours | 24 June 2021
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="pt-2">
+                  <p className="text-sm">
+                    Gained practical insights into edition rights, project
+                    management, and digital publishing.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </Section>
 
       {/* Skills Section */}

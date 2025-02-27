@@ -2,7 +2,7 @@
 import React, { ReactNode } from "react";
 
 import { Course } from "@/data/degrees";
-import { ExternalLink } from "lucide-react";
+import { Calendar, ExternalLink } from "lucide-react";
 import { Button } from "../ui/button";
 import { CardHeader, CardSubtitle, CardTitle } from "../ui/card";
 import {
@@ -30,9 +30,12 @@ const EducationCardHeader = ({
     <CardTitle className="text-xl font-semibold">{degree}</CardTitle>
     <CardSubtitle className="flex-col items-center">
       <span>{institution}</span>
-      <span>
-        {location} | {date}
-      </span>
+      <div className="flex items-center gap-4">
+        <span>{location}</span> |
+        <span className="my-2 flex items-center text-sm">
+          <Calendar className="mr-2 size-4" /> {date}
+        </span>
+      </div>
     </CardSubtitle>
   </CardHeader>
 );
