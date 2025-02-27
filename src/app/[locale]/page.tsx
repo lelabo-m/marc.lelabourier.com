@@ -366,6 +366,38 @@ export default async function HomePage() {
         </div>
       </Section>
 
+      <Section id="information" title="Additional Information">
+        <Card className="w-full">
+          <CardContent className="pt-6">
+            <div className="space-y-4">
+              <div>
+                <ul className="mt-1 list-inside space-y-1">
+                  <li className="flex justify-between">
+                    <h3 className="font-medium">Driver's License</h3>
+                    <span className="text-muted-foreground">Yes</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-medium">Languages</h3>
+                <ul className="mt-1 list-inside space-y-1">
+                  <li className="flex justify-between">
+                    <span>French</span>
+                    <span className="text-muted-foreground">Native</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span>English</span>
+                    <span className="text-muted-foreground">
+                      Proficient (reading, writing, speaking)
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </Section>
+
       {/* Footer */}
       <footer className="mt-12 border-t border-gray-200 pt-6">
         <div className="grid grid-cols-1 gap-4 text-sm text-gray-600 md:grid-cols-2 lg:grid-cols-3">
