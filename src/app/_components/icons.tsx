@@ -1,8 +1,6 @@
-import { ImageProps } from "next/image";
-
 import { ComponentProps } from "react";
 
-export type IconFromImageProps = Omit<ImageProps, "src" | "alt">;
+export type CustomIcon = React.FC<React.SVGProps<SVGSVGElement>>;
 
 function Github(props: ComponentProps<"svg">) {
   // return <Image src={githubIcon} alt="Github logo" {...props} />;

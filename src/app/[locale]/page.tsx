@@ -3,6 +3,7 @@ import {
   CircleCheckBig,
   GraduationCap,
   Heart,
+  LucideIcon,
   Mail,
   MapPin,
   Phone,
@@ -28,11 +29,12 @@ import {
   HobbyCategoryCardContent,
   HobbyCategoryCardHeader,
 } from "@/components/card/hobby";
+import { PatentCard, PublicationCard } from "@/components/card/publication";
 import {
   TechLevelIndicator,
   TechStackCard,
 } from "@/components/card/tech-stack";
-import { Github, Linkedin } from "@/components/icons";
+import { CustomIcon, Github, Linkedin } from "@/components/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Timeline,
@@ -48,34 +50,44 @@ import {
   HobbyCategoryProps,
   profile,
 } from "@/data/profile";
+import { patents, publications } from "@/data/publications";
 import { stacks, techLevels } from "@/data/tech-stack";
 import { getTranslationsType } from "@/lib/i18n/utils";
 import { cn, objectEntries, objectKeys } from "@/lib/utils";
 import React from "react";
 import { SkillCard } from "../_components/card/skill";
 
+interface ContactProps {
+  icon: CustomIcon | LucideIcon;
+  link?: string;
+  text: string;
+}
+
 const contacts = [
-  <>
-    <Mail />
-    <a href={`mailto:${profile.email}`}>{profile.email}</a>
-  </>,
-  <>
-    <Phone />
-    {profile.phone}
-  </>,
-  <>
-    <MapPin />
-    {profile.location}
-  </>,
-  <>
-    <Linkedin className="" />
-    <a href={profile.socials.linkedin.href}>{profile.socials.linkedin.text}</a>
-  </>,
-  <>
-    <Github />
-    <a href={profile.socials.github.href}>{profile.socials.github.text}</a>
-  </>,
-];
+  {
+    icon: Mail,
+    link: `mailto:${profile.email}`,
+    text: profile.email,
+  },
+  {
+    icon: Phone,
+    text: profile.phone,
+  },
+  {
+    icon: MapPin,
+    text: profile.location,
+  },
+  {
+    icon: Linkedin,
+    link: profile.socials.linkedin.href,
+    text: profile.socials.linkedin.text,
+  },
+  {
+    icon: Github,
+    link: profile.socials.github.href,
+    text: profile.socials.github.text,
+  },
+] satisfies ContactProps[];
 
 const skills = {
   perspective: Brain,
@@ -118,8 +130,8 @@ export default async function HomePage() {
       {/* Contact Section */}
       <Section id="contact" title={t("Contact.title")}>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {contacts.map((content, index) => (
-            <ContactElement key={index}>{content}</ContactElement>
+          {contacts.map((contact, index) => (
+            <ContactElement key={index} {...contact} />
           ))}
         </div>
       </Section>
@@ -192,10 +204,26 @@ export default async function HomePage() {
           ))}
         </div>
       </Section>
+
+      <Section id="publications" title="Patents & Publications">
+        <div className="flex flex-col gap-4">
+          <h3 className="text-xl font-semibold">Patents</h3>
+          {patents.map((patent, index) => (
+            <PatentCard key={index} {...patent} />
+          ))}
+
+          <h3 className="text-xl font-semibold">Publications</h3>
+          {publications.map((publication, index) => (
+            <PublicationCard key={index} {...publication} />
+          ))}
+        </div>
+      </Section>
+
+      {/* Footer */}
       <footer className="mt-12 border-t border-gray-200 pt-6">
         <div className="grid grid-cols-1 gap-4 text-sm text-gray-600 md:grid-cols-2 lg:grid-cols-3">
-          {contacts.map((content, index) => (
-            <ContactElement key={index}>{content}</ContactElement>
+          {contacts.map((contact, index) => (
+            <ContactElement key={index} {...contact} />
           ))}
         </div>
         <div className="mt-4 flex flex-col items-center justify-between text-xs text-gray-500 md:flex-row">
@@ -221,10 +249,22 @@ const Section = ({
   </section>
 );
 
-const ContactElement = ({ children }: { children: React.ReactNode }) => {
+const ContactElement = ({ icon: IconComp, text, link }: ContactProps) => {
   return (
-    <div className="[&_svg]:text-muted-foreground flex items-center [&_a]:text-blue-600 [&_a]:hover:underline [&_svg]:mr-2 [&_svg]:h-5 [&_svg]:w-5">
-      {children}
+    <div className="flex items-center">
+      <IconComp className="text-muted-foreground mr-2 size-5" />
+      {link ? (
+        <a
+          className="text-blue-600 hover:underline"
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {text}
+        </a>
+      ) : (
+        <>{text}</>
+      )}
     </div>
   );
 };
