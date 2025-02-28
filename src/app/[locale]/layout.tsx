@@ -51,7 +51,7 @@ export default async function RootLocaleLayout({
           >
             <SidebarProvider defaultOpen={false}>
               <AppSidebar />
-              <div className="bg-background m-8 mx-auto max-w-6xl p-8 shadow-lg dark:border">
+              <div className="bg-background m-8 mx-auto max-w-6xl snap-x p-8 shadow-lg dark:border">
                 <div className="flex items-center gap-4">
                   <SidebarTrigger />
                   <ThemeToggle />

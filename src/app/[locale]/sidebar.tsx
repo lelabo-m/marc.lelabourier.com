@@ -17,14 +17,10 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { ScrollToTopLink } from "./client";
 
 // Menu items.
 const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
   {
     title: "Contact Information",
     url: "#contact",
@@ -37,7 +33,7 @@ const items = [
   },
   {
     title: "Professional Experience",
-    url: "#professional-experience",
+    url: "#experiences",
     icon: BriefcaseBusiness,
   },
   {
@@ -55,12 +51,20 @@ export function AppSidebar() {
           <SidebarGroupLabel>Table of Content</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <ScrollToTopLink>
+                    <Home />
+                    Home
+                  </ScrollToTopLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <Link href={item.url}>
                       <item.icon />
-                      <span>{item.title}</span>
+                      {item.title}
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
