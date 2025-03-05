@@ -1,3 +1,5 @@
+preserve_hierarchy 
+
 files:
-  - source: src/messages/en.json
-    translation: src/messages/%two_letters_code%.json
+  - source: /src/messages/*.json
+    translation: /src/messages/%two_letters_code%.json
