@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import Link from "next/link";
+import { Link } from "@/lib/i18n/navigation";
 import { ScrollToTopLink } from "./client";
 
 // Menu items.

@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+import { LocaleToggle } from "@/components/locale-toggle";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
@@ -51,10 +52,11 @@ export default async function RootLocaleLayout({
           >
             <SidebarProvider defaultOpen={false}>
               <AppSidebar />
-              <div className="bg-background m-8 mx-auto max-w-6xl snap-x p-8 shadow-lg dark:border">
+              <div className="bg-background m-8 mx-auto max-w-5xl snap-x p-8 shadow-lg dark:border">
                 <div className="flex items-center gap-4">
                   <SidebarTrigger />
                   <ThemeToggle />
+                  <LocaleToggle locale={locale} />
                 </div>
                 {children}
               </div>

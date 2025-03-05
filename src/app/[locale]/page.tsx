@@ -44,12 +44,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ExternalLink } from "@/components/ui/link";
 import {
   Timeline,
   TimelineContent,
   TimelineItem,
   TimelineSpacer,
 } from "@/components/ui/timeline";
+import {
+  TypographyH1,
+  TypographyH2,
+  TypographyLead,
+} from "@/components/ui/typography";
 import { DegreeList, degrees } from "@/data/degrees";
 import {
   ExperienceList,
@@ -118,21 +124,14 @@ export default async function HomePage() {
   const t = await getTranslations("HomePage");
 
   return (
-    <div className="snap-x">
+    <div>
       {/* Header */}
       <header className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-foreground text-4xl font-bold">{profile.name}</h1>
-          <p className="text-muted-foreground text-xl">{profile.jobTitle}</p>
+          <TypographyH1>{profile.name}</TypographyH1>
+          <TypographyLead>{profile.jobTitle}</TypographyLead>
         </div>
-        <Avatar className="size-30">
-          <AvatarImage
-            src="/profile.jpg"
-            alt="Marc Le Labourier profile picture"
-            className="object-cover"
-          />
-          <AvatarFallback>MLL</AvatarFallback>
-        </Avatar>
+        <ProfilePicture />
       </header>
 
       {/* Contact Section */}
@@ -151,7 +150,7 @@ export default async function HomePage() {
       </Section>
 
       {/* Experience Section */}
-      <Section id="experience" title={t("Experiences.title")}>
+      <Section id="experiences" title={t("Experiences.title")}>
         <CardTimeline keys={experiences}>
           {(exp) => <ProfessionalExperience exp={exp} t={t} />}
         </CardTimeline>
@@ -416,6 +415,17 @@ export default async function HomePage() {
   );
 }
 
+const ProfilePicture = () => (
+  <Avatar className="size-30">
+    <AvatarImage
+      src="/profile.jpg"
+      alt="Marc Le Labourier profile picture"
+      className="object-cover"
+    />
+    <AvatarFallback>MLL</AvatarFallback>
+  </Avatar>
+);
+
 const Section = ({
   id,
   title,
@@ -423,7 +433,7 @@ const Section = ({
   children,
 }: { title: string } & React.ComponentProps<"section">) => (
   <section className={cn("mb-8 snap-start scroll-mt-4", className)} id={id}>
-    <h2 className="text-foreground mb-4 text-2xl font-semibold">{title}</h2>
+    <TypographyH2 className="mb-4">{title}</TypographyH2>
     {children}
   </section>
 );
@@ -432,18 +442,7 @@ const ContactElement = ({ icon: IconComp, text, link }: ContactProps) => {
   return (
     <div className="flex items-center">
       <IconComp className="text-muted-foreground mr-2 size-5" />
-      {link ? (
-        <a
-          className="text-blue-600 hover:underline"
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {text}
-        </a>
-      ) : (
-        <>{text}</>
-      )}
+      {link ? <ExternalLink href={link}>{text}</ExternalLink> : <>{text}</>}
     </div>
   );
 };
@@ -456,7 +455,7 @@ const CardTimeline = <List extends readonly string[]>({
   children: (key: List[number]) => React.ReactNode;
 }) => (
   <Timeline>
-    <TimelineContent className="sm:max-w-4xl">
+    <TimelineContent className="mt-8 sm:max-w-5xl">
       {keys.flatMap((key, index) =>
         index !== 0
           ? [
