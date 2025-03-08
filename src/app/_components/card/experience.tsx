@@ -1,5 +1,3 @@
-"use client";
-
 import { Calendar } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -18,17 +16,19 @@ import {
 
 const ExperienceCard = CollapsibleCard;
 
+interface ExperienceCardHeaderProps {
+  jobTitle: string;
+  companyName: string;
+  date: string;
+  description: string;
+}
+
 const ExperienceCardHeader = ({
   jobTitle,
   companyName,
   date,
   description,
-}: {
-  jobTitle: string;
-  companyName: string;
-  date: string;
-  description: string;
-}) => (
+}: ExperienceCardHeaderProps) => (
   <CardHeader>
     <CardTitle className="text-xl font-semibold">{jobTitle}</CardTitle>
     <CardSubtitle className="flex-col items-center">
@@ -46,9 +46,7 @@ const ExperienceCardHeader = ({
 const ExperienceCardContent = ({ children }: { children: ReactNode }) => {
   return (
     <CollapsibleCardContent>
-      <CollapsibleCardTrigger>
-        {(isExpanded) => (isExpanded ? "Hide details" : "Show details")}
-      </CollapsibleCardTrigger>
+      <CollapsibleCardTrigger />
       <CollapsibleCardDetails>{children}</CollapsibleCardDetails>
     </CollapsibleCardContent>
   );

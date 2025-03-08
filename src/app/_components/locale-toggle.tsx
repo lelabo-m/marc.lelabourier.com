@@ -1,5 +1,6 @@
 import { Link } from "@/lib/i18n/navigation";
 import { routing } from "@/lib/i18n/routing";
+import { getLocale } from "next-intl/server";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -8,12 +9,14 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
-const LocaleToggle = ({ locale: current }: { locale: string }) => {
+const LocaleToggle = async () => {
+  const currentLocale = await getLocale();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="select-none">
-          {current}
+          {currentLocale}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-1">

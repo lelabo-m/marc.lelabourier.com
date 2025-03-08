@@ -54,13 +54,17 @@ const CollapsibleCardContent = ({
   );
 };
 
+type CollapsibleCardTriggerProps = {
+  hideText?: string;
+  showText?: string;
+} & React.ComponentProps<"button">;
+
 const CollapsibleCardTrigger = ({
   className,
-  children,
+  hideText = "Hide details",
+  showText = "Show details",
   ...props
-}: {
-  children: (isExpanded: boolean) => string;
-} & Omit<React.ComponentProps<"button">, "children">) => {
+}: CollapsibleCardTriggerProps) => {
   const { isExpanded } = useCollapsibleCardContext();
   return (
     <CollapsibleTrigger asChild>
@@ -73,7 +77,7 @@ const CollapsibleCardTrigger = ({
         aria-expanded={isExpanded}
         {...props}
       >
-        {children(isExpanded)}
+        {isExpanded ? hideText : showText}
         {isExpanded ? (
           <ChevronUp className="size-4" />
         ) : (

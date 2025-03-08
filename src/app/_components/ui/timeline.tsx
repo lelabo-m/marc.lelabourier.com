@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import React from "react";
 
 const Timeline = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div data-slot="timeline" className={cn("container", className)} {...props} />
@@ -44,4 +45,37 @@ const TimelineSpacer = ({
   ></span>
 );
 
-export { Timeline, TimelineContent, TimelineItem, TimelineSpacer };
+interface TimelineRenderListProps<T> {
+  items: readonly T[];
+  renderItem: (item: T, index: number) => React.ReactNode;
+  renderSpacer?: (index: number) => React.ReactNode;
+}
+
+const TimelineRenderList = <T,>({
+  items,
+  renderItem,
+  renderSpacer,
+}: TimelineRenderListProps<T>) => {
+  return (
+    <Timeline>
+      <TimelineContent className="mt-8 sm:max-w-5xl">
+        {items.map((item, index) => (
+          <React.Fragment key={index}>
+            <TimelineItem className="w-full">
+              {renderItem(item, index)}
+            </TimelineItem>
+            {index < items.length - 1 && // Conditionally render spacer
+              (renderSpacer ? renderSpacer(index) : <TimelineSpacer />)}
+          </React.Fragment>
+        ))}
+      </TimelineContent>
+    </Timeline>
+  );
+};
+export {
+  Timeline,
+  TimelineContent,
+  TimelineItem,
+  TimelineRenderList,
+  TimelineSpacer,
+};

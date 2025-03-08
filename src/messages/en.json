@@ -102,6 +102,25 @@
     "Hobbies": {
       "title": "Hobbies & Interests",
       "description": "<p>Outside of work, I maintain a balanced lifestyle through a mix of creative and active pursuits. I unwind by reading, playing video and board games, and listening to podcasts and audiobooks. Although I'm passionate about roleplaying games, opportunities to play are rare. I also enjoy exploring random cultural and scientific facts.</p><p>Recently, health and fitness have taken center stage in my life. Part of it manifest by my active participation in both handball and wheelchair handball, as well as my involvement in public awareness initiatives in schools and enterprises to educate others about disabilities and the benefits of inclusive sports.</p>"
+    },
+    "Formations": {
+      "description": "Professional development and specialized training",
+      "entrepreneurialProgram": {
+        "title": "Entrepreneurial Program in Publishing & Edition",
+        "description": "Edistart'up",
+        "duration": "5 months",
+        "subtitle": "edinovo FORMATION (Asfored) x LABO DE L'ÉDITION (PARIS&CO)",
+        "date": "September 2021 - February 2022",
+        "content": "<p> Participated in the inaugural cohort of a comprehensive program designed to launch publishing houses or book-related businesses. </p> <p> Developed a deep understanding of the publishing ecosystem, business model development, and market viability. </p> <listContainer> <listTitle>Program components:</listTitle> <list> <li>An online toolbox and 20 hours of e-learning modules</li> <li> 7 in-person workshops with fellow entrepreneurs and industry experts </li> <li> 7 hours of personalized mentoring and 14 hours of expert consulting </li> <li> Access to a dedicated coworking space at Le Labo de L'Edition </li> </list> </listContainer> <p> Gained practical expertise in project formulation, strategic pitching, and navigating the digital publishing landscape, while deepening entrepreneurial insights through discussions with seasoned experts, authors, and entrepreneurs. </p>"
+      },
+      "digitalPublishing": {
+        "title": "Digital Publishing & Edition Rights",
+        "description": "Professional Training",
+        "duration": "35 hours",
+        "subtitle": "edinovo FORMATION (Asfored)",
+        "date": "May – June 2021",
+        "content": "<listContainer> <listTitle>Modules:</listTitle> <list> <item> <itemTitle>Discovering the Role of a Publisher</itemTitle> <itemDetails>7 hours | 17 May 2021</itemDetails> </item> <item> <itemTitle>Fundamentals of Publishing Law</itemTitle> <itemDetails>7 hours | 25 May 2021</itemDetails> </item> <item> <itemTitle> From Idea to Implementation of a Digital Editorial Project </itemTitle> <itemDetails>14 hours | 26–27 May 2021</itemDetails> </item> <item> <itemTitle> Copyright Applied to Digital Publishing </itemTitle> <itemDetails>7 hours | 24 June 2021</itemDetails> </item> </list> </listContainer> <p> Gained practical insights into edition rights, project management, and digital publishing. </p>"
+      }
     }
   }
 }

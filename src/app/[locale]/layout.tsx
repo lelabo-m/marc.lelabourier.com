@@ -56,7 +56,7 @@ export default async function RootLocaleLayout({
                 <div className="flex items-center gap-4">
                   <SidebarTrigger />
                   <ThemeToggle />
-                  <LocaleToggle locale={locale} />
+                  <LocaleToggle />
                 </div>
                 {children}
               </div>
