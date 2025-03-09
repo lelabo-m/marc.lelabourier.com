@@ -111,7 +111,8 @@
         "duration": "5 months",
         "subtitle": "edinovo FORMATION (Asfored) x LABO DE L'ÉDITION (PARIS&CO)",
         "date": "September 2021 - February 2022",
-        "content": "<p> Participated in the inaugural cohort of a comprehensive program designed to launch publishing houses or book-related businesses. </p> <p> Developed a deep understanding of the publishing ecosystem, business model development, and market viability. </p> <listContainer> <listTitle>Program components:</listTitle> <list> <li>An online toolbox and 20 hours of e-learning modules</li> <li> 7 in-person workshops with fellow entrepreneurs and industry experts </li> <li> 7 hours of personalized mentoring and 14 hours of expert consulting </li> <li> Access to a dedicated coworking space at Le Labo de L'Edition </li> </list> </listContainer> <p> Gained practical expertise in project formulation, strategic pitching, and navigating the digital publishing landscape, while deepening entrepreneurial insights through discussions with seasoned experts, authors, and entrepreneurs. </p>"
+        "content": "<description> <p> Participated in the inaugural cohort of a comprehensive program designed to launch publishing houses or book-related businesses. </p>  <p> Developed a deep understanding of the publishing ecosystem, business model development, and market viability. </p>  <p> Gained practical expertise in project formulation, strategic pitching, and navigating the digital publishing landscape, while deepening entrepreneurial insights through discussions with seasoned experts, authors, and entrepreneurs. </p>   </description>   <modules> <module>An online toolbox and 20 hours of e-learning modules</module>    <module> 7 in-person workshops with fellow entrepreneurs and industry experts </module>     <module> 7 hours of personalized mentoring and 14 hours of expert consulting </module>  <module> Access to a dedicated coworking space at Le Labo de L'Edition </module> </modules> ",
+        "modulesTitle": "Program components:"
       },
       "digitalPublishing": {
         "title": "Digital Publishing & Edition Rights",
@@ -119,7 +120,8 @@
         "duration": "35 hours",
         "subtitle": "edinovo FORMATION (Asfored)",
         "date": "May – June 2021",
-        "content": "<listContainer> <listTitle>Modules:</listTitle> <list> <item> <itemTitle>Discovering the Role of a Publisher</itemTitle> <itemDetails>7 hours | 17 May 2021</itemDetails> </item> <item> <itemTitle>Fundamentals of Publishing Law</itemTitle> <itemDetails>7 hours | 25 May 2021</itemDetails> </item> <item> <itemTitle> From Idea to Implementation of a Digital Editorial Project </itemTitle> <itemDetails>14 hours | 26–27 May 2021</itemDetails> </item> <item> <itemTitle> Copyright Applied to Digital Publishing </itemTitle> <itemDetails>7 hours | 24 June 2021</itemDetails> </item> </list> </listContainer> <p> Gained practical insights into edition rights, project management, and digital publishing. </p>"
+        "content": "<description>Gained practical insights into edition rights, project management, and digital publishing.</description><modules><module>Discovering the Role of a Publisher|7 hours | 17 May 2021</module><module>Fundamentals of Publishing Law|7 hours | 25 May 2021</module><module>From Idea to Implementation of a Digital Editorial Project|14 hours | 26–27 May 2021</module><module>Copyright Applied to Digital Publishing|7 hours | 24 June 2021</module></modules>",
+        "modulesTitle": "Modules:"
       }
     }
   }
