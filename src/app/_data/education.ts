@@ -1,3 +1,10 @@
+export const formations = [
+  "entrepreneurialProgram",
+  "digitalPublishing",
+] as const;
+
+export type Formation = (typeof formations)[number];
+
 export type CourseType = "Core" | "Elective" | "Specialized";
 
 export type Course = {

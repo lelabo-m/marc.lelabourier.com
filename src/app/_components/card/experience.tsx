@@ -1,6 +1,6 @@
-import { Calendar } from "lucide-react";
-import { ReactNode } from "react";
+import { Calendar, CircleCheckBig } from "lucide-react";
 
+import { RichTextProps } from "@/lib/i18n/utils";
 import {
   CardDescription,
   CardHeader,
@@ -43,11 +43,25 @@ const ExperienceCardHeader = ({
   </CardHeader>
 );
 
-const ExperienceCardContent = ({ children }: { children: ReactNode }) => {
+const ExperienceCardContent = ({
+  children,
+}: RichTextProps<"highlight" | "b">) => {
   return (
     <CollapsibleCardContent>
       <CollapsibleCardTrigger />
-      <CollapsibleCardDetails>{children}</CollapsibleCardDetails>
+      <CollapsibleCardDetails>
+        <ul className="text-foreground flex flex-col gap-2 text-left">
+          {children({
+            highlight: (chunks) => (
+              <li className="flex items-start">
+                <CircleCheckBig className="mt-1.5 h-4 w-4 shrink-0" />
+                <p className="ml-2">{chunks}</p>
+              </li>
+            ),
+            b: (chunks) => <b className="font-semibold">{chunks}</b>,
+          })}
+        </ul>
+      </CollapsibleCardDetails>
     </CollapsibleCardContent>
   );
 };

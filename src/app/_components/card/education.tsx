@@ -1,7 +1,7 @@
 "use client";
 import React, { ReactNode } from "react";
 
-import { Course } from "@/data/degrees";
+import { Course } from "@/data/education";
 import { Calendar, ExternalLink } from "lucide-react";
 import { Button } from "../ui/button";
 import { CardHeader, CardSubtitle, CardTitle } from "../ui/card";
