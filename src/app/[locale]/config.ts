@@ -1,5 +1,6 @@
 import { CustomIcon, Github, Linkedin } from "@/components/icons";
 import { profile } from "@/data/profile";
+import { Messages } from "global";
 import {
   Braces,
   BriefcaseBusiness,
@@ -61,63 +62,87 @@ export const contacts = [
   },
 ] satisfies ContactProps[];
 
-export type SectionConfig = {
+export type SubSection = {
   key: keyof IntlMessages["home"];
   icon?: LucideIcon;
   component: React.FC;
 };
 
+export type Section = {
+  key: keyof Messages["home"]["sidebar"];
+  sections: SubSection[];
+};
+
 export const sections = [
   {
-    key: "contact",
-    icon: Contact,
-    component: ContactSection,
+    key: "toc",
+    sections: [
+      {
+        key: "contact",
+        icon: Contact,
+        component: ContactSection,
+      },
+    ],
   },
   {
-    key: "summary",
-    icon: MessageSquareText,
-    component: SummarySection,
+    key: "about-me",
+    sections: [
+      {
+        key: "summary",
+        icon: MessageSquareText,
+        component: SummarySection,
+      },
+      {
+        key: "skill",
+        icon: Sparkles,
+        component: SkillSection,
+      },
+      {
+        key: "techstack",
+        icon: Braces,
+        component: TechStackSection,
+      },
+    ],
   },
   {
-    key: "skill",
-    icon: Sparkles,
-    component: SkillSection,
-  },
-  {
-    key: "techstack",
-    icon: Braces,
-    component: TechStackSection,
-  },
-  {
-    key: "experience",
-    icon: BriefcaseBusiness,
-    component: ProfessionalExperienceSection,
-  },
-  {
-    key: "education",
-    icon: GraduationCap,
-    component: EducationSection,
-  },
+    key: "background",
+    sections: [
+      {
+        key: "experience",
+        icon: BriefcaseBusiness,
+        component: ProfessionalExperienceSection,
+      },
+      {
+        key: "education",
+        icon: GraduationCap,
+        component: EducationSection,
+      },
 
-  {
-    key: "formation",
-    icon: Microscope,
-    component: FormationSection,
+      {
+        key: "formation",
+        icon: Microscope,
+        component: FormationSection,
+      },
+      {
+        key: "publication",
+        icon: FileBadge,
+        component: PublicationSection,
+      },
+    ],
   },
   {
-    key: "publication",
-    icon: FileBadge,
-    component: PublicationSection,
+    key: "misc",
+    sections: [
+      {
+        key: "hobby",
+        icon: Dices,
+        component: HobbySection,
+      },
+      {
+        key: "information",
+        icon: Ellipsis,
+        component: InformationSection,
+      },
+    ],
   },
-  {
-    key: "hobby",
-    icon: Dices,
-    component: HobbySection,
-  },
-
-  {
-    key: "information",
-    icon: Ellipsis,
-    component: InformationSection,
-  },
-] as const satisfies SectionConfig[];
+] as const satisfies Section[];

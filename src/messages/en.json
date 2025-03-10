@@ -1,5 +1,11 @@
 {
   "home": {
+    "sidebar": {
+      "toc": "Table of Contents",
+      "about-me": "About me",
+      "background": "Professional & Academic Background",
+      "misc": "... and more"
+    },
     "header": {
       "title": "Hello world!",
       "about": "Go to the about page"
