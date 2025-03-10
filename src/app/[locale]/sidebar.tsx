@@ -1,10 +1,4 @@
-import {
-  BriefcaseBusiness,
-  Contact,
-  GraduationCap,
-  Home,
-  MessageSquareText,
-} from "lucide-react";
+import { Home } from "lucide-react";
 
 import {
   Sidebar,
@@ -17,33 +11,13 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Link } from "@/lib/i18n/navigation";
+import { getLocale, getTranslations } from "next-intl/server";
 import { ScrollToTopLink } from "./client";
+import { sections } from "./config";
 
-// Menu items.
-const items = [
-  {
-    title: "Contact Information",
-    url: "#contact",
-    icon: Contact,
-  },
-  {
-    title: "Summary",
-    url: "#summary",
-    icon: MessageSquareText,
-  },
-  {
-    title: "Professional Experience",
-    url: "#experiences",
-    icon: BriefcaseBusiness,
-  },
-  {
-    title: "Education",
-    url: "#education",
-    icon: GraduationCap,
-  },
-];
-
-export function AppSidebar() {
+export async function AppSidebar() {
+  const t = await getTranslations("home");
+  const locale = await getLocale();
   return (
     <Sidebar>
       <SidebarContent>
@@ -59,13 +33,19 @@ export function AppSidebar() {
                   </ScrollToTopLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+              {sections.map(({ key, icon: IconComponent }, index) => (
+                <SidebarMenuItem key={index}>
                   <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      {item.title}
-                    </Link>
+                    <div>
+                      <Link
+                        href={`#${key}`}
+                        locale={locale}
+                        className="flex items-center gap-2"
+                      >
+                        <IconComponent className="h-4 w-4" />
+                        {t(`${key}.title`)}
+                      </Link>
+                    </div>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

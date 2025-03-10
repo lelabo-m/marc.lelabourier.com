@@ -1,6 +1,12 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { levelColors, Tech, TechLevel, TechStack } from "@/data/tech-stack";
+import {
+  levelColors,
+  Tech,
+  TechLevel,
+  techLevels,
+  TechStack,
+} from "@/data/tech-stack";
 
 const TechLevelIndicator = ({ level }: { level: TechLevel }) => (
   <span
@@ -53,4 +59,17 @@ const TechStackCard = ({
   </Card>
 );
 
-export { TechLevelIndicator, TechStackCard };
+const TechLevelLegend = () => {
+  return (
+    <div className="flex gap-4">
+      {techLevels.map((level) => (
+        <div key={level} className="flex items-baseline gap-1">
+          <TechLevelIndicator level={level} />
+          <span className="text-foreground">{level}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export { TechLevelIndicator, TechLevelLegend, TechStackCard };

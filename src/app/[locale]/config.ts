@@ -12,6 +12,18 @@ import {
   Phone,
   Puzzle,
 } from "lucide-react";
+import {
+  ContactSection,
+  EducationSection,
+  FormationSection,
+  HobbySection,
+  InformationSection,
+  ProfessionalExperienceSection,
+  PublicationSection,
+  SkillSection,
+  SummarySection,
+  TechStackSection,
+} from "./sections";
 
 export interface ContactProps {
   icon: CustomIcon | LucideIcon;
@@ -46,71 +58,60 @@ export const contacts = [
 ] satisfies ContactProps[];
 
 export type SectionConfig = {
-  id: string;
-  titleKey: string; // Key for translation
+  key: keyof IntlMessages["home"];
   icon?: LucideIcon;
-  //   component: React.FC; // Make this required
+  component: React.FC;
 };
 
-export const sections: SectionConfig[] = [
+export const sections = [
   {
-    id: "summary",
-    titleKey: "Summary.title",
+    key: "summary",
     icon: MessageSquareText,
-    // component: SummarySection,
+    component: SummarySection,
   },
   {
-    id: "experiences",
-    titleKey: "Experiences.title",
+    key: "experience",
     icon: BriefcaseBusiness,
-    // component: ExperienceSection,
+    component: ProfessionalExperienceSection,
   },
   {
-    id: "education",
-    titleKey: "Educations.title",
+    key: "education",
     icon: GraduationCap,
-    // component: EducationSection,
+    component: EducationSection,
   },
   {
-    id: "skills",
-    titleKey: "Skills.title",
+    key: "skill",
     icon: Puzzle,
-    // component: SkillsSection,
+    component: SkillSection,
   },
   {
-    id: "formations",
-    titleKey: "Formations",
+    key: "formation",
     icon: Lightbulb, // Or choose a relevant icon
-    // component: FormationsSection,
+    component: FormationSection,
   },
   {
-    id: "stack",
-    titleKey: "Technologies.title",
+    key: "techstack",
     icon: Puzzle,
-    // component: TechStackSection,
+    component: TechStackSection,
   },
   {
-    id: "hobbies",
-    titleKey: "Hobbies.title",
+    key: "hobby",
     icon: Puzzle,
-    // component: HobbiesSection,
+    component: HobbySection,
   },
   {
-    id: "publications",
-    titleKey: "Patents & Publications",
+    key: "publication",
     icon: Puzzle,
-    // component: PublicationsSection,
+    component: PublicationSection,
   },
   {
-    id: "information",
-    titleKey: "Additional Information",
+    key: "information",
     icon: Puzzle,
-    // component: InformationSection,
+    component: InformationSection,
   },
   {
-    id: "contact",
-    titleKey: "Contact.title",
+    key: "contact",
     icon: Contact,
-    // component: ContactSection,
+    component: ContactSection,
   },
-];
+] as const satisfies SectionConfig[];
