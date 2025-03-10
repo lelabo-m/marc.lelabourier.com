@@ -1,18 +1,18 @@
 {
-  "HomePage": {
-    "Header": {
-      "title": "Bienvenue !",
-      "about": "Aller à la page \"À propos\""
+  "home": {
+    "header": {
+      "title": "Hello world!",
+      "about": "Go to the about page"
     },
-    "Contact": {
-      "title": "Coordonnées"
+    "contact": {
+      "title": "Contact Information"
     },
-    "Summary": {
-      "title": "Résumé",
+    "summary": {
+      "title": "Summary",
       "intro": "I’m a 30-year-old French developer with a hands-on background in computer science and software development, gained through practice, self-directed projects, and professional internships. My career has taken me from contributing to cutting-edge R&D to helping dynamic startups scale, where I honed my expertise in backend development, algorithms, data, and research while broadening my skills in frontend, design, and infrastructure. Collaboration, adaptability, and mentorship are central to how I work.",
-      "objective": "Après avoir surmonté des défis personnels importants de santé, je suis prêt à rejoindre le monde professionnel avec un temps partiel (50-60%) qui permet un équilibre entre travail et adaptation vers une reprise totale."
+      "objective": "After overcoming significant personal health challenges, I’m now ready to rejoin the professional world with a part-time role (50-60%) that balances my commitment to work and my continued journey toward full recovery."
     },
-    "Experiences": {
+    "experience": {
       "title": "Professional Experience",
       "singlespot1": {
         "title": "Head of Backend, Data, and Research",
@@ -50,7 +50,7 @@
         "highlights": "<highlight><b>Developed a web platform</b> for ordering and managing voice recordings, integrating invoicing, email notifications, and a talent catalog.</highlight><highlight><b>Redesigned and expanded</b> the existing recording software, improving UI/UX, adding new features, and ensuring cross-platform compatibility (Windows & macOS).</highlight><highlight><b>Built a Django-based backend</b> to handle orders, comedian assignments, and automated processing of audio files.</highlight><highlight><b>Worked closely with voice actors</b>, collecting feedback and optimizing tools to improve usability and efficiency.</highlight><highlight><b>Self-taught Python, Django, and full-stack web development</b> to successfully deliver the project within six months.</highlight>"
       }
     },
-    "Educations": {
+    "education": {
       "title": "Education",
       "degrees": {
         "epitech": {
@@ -69,7 +69,8 @@
         }
       }
     },
-    "Skills": {
+    "skill": {
+      "title": "Skills",
       "perspective": {
         "title": "Holistic Perspective",
         "description": "Broad exposure across multiple fields, allowing for diverse problem-solving and critical thinking."
@@ -95,15 +96,16 @@
         "description": "Passionate about nurturing talent, from assisting first-year students to mentoring career-switching professionals. Foster a collaborative learning environment."
       }
     },
-    "Technologies": {
+    "techstack": {
       "title": "Technologies",
       "disclaimer": "This list is not exhaustive—please refer to my LinkedIn, professional experience, and education sections for a more detailed view. I'm continuously learning and always open to exploring new technologies to stay ahead in the ever-evolving tech landscape."
     },
-    "Hobbies": {
+    "hobby": {
       "title": "Hobbies & Interests",
       "description": "<p>Outside of work, I maintain a balanced lifestyle through a mix of creative and active pursuits. I unwind by reading, playing video and board games, and listening to podcasts and audiobooks. Although I'm passionate about roleplaying games, opportunities to play are rare. I also enjoy exploring random cultural and scientific facts.</p><p>Recently, health and fitness have taken center stage in my life. Part of it manifest by my active participation in both handball and wheelchair handball, as well as my involvement in public awareness initiatives in schools and enterprises to educate others about disabilities and the benefits of inclusive sports.</p>"
     },
-    "Formations": {
+    "formation": {
+      "title": "Formations",
       "description": "Professional development and specialized training",
       "entrepreneurialProgram": {
         "title": "Entrepreneurial Program in Publishing & Edition",
@@ -123,6 +125,13 @@
         "content": "<description>Gained practical insights into edition rights, project management, and digital publishing.</description><modules><module>Discovering the Role of a Publisher|7 hours | 17 May 2021</module><module>Fundamentals of Publishing Law|7 hours | 25 May 2021</module><module>From Idea to Implementation of a Digital Editorial Project|14 hours | 26–27 May 2021</module><module>Copyright Applied to Digital Publishing|7 hours | 24 June 2021</module></modules>",
         "modulesTitle": "Modules:"
       }
+    },
+    "publication": {
+      "title": "Publications",
+      "description": "A selection of my academic and professional publications."
+    },
+    "information": {
+      "title": "Additional Information"
     }
   }
 }
