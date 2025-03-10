@@ -1,16 +1,20 @@
 import { CustomIcon, Github, Linkedin } from "@/components/icons";
 import { profile } from "@/data/profile";
 import {
+  Braces,
   BriefcaseBusiness,
   Contact,
+  Dices,
+  Ellipsis,
+  FileBadge,
   GraduationCap,
-  Lightbulb,
   LucideIcon,
   Mail,
   MapPin,
   MessageSquareText,
+  Microscope,
   Phone,
-  Puzzle,
+  Sparkles,
 } from "lucide-react";
 import {
   ContactSection,
@@ -65,9 +69,24 @@ export type SectionConfig = {
 
 export const sections = [
   {
+    key: "contact",
+    icon: Contact,
+    component: ContactSection,
+  },
+  {
     key: "summary",
     icon: MessageSquareText,
     component: SummarySection,
+  },
+  {
+    key: "skill",
+    icon: Sparkles,
+    component: SkillSection,
+  },
+  {
+    key: "techstack",
+    icon: Braces,
+    component: TechStackSection,
   },
   {
     key: "experience",
@@ -79,39 +98,26 @@ export const sections = [
     icon: GraduationCap,
     component: EducationSection,
   },
-  {
-    key: "skill",
-    icon: Puzzle,
-    component: SkillSection,
-  },
+
   {
     key: "formation",
-    icon: Lightbulb, // Or choose a relevant icon
+    icon: Microscope,
     component: FormationSection,
   },
   {
-    key: "techstack",
-    icon: Puzzle,
-    component: TechStackSection,
-  },
-  {
-    key: "hobby",
-    icon: Puzzle,
-    component: HobbySection,
-  },
-  {
     key: "publication",
-    icon: Puzzle,
+    icon: FileBadge,
     component: PublicationSection,
   },
   {
-    key: "information",
-    icon: Puzzle,
-    component: InformationSection,
+    key: "hobby",
+    icon: Dices,
+    component: HobbySection,
   },
+
   {
-    key: "contact",
-    icon: Contact,
-    component: ContactSection,
+    key: "information",
+    icon: Ellipsis,
+    component: InformationSection,
   },
 ] as const satisfies SectionConfig[];

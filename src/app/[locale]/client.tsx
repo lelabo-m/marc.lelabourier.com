@@ -1,24 +1,23 @@
 "use client";
 
-import Link from "next/link";
+import { InternalLink } from "@/components/ui/link";
 import { ComponentProps } from "react";
 
 const ScrollToTopLink = ({
   onClick,
   children,
   ...props
-}: Omit<ComponentProps<typeof Link>, "href">) => (
-  <Link
-    {...props}
+}: Omit<ComponentProps<typeof InternalLink>, "href">) => (
+  <InternalLink
     href="#"
     onClick={(e) => {
-      e.preventDefault();
       onClick?.(e);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }}
+    {...props}
   >
     {children}
-  </Link>
+  </InternalLink>
 );
 
 export { ScrollToTopLink };
