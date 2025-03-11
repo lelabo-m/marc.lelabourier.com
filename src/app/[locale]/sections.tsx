@@ -1,4 +1,6 @@
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
+import React from "react";
 
 import {
   EducationCard,
@@ -25,13 +27,12 @@ import {
 } from "@/components/card/hobby";
 import { PatentCard, PublicationCard } from "@/components/card/publication";
 import { SkillCard } from "@/components/card/skill";
-import { TechLevelLegend, TechStackCard } from "@/components/card/tech-stack";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { TechStackCard } from "@/components/card/tech-stack";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink } from "@/components/ui/link";
 import { TimelineRenderList } from "@/components/ui/timeline";
 import {
-  TypographyBlockquote,
   TypographyH1,
   TypographyH2,
   TypographyH3,
@@ -44,34 +45,49 @@ import { experiences, hobbies, profile } from "@/data/profile";
 import { patents, publications } from "@/data/publications";
 import { stacks } from "@/data/tech-stack";
 import { cn, objectEntries, objectKeys } from "@/lib/utils";
-import React from "react";
+import { ArrowRight } from "lucide-react";
 import { ContactProps, contacts } from "./config";
 import { skillsIcons } from "./icons";
 
-export type SectionProps = { title: string } & React.ComponentProps<"section">;
-
-export const Header = () => {
+export const Hero = async () => {
+  const t = await getTranslations("home");
   return (
-    <header className="mb-8 flex items-center justify-between">
-      <div>
-        <TypographyH1>{profile.name}</TypographyH1>
-        <TypographyLead>{profile.jobTitle}</TypographyLead>
+    <section className="py-16">
+      <div className="container mx-auto">
+        <TypographyH1 className="text-5xl font-medium lg:text-7xl">
+          {profile.name}
+        </TypographyH1>
+        <div className="mt-14 grid gap-10 lg:grid-cols-5">
+          <div className="m-auto max-w-1/2 sm:max-w-2/5 lg:col-span-2 lg:max-w-5/6">
+            <div className="overflow-hidden rounded-full">
+              <Image
+                src="/profile.jpg"
+                alt="Marc Le Labourier profile picture"
+                width={1400}
+                height={2100}
+                className="h-auto w-full object-cover"
+              />
+            </div>
+          </div>
+          <div className="lg:order-first lg:col-span-3">
+            <p className="text-muted-foreground text-lg lg:text-xl">
+              {t("summary.intro")}
+            </p>
+            <p className="text-muted-foreground mt-6 text-lg lg:text-xl">
+              {t("summary.objective")}
+            </p>
+            <Button size="lg" className="mt-12" asChild>
+              <a href={`mailto:${profile.email}`}>
+                Contact me
+                <ArrowRight className="ml-2 h-auto w-4" />
+              </a>
+            </Button>
+          </div>
+        </div>
       </div>
-      <ProfilePicture />
-    </header>
+    </section>
   );
 };
-
-const ProfilePicture = () => (
-  <Avatar className="size-30">
-    <AvatarImage
-      src="/profile.jpg"
-      alt="Marc Le Labourier profile picture"
-      className="object-cover"
-    />
-    <AvatarFallback>MLL</AvatarFallback>
-  </Avatar>
-);
 
 export const Footer = () => {
   const buildDate = new Date();
@@ -96,6 +112,8 @@ export const Footer = () => {
   );
 };
 
+export type SectionProps = { title: string } & React.ComponentProps<"section">;
+
 export const Section = ({ id, title, className, children }: SectionProps) => (
   <section className={cn("mb-8 snap-start scroll-mt-4", className)} id={id}>
     <TypographyH2 className="mb-4">{title}</TypographyH2>
@@ -119,17 +137,6 @@ export const ContactSection = () => (
     ))}
   </div>
 );
-
-export const SummarySection = async () => {
-  const t = await getTranslations("home.summary");
-
-  return (
-    <>
-      <p className="text-foreground">{t("intro")}</p>
-      <p className="text-foreground mt-4">{t("objective")}</p>
-    </>
-  );
-};
 
 export const ProfessionalExperienceSection = async () => {
   const t = await getTranslations("home.experiences.items");
@@ -249,9 +256,8 @@ export const TechStackSection = async () => {
   const t = await getTranslations("home.techstacks");
   return (
     <>
-      <TypographyBlockquote>{t("disclaimer")}</TypographyBlockquote>
-
-      <TechLevelLegend />
+      {/* Uncomment the following line to display an explicit legend, but I found hard to tell what level I had in technotlogies without sounding to confident or too humble.  */}
+      {/*  <TechLevelLegend /> */}
       <div className="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2">
         {objectEntries(stacks).map(([domain, stack]) => (
           <TechStackCard key={domain} {...stack} />

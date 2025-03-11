@@ -7,6 +7,7 @@ import {
   techLevels,
   TechStack,
 } from "@/data/tech-stack";
+import { TypographyH4 } from "../ui/typography";
 
 const TechLevelIndicator = ({ level }: { level: TechLevel }) => (
   <span
@@ -31,23 +32,22 @@ const TechStackCard = ({
     <CardHeader>
       <CardTitle className="flex items-center gap-2">
         <IconComp className="h-6 w-6" />
-        <span>{label}</span>
+        {label}
       </CardTitle>
     </CardHeader>
-    <CardContent>
-      <div className="grid grid-cols-2 space-y-4">
-        <div>
-          <h4 className="mb-2 font-semibold">Current</h4>
-          <div>
-            {current.map((tech, index) => (
-              <TechBadge key={index} {...tech} />
-            ))}
-          </div>
+    <CardContent className="pb-4">
+      <div className="grid grid-rows-3 gap-2">
+        <div className="flex flex-wrap items-baseline">
+          {current.map((tech, index) => (
+            <TechBadge key={index} {...tech} />
+          ))}
         </div>
         {ifNeeded.length > 0 && (
-          <div>
-            <h4 className="mb-2 font-semibold">If Needed</h4>
-            <div>
+          <div className="row-span-2">
+            <TypographyH4 className="mb-2 text-sm font-semibold">
+              If Needed
+            </TypographyH4>
+            <div className="flex flex-wrap items-baseline">
               {ifNeeded.map((tech, index) => (
                 <TechBadge key={index} {...tech} />
               ))}

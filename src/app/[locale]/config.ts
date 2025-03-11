@@ -12,7 +12,6 @@ import {
   LucideIcon,
   Mail,
   MapPin,
-  MessageSquareText,
   Microscope,
   Phone,
   Sparkles,
@@ -26,7 +25,6 @@ import {
   ProfessionalExperienceSection,
   PublicationSection,
   SkillSection,
-  SummarySection,
   TechStackSection,
 } from "./sections";
 
@@ -81,11 +79,6 @@ export const sections = [
         key: "contact",
         icon: Contact,
         component: ContactSection,
-      },
-      {
-        key: "summary",
-        icon: MessageSquareText,
-        component: SummarySection,
       },
       {
         key: "skills",
