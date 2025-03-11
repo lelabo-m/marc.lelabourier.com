@@ -57,6 +57,9 @@ export const Hero = async () => {
         <TypographyH1 className="text-5xl font-medium lg:text-7xl">
           {profile.name}
         </TypographyH1>
+        <TypographyLead className="text-3xl lg:text-4xl">
+          {profile.jobTitle}
+        </TypographyLead>
         <div className="mt-14 grid gap-10 lg:grid-cols-5">
           <div className="m-auto max-w-1/2 sm:max-w-2/5 lg:col-span-2 lg:max-w-5/6">
             <div className="overflow-hidden rounded-full">
@@ -69,13 +72,10 @@ export const Hero = async () => {
               />
             </div>
           </div>
-          <div className="lg:order-first lg:col-span-3">
-            <p className="text-muted-foreground text-lg lg:text-xl">
-              {t("summary.intro")}
-            </p>
-            <p className="text-muted-foreground mt-6 text-lg lg:text-xl">
-              {t("summary.objective")}
-            </p>
+          <div className="text-lg lg:order-first lg:col-span-3">
+            <TypographyP>{t("summary.intro")}</TypographyP>
+            <TypographyP>{t("summary.objective")}</TypographyP>
+
             <Button size="lg" className="mt-12" asChild>
               <a href={`mailto:${profile.email}`}>
                 Contact me
