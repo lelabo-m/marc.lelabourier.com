@@ -75,30 +75,25 @@ export type Section = {
 
 export const sections = [
   {
-    key: "toc",
+    key: "about-me",
     sections: [
       {
         key: "contact",
         icon: Contact,
         component: ContactSection,
       },
-    ],
-  },
-  {
-    key: "about-me",
-    sections: [
       {
         key: "summary",
         icon: MessageSquareText,
         component: SummarySection,
       },
       {
-        key: "skill",
+        key: "skills",
         icon: Sparkles,
         component: SkillSection,
       },
       {
-        key: "techstack",
+        key: "techstacks",
         icon: Braces,
         component: TechStackSection,
       },
@@ -108,23 +103,23 @@ export const sections = [
     key: "background",
     sections: [
       {
-        key: "experience",
+        key: "experiences",
         icon: BriefcaseBusiness,
         component: ProfessionalExperienceSection,
       },
       {
-        key: "education",
+        key: "educations",
         icon: GraduationCap,
         component: EducationSection,
       },
 
       {
-        key: "formation",
+        key: "formations",
         icon: Microscope,
         component: FormationSection,
       },
       {
-        key: "publication",
+        key: "publications",
         icon: FileBadge,
         component: PublicationSection,
       },
@@ -134,7 +129,7 @@ export const sections = [
     key: "misc",
     sections: [
       {
-        key: "hobby",
+        key: "hobbies",
         icon: Dices,
         component: HobbySection,
       },

@@ -11,6 +11,7 @@ import {
   ExperienceCard,
   ExperienceCardContent,
   ExperienceCardHeader,
+  ExperienceCardSkills,
 } from "@/components/card/experience";
 import {
   FormationCard,
@@ -33,16 +34,19 @@ import {
   TypographyBlockquote,
   TypographyH1,
   TypographyH2,
+  TypographyH3,
   TypographyLead,
+  TypographyP,
 } from "@/components/ui/typography";
 import { degrees, formations } from "@/data/education";
+import { skillsByExperience } from "@/data/experiences";
 import { experiences, hobbies, profile } from "@/data/profile";
 import { patents, publications } from "@/data/publications";
 import { stacks } from "@/data/tech-stack";
 import { cn, objectEntries, objectKeys } from "@/lib/utils";
-import { Brain, GraduationCap, Heart, Puzzle, Users } from "lucide-react";
 import React from "react";
 import { ContactProps, contacts } from "./config";
+import { skillsIcons } from "./icons";
 
 export type SectionProps = { title: string } & React.ComponentProps<"section">;
 
@@ -128,20 +132,21 @@ export const SummarySection = async () => {
 };
 
 export const ProfessionalExperienceSection = async () => {
-  const t = await getTranslations("home.experience");
+  const t = await getTranslations("home.experiences.items");
 
   return (
     <TimelineRenderList
       items={experiences}
       renderItem={(item) => (
-        <ExperienceCard>
+        <ExperienceCard className="w-full">
           <ExperienceCardHeader
             jobTitle={t(`${item}.title`)}
             companyName={t(`${item}.company`)}
             date={t(`${item}.date`)}
-            description={t(`${item}.description`)}
-          />
-          <ExperienceCardContent>
+          >
+            <ExperienceCardSkills skills={skillsByExperience[item]} />
+          </ExperienceCardHeader>
+          <ExperienceCardContent description={t(`${item}.description`)}>
             {(tags) => t.rich(`${item}.highlights`, { ...tags })}
           </ExperienceCardContent>
         </ExperienceCard>
@@ -151,7 +156,7 @@ export const ProfessionalExperienceSection = async () => {
 };
 
 export const EducationSection = async () => {
-  const t = await getTranslations("home.education.degrees");
+  const t = await getTranslations("home.educations.degrees");
 
   return (
     <TimelineRenderList
@@ -166,7 +171,9 @@ export const EducationSection = async () => {
           />
           <EducationCardContent>
             <div className="flex flex-col gap-4">
-              <p className="text-left text-base">{t(`${item}.description`)}</p>
+              <TypographyP className="text-left">
+                {t(`${item}.description`)}
+              </TypographyP>
               <div className="flex items-baseline justify-between">
                 <h4 className="mb-2 font-semibold">Learn more about:</h4>
                 <div className="flex gap-4">
@@ -191,7 +198,7 @@ export const EducationSection = async () => {
 };
 
 export const FormationSection = async () => {
-  const t = await getTranslations("home.formation");
+  const t = await getTranslations("home.formations");
 
   return (
     <>
@@ -221,25 +228,16 @@ export const FormationSection = async () => {
   );
 };
 
-const skills = {
-  perspective: Brain,
-  optimizer: Puzzle,
-  team: Users,
-  adaptability: Users,
-  approach: Heart,
-  mentorship: GraduationCap,
-};
-
 export const SkillSection = async () => {
-  const t = await getTranslations("home.skill");
+  const t = await getTranslations("home.skills.items");
 
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {objectKeys(skills).map((skill) => (
+      {objectKeys(skillsIcons).map((skill) => (
         <SkillCard
           key={skill}
           title={t(`${skill}.title`)}
-          icon={skills[skill]}
+          icon={skillsIcons[skill]}
           description={t(`${skill}.description`)}
         />
       ))}
@@ -248,7 +246,7 @@ export const SkillSection = async () => {
 };
 
 export const TechStackSection = async () => {
-  const t = await getTranslations("home.techstack");
+  const t = await getTranslations("home.techstacks");
   return (
     <>
       <TypographyBlockquote>{t("disclaimer")}</TypographyBlockquote>
@@ -264,15 +262,15 @@ export const TechStackSection = async () => {
 };
 
 export const HobbySection = async () => {
-  const t = await getTranslations("home.hobby");
+  const t = await getTranslations("home.hobbies");
   return (
     <>
-      <div className="mb-6 space-y-4">
+      <div className="mb-6">
         {t.rich("description", {
-          p: (chunks) => <p>{chunks}</p>,
+          p: (chunks) => <TypographyP> {chunks} </TypographyP>,
         })}
       </div>
-      <div className="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {hobbies.map((hobby) => (
           <HobbyCategoryCard key={hobby.category}>
             <HobbyCategoryCardHeader>
@@ -321,21 +319,23 @@ export const InformationSection = () => {
           <div>
             <ul className="mt-1 list-inside space-y-1">
               <li className="flex justify-between">
-                <h3 className="font-medium">Driver's License</h3>
-                <span className="text-muted-foreground">Yes</span>
+                <TypographyH3 className="text-lg">
+                  Driver's License
+                </TypographyH3>
+                <span className="text-foreground">Yes</span>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="font-medium">Languages</h3>
+            <TypographyH3 className="text-lg">Languages</TypographyH3>
             <ul className="mt-1 list-inside space-y-1">
               <li className="flex justify-between">
                 <span>French</span>
-                <span className="text-muted-foreground">Native</span>
+                <span className="text-foreground">Native</span>
               </li>
               <li className="flex justify-between">
                 <span>English</span>
-                <span className="text-muted-foreground">
+                <span className="text-foreground">
                   Proficient (reading, writing, speaking)
                 </span>
               </li>

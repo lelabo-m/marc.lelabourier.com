@@ -43,11 +43,11 @@ const EducationCardHeader = ({
 const EducationCardContent = ({ children }: { children: ReactNode }) => {
   return (
     <CollapsibleCardContent>
-      <CollapsibleCardTrigger>
-        {(isExpanded) =>
-          isExpanded ? "Hide details and courses" : "Show details and courses"
-        }
-      </CollapsibleCardTrigger>
+      <CollapsibleCardTrigger
+        hideText="Hide details and courses"
+        showText="Show details and courses"
+      />
+
       <CollapsibleCardDetails>{children}</CollapsibleCardDetails>
     </CollapsibleCardContent>
   );

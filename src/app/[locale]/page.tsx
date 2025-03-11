@@ -6,27 +6,17 @@ import { Footer, Header, Section } from "./sections";
 export default async function HomePage() {
   const t = await getTranslations("home");
 
-  // const subsections = sections.flatMap((subsection) =>
-  //   subsection.sections.map(({ key, component }) => {
-  //     return { key, component };
-  //   }),
-  // );
-
   return (
     <div>
       <Header />
-      {sections.flatMap((subsection) =>
-        subsection.sections.map(({ key, component }) => (
+      {sections.map(({ sections: subsections }) =>
+        subsections.map(({ key, component }) => (
           <Section key={key} id={key} title={t(`${key}.title`)}>
             {component()}
           </Section>
         )),
       )}
-      {/* subsections.map(({ key, component }) => (
-         <Section key={key} id={key} title={t(`${key}.title`)}>
-           {component()}
-         </Section>
-       ))} */}
+
       <Footer />
     </div>
   );

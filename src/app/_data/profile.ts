@@ -1,4 +1,4 @@
-import { Book, Dumbbell, Gamepad, Heart, LucideIcon } from "lucide-react";
+import { Flame, Gamepad, Heart, LucideIcon } from "lucide-react";
 
 export const profile = {
   name: "Marc Le Labourier",
@@ -36,36 +36,28 @@ export interface HobbyCategoryProps {
 
 export const hobbies = [
   {
-    category: "Entertainment & Creativity",
+    category: "Entertainment",
     items: [
       "Manga & Webtoons",
       "Video & Board Games",
       "Podcasts & Audio Fiction",
-      "Roleplaying Games (D&D, Call of Cthulhu)",
     ],
     icon: Gamepad,
   },
   {
-    category: "Health & Fitness",
-    items: ["Musculation", "Metabolism & Nutrition", "Anatomy & Physiology"],
-    icon: Dumbbell,
-  },
-  {
-    category: "Continuous Learning",
+    category: "Interests",
     items: [
-      "Cultural & Scientific Facts",
-      "Lores & Mythologies",
-      "News & Politics",
-    ],
-    icon: Book,
-  },
-  {
-    category: "Sports & Community",
-    items: [
-      "Handball",
-      "Wheelchair Handball",
+      "Roleplaying Games (D&D, Call of Cthulhu)",
+      "Metabolism & Nutrition",
+      "Anatomy & Physiology",
       "Disability Awareness Initiatives",
     ],
+    icon: Flame,
+  },
+
+  {
+    category: "Sports & Community",
+    items: ["Musculation", "Swimming", "Handball (Valid & Wheelchair)"],
     icon: Heart,
   },
 ] satisfies HobbyCategoryProps[];
