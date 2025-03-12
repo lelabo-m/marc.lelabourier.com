@@ -1,13 +1,15 @@
 import { getTranslations } from "next-intl/server";
 
+import { Toaster } from "@/components/ui/sonner";
 import { sections } from "./config";
-import { Footer, Hero, Section } from "./sections";
+import { Footer, Header, Hero, Section } from "./sections";
 
 export default async function HomePage() {
   const t = await getTranslations("home");
 
   return (
-    <div>
+    <>
+      <Header />
       <Hero />
       {sections.map(({ sections: subsections }) =>
         subsections.map(({ key, component }) => (
@@ -18,6 +20,7 @@ export default async function HomePage() {
       )}
 
       <Footer />
-    </div>
+      <Toaster position="top-right" />
+    </>
   );
 }

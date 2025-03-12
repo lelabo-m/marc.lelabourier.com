@@ -4,7 +4,6 @@ import { Messages } from "global";
 import {
   Braces,
   BriefcaseBusiness,
-  Contact,
   Dices,
   Ellipsis,
   FileBadge,
@@ -17,7 +16,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import {
-  ContactSection,
   EducationSection,
   FormationSection,
   HobbySection,
@@ -75,11 +73,6 @@ export const sections = [
   {
     key: "about-me",
     sections: [
-      {
-        key: "contact",
-        icon: Contact,
-        component: ContactSection,
-      },
       {
         key: "skills",
         icon: Sparkles,

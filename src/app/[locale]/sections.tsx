@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import React from "react";
+import React, { ReactNode } from "react";
 
 import {
   EducationCard,
@@ -28,9 +28,13 @@ import {
 import { PatentCard, PublicationCard } from "@/components/card/publication";
 import { SkillCard } from "@/components/card/skill";
 import { TechStackCard } from "@/components/card/tech-stack";
-import { Button } from "@/components/ui/button";
+import { CopyToClipboardButton } from "@/components/copy-to-clipboard-button";
+import { Github, Linkedin } from "@/components/icons";
+import { LocaleToggle } from "@/components/locale-toggle";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink } from "@/components/ui/link";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { TimelineRenderList } from "@/components/ui/timeline";
 import {
   TypographyH1,
@@ -45,14 +49,25 @@ import { experiences, hobbies, profile } from "@/data/profile";
 import { patents, publications } from "@/data/publications";
 import { stacks } from "@/data/tech-stack";
 import { cn, objectEntries, objectKeys } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { ContactAnimatedPill, ContactAnimatedText } from "./client";
 import { ContactProps, contacts } from "./config";
 import { skillsIcons } from "./icons";
+
+export const Header = () => {
+  return (
+    <div className="bg-background sticky top-0 z-10 pt-4">
+      <SidebarTrigger />
+      <ThemeToggle />
+      <LocaleToggle />
+    </div>
+  );
+};
 
 export const Hero = async () => {
   const t = await getTranslations("home");
   return (
-    <section className="py-16">
+    <section className="pt-8 pb-16">
       <div className="container mx-auto">
         <TypographyH1 className="text-5xl font-medium lg:text-7xl">
           {profile.name}
@@ -76,18 +91,78 @@ export const Hero = async () => {
             <TypographyP>{t("summary.intro")}</TypographyP>
             <TypographyP>{t("summary.objective")}</TypographyP>
 
-            <Button size="lg" className="mt-12" asChild>
-              <a href={`mailto:${profile.email}`}>
-                Contact me
-                <ArrowRight className="ml-2 h-auto w-4" />
-              </a>
-            </Button>
+            <div className="mt-6 flex flex-col gap-4 sm:flex-row">
+              <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-row">
+                <ContactAnimatedText>
+                  <CopyContactButton text={profile.email}>
+                    <Mail className="h-4 w-4" />
+                    {profile.email}
+                  </CopyContactButton>
+                </ContactAnimatedText>
+
+                <ContactAnimatedText>
+                  <CopyContactButton text={profile.phone}>
+                    <Phone className="h-4 w-4" />
+                    {profile.phone}
+                  </CopyContactButton>
+                </ContactAnimatedText>
+              </div>
+            </div>
+
+            <div className="mt-4 flex gap-4">
+              <ContactAnimatedPill>
+                <a
+                  href={profile.socials.linkedin.href}
+                  className="border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-10 w-10 items-center justify-center rounded-full border"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Linkedin className="h-5 w-5" />
+                  <span className="sr-only">LinkedIn</span>
+                </a>
+              </ContactAnimatedPill>
+
+              <ContactAnimatedPill>
+                <a
+                  href={profile.socials.github.href}
+                  className="border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-10 w-10 items-center justify-center rounded-full border"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="h-5 w-5" />
+                  <span className="sr-only">GitHub</span>
+                </a>
+              </ContactAnimatedPill>
+
+              <ContactAnimatedPill>
+                <div className="border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-10 items-center justify-center gap-2 rounded-full border px-4">
+                  <MapPin className="h-4 w-4" />
+                  <span className="text-sm">{profile.location}</span>
+                </div>
+              </ContactAnimatedPill>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+const CopyContactButton = ({
+  text,
+  children,
+}: {
+  text: string;
+  children: ReactNode;
+}) => (
+  <CopyToClipboardButton
+    text={text}
+    timeout={1000}
+    className="flex items-center gap-2"
+  >
+    {children}
+  </CopyToClipboardButton>
+);
 
 export const Footer = () => {
   const buildDate = new Date();
@@ -129,14 +204,6 @@ const ContactElement = ({ icon: IconComp, text, link }: ContactProps) => {
     </div>
   );
 };
-
-export const ContactSection = () => (
-  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-    {contacts.map((contact, index) => (
-      <ContactElement key={index} {...contact} />
-    ))}
-  </div>
-);
 
 export const ProfessionalExperienceSection = async () => {
   const t = await getTranslations("home.experiences.items");

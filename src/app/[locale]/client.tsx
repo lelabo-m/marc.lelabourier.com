@@ -1,9 +1,10 @@
 "use client";
 
 import { InternalLink } from "@/components/ui/link";
-import { ComponentProps } from "react";
+import { motion } from "framer-motion";
+import { ComponentProps, ReactNode } from "react";
 
-const ScrollToTopLink = ({
+export const ScrollToTopLink = ({
   onClick,
   children,
   ...props
@@ -20,4 +21,17 @@ const ScrollToTopLink = ({
   </InternalLink>
 );
 
-export { ScrollToTopLink };
+export const ContactAnimatedText = ({ children }: { children: ReactNode }) => (
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    className="flex items-center gap-2 text-sm"
+  >
+    {children}
+  </motion.div>
+);
+
+export const ContactAnimatedPill = ({ children }: { children: ReactNode }) => (
+  <motion.div whileHover={{ scale: 1.1 }} className="flex items-center">
+    {children}
+  </motion.div>
+);
