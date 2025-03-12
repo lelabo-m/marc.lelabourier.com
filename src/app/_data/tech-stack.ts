@@ -91,7 +91,7 @@ export const stacks = {
     ifNeeded: [],
   },
   compute: {
-    label: "Systems Programming & Compute",
+    label: "Systems & Compute",
     icon: Cpu,
     current: [
       {

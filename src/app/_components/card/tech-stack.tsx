@@ -7,7 +7,7 @@ import {
   techLevels,
   TechStack,
 } from "@/data/tech-stack";
-import { TypographyH4 } from "../ui/typography";
+import { ReactNode } from "react";
 
 const TechLevelIndicator = ({ level }: { level: TechLevel }) => (
   <span
@@ -22,12 +22,7 @@ const TechBadge = ({ tech, level }: Tech) => (
   </Badge>
 );
 
-const TechStackCard = ({
-  label,
-  icon: IconComp,
-  current,
-  ifNeeded,
-}: TechStack) => (
+const TechStackCard = ({ label, icon: IconComp, current }: TechStack) => (
   <Card>
     <CardHeader>
       <CardTitle className="flex items-center gap-2">
@@ -36,24 +31,10 @@ const TechStackCard = ({
       </CardTitle>
     </CardHeader>
     <CardContent className="pb-4">
-      <div className="grid grid-rows-3 gap-2">
-        <div className="flex flex-wrap items-baseline">
-          {current.map((tech, index) => (
-            <TechBadge key={index} {...tech} />
-          ))}
-        </div>
-        {ifNeeded.length > 0 && (
-          <div className="row-span-2">
-            <TypographyH4 className="mb-2 text-sm font-semibold">
-              If Needed
-            </TypographyH4>
-            <div className="flex flex-wrap items-baseline">
-              {ifNeeded.map((tech, index) => (
-                <TechBadge key={index} {...tech} />
-              ))}
-            </div>
-          </div>
-        )}
+      <div className="flex flex-wrap items-baseline">
+        {current.map((tech, index) => (
+          <TechBadge key={index} {...tech} />
+        ))}
       </div>
     </CardContent>
   </Card>
@@ -72,4 +53,8 @@ const TechLevelLegend = () => {
   );
 };
 
-export { TechLevelIndicator, TechLevelLegend, TechStackCard };
+const TechStackGrid = ({ children }: { children: ReactNode }) => (
+  <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">{children}</div>
+);
+
+export { TechLevelIndicator, TechLevelLegend, TechStackCard, TechStackGrid };

@@ -43,10 +43,7 @@ const EducationCardHeader = ({
 const EducationCardContent = ({ children }: { children: ReactNode }) => {
   return (
     <CollapsibleCardContent>
-      <CollapsibleCardTrigger
-        hideText="Hide details and courses"
-        showText="Show details and courses"
-      />
+      <CollapsibleCardTrigger />
 
       <CollapsibleCardDetails>{children}</CollapsibleCardDetails>
     </CollapsibleCardContent>

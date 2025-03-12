@@ -13,7 +13,12 @@ export default async function HomePage() {
       <Hero />
       {sections.map(({ sections: subsections }) =>
         subsections.map(({ key, component }) => (
-          <Section key={key} id={key} title={t(`${key}.title`)}>
+          <Section
+            key={key}
+            id={key}
+            title={t(`${key}.title`)}
+            subtitle={t(`${key}.subtitle`)}
+          >
             {component()}
           </Section>
         )),

@@ -10,7 +10,7 @@ import {
 } from "../ui/card";
 
 const FormationCard = ({ children }: { children: ReactNode }) => (
-  <Card className="flex h-full flex-col">{children}</Card>
+  <Card className="flex h-full w-full flex-col text-left">{children}</Card>
 );
 
 const FormationCardHeader = ({

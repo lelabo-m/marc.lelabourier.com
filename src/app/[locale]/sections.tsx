@@ -27,7 +27,7 @@ import {
 } from "@/components/card/hobby";
 import { PatentCard, PublicationCard } from "@/components/card/publication";
 import { SkillCard } from "@/components/card/skill";
-import { TechStackCard } from "@/components/card/tech-stack";
+import { TechStackCard, TechStackGrid } from "@/components/card/tech-stack";
 import { CopyToClipboardButton } from "@/components/copy-to-clipboard-button";
 import { Github, Linkedin } from "@/components/icons";
 import { LocaleToggle } from "@/components/locale-toggle";
@@ -37,6 +37,7 @@ import { ExternalLink } from "@/components/ui/link";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { TimelineRenderList } from "@/components/ui/timeline";
 import {
+  TypographyBlockquote,
   TypographyH1,
   TypographyH2,
   TypographyH3,
@@ -88,8 +89,8 @@ export const Hero = async () => {
             </div>
           </div>
           <div className="text-lg lg:order-first lg:col-span-3">
-            <TypographyP>{t("summary.intro")}</TypographyP>
-            <TypographyP>{t("summary.objective")}</TypographyP>
+            <TypographyP>{t("hero.intro")}</TypographyP>
+            <TypographyP>{t("hero.objective")}</TypographyP>
 
             <div className="mt-6 flex flex-col gap-4 sm:flex-row">
               <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-row">
@@ -187,11 +188,25 @@ export const Footer = () => {
   );
 };
 
-export type SectionProps = { title: string } & React.ComponentProps<"section">;
+export type SectionProps = {
+  title: string;
+  subtitle?: string;
+} & React.ComponentProps<"section">;
 
-export const Section = ({ id, title, className, children }: SectionProps) => (
-  <section className={cn("mb-8 snap-start scroll-mt-4", className)} id={id}>
-    <TypographyH2 className="mb-4">{title}</TypographyH2>
+export const Section = ({
+  id,
+  title,
+  subtitle,
+  className,
+  children,
+}: SectionProps) => (
+  <section className={cn("snap-start scroll-mt-4 py-8", className)} id={id}>
+    <div className="mb-8 space-y-2">
+      <TypographyH2>{title}</TypographyH2>
+      {subtitle && (
+        <TypographyLead className="text-lg">{subtitle}</TypographyLead>
+      )}
+    </div>
     {children}
   </section>
 );
@@ -249,7 +264,6 @@ export const EducationSection = async () => {
                 {t(`${item}.description`)}
               </TypographyP>
               <div className="flex items-baseline justify-between">
-                <h4 className="mb-2 font-semibold">Learn more about:</h4>
                 <div className="flex gap-4">
                   <EducationCardLearnMoreButton href={degrees[item].cursusUrl}>
                     Cursus
@@ -260,7 +274,6 @@ export const EducationSection = async () => {
                 </div>
               </div>
               <div>
-                <h4 className="mb-2 text-left font-semibold">Modules:</h4>
                 <EducationCardModuleGrid courses={degrees[item].courses} />
               </div>
             </div>
@@ -275,30 +288,29 @@ export const FormationSection = async () => {
   const t = await getTranslations("home.formations");
 
   return (
-    <>
-      <TypographyLead className="text-lg">{t("description")}</TypographyLead>
-
-      <div className="mt-4 space-y-6">
-        {formations.map((formation) => (
-          <FormationCard key={formation}>
+    <div className="mt-4 space-y-6">
+      <TimelineRenderList
+        items={formations}
+        renderItem={(item) => (
+          <FormationCard key={item}>
             <FormationCardHeader
-              title={t(`${formation}.title`)}
-              subtitle={t(`${formation}.subtitle`)}
-              date={t(`${formation}.date`)}
-              description={t(`${formation}.description`)}
-              duration={t(`${formation}.duration`)}
+              title={t(`${item}.title`)}
+              subtitle={t(`${item}.subtitle`)}
+              date={t(`${item}.date`)}
+              description={t(`${item}.description`)}
+              duration={t(`${item}.duration`)}
             />
-            <FormationCardContent modulesTitle={t(`${formation}.modulesTitle`)}>
+            <FormationCardContent modulesTitle={t(`${item}.modulesTitle`)}>
               {(tags) =>
-                t.rich(`${formation}.content`, {
+                t.rich(`${item}.content`, {
                   ...tags,
                 })
               }
             </FormationCardContent>
           </FormationCard>
-        ))}
-      </div>
-    </>
+        )}
+      />
+    </div>
   );
 };
 
@@ -323,13 +335,14 @@ export const TechStackSection = async () => {
   const t = await getTranslations("home.techstacks");
   return (
     <>
-      {/* Uncomment the following line to display an explicit legend, but I found hard to tell what level I had in technotlogies without sounding to confident or too humble.  */}
-      {/*  <TechLevelLegend /> */}
-      <div className="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2">
+      <TechStackGrid>
         {objectEntries(stacks).map(([domain, stack]) => (
           <TechStackCard key={domain} {...stack} />
         ))}
-      </div>
+      </TechStackGrid>
+      <TypographyBlockquote className="mt-6">
+        {t("disclaimer")}
+      </TypographyBlockquote>
     </>
   );
 };
