@@ -5,20 +5,13 @@
       "background": "Professional & Academic Background",
       "misc": "... and more"
     },
-    "header": {
-      "title": "Hello world!",
-      "about": "Go to the about page"
-    },
-    "contact": {
-      "title": "Contact Information"
-    },
-    "summary": {
-      "title": "Summary",
+    "hero": {
       "intro": "I’m a 30-year-old French developer with a hands-on background in computer science and software development, gained through practice, self-directed projects, and professional internships. My career has taken me from contributing to cutting-edge R&I to helping dynamic startups scale, where I honed my expertise in backend development, algorithms, data, and research while broadening my skills in frontend, design, and infrastructure.",
       "objective": "After overcoming significant personal health challenges, I’m now ready to rejoin the professional world with a part-time role (50-60%) that balances my commitment to work and my continued journey toward full recovery."
     },
     "experiences": {
       "title": "Professional Experience",
+      "subtitle": "",
       "items": {
         "singlespot1": {
           "title": "Head of Backend, Data, and Research",
@@ -59,6 +52,7 @@
     },
     "educations": {
       "title": "Education",
+      "subtitle": "",
       "degrees": {
         "epitech": {
           "title": "Master's degree in Computer Science and Information Technology",
@@ -78,6 +72,7 @@
     },
     "skills": {
       "title": "Skills",
+      "subtitle": "",
       "items": {
         "perspective": {
           "title": "Holistic Perspective",
@@ -107,15 +102,17 @@
     },
     "techstacks": {
       "title": "Technologies",
-      "disclaimer": "This list is not exhaustive—please refer to my LinkedIn, professional experience, and education sections for a more detailed view. I'm continuously learning and always open to exploring new technologies to stay ahead in the ever-evolving tech landscape."
+      "subtitle": "",
+      "disclaimer": "Please note: The tech stack shown here reflects my current preferences and areas of focus. I have experience with a broader range of technologies beyond those listed and am always excited to expand my skillset and embrace new challenges."
     },
     "hobbies": {
       "title": "Hobbies & Interests",
+      "subtitle": "",
       "description": "<p> Outside of work, I maintain a balanced lifestyle through a mix of creative and active pursuits. </p> <p> Recently, health and fitness have taken center stage in my life. Part of it manifest by my involvement in public awareness initiatives in schools and enterprises to educate others about disabilities and the benefits of inclusive sports. </p>"
     },
     "formations": {
-      "title": "Formations",
-      "description": "Professional development and specialized training",
+      "title": "Professional Development & Specialized Training",
+      "subtitle": "",
       "entrepreneurialProgram": {
         "title": "Entrepreneurial Program in Publishing & Edition",
         "description": "Edistart'up",
@@ -137,10 +134,12 @@
     },
     "publications": {
       "title": "Publications",
+      "subtitle": "",
       "description": "A selection of my academic and professional publications."
     },
     "information": {
-      "title": "Additional Information"
+      "title": "Additional Information",
+      "subtitle": ""
     }
   }
 }
