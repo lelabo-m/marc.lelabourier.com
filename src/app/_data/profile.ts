@@ -47,7 +47,7 @@ export const hobbies = [
   {
     category: "Interests",
     items: [
-      "Roleplaying Games (D&D, Call of Cthulhu)",
+      "Roleplaying Games",
       "Metabolism & Nutrition",
       "Anatomy & Physiology",
       "Disability Awareness Initiatives",
