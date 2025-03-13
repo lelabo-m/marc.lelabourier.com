@@ -9,12 +9,12 @@ import {
   Users,
 } from "lucide-react";
 
-type SkillKey = keyof Messages["home"]["skills"]["skillset"];
+export type SkillKey = keyof Messages["home"]["skills"]["items"];
 
 export const skillsIcons = {
   perspective: Brain,
   optimizer: Puzzle,
-  team: Users,
+  leadership: Users,
   adaptability: Handshake,
   approach: Heart,
   mentorship: GraduationCap,

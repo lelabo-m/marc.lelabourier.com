@@ -1,24 +1,50 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  levelColors,
-  Tech,
-  TechLevel,
-  techLevels,
-  TechStack,
-} from "@/data/tech-stack";
-import { ReactNode } from "react";
+import { Tech, techLevels, TechStack } from "@/data/tech-stack";
+import { cn } from "@/lib/utils";
+import { cva, VariantProps } from "class-variance-authority";
+import { Clock } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+import { ComponentProps, ReactNode } from "react";
 
-const TechLevelIndicator = ({ level }: { level: TechLevel }) => (
-  <span
-    className={`ml-2 inline-block h-2 w-2 rounded-full ${levelColors[level]}`}
-  ></span>
+export const levelVariant = cva("inline-block size-3 rounded-full", {
+  variants: {
+    variant: {
+      expert: "bg-green-500",
+      experienced: "bg-blue-500",
+      proficient: "bg-yellow-500",
+      familiar: "bg-red-500",
+      willingToLearn: "bg-purple-500",
+    },
+    side: {
+      left: "mr-2",
+      right: "ml-2",
+    },
+  },
+  defaultVariants: {},
+});
+
+type TechLevelLabelProps = VariantProps<typeof levelVariant> &
+  ComponentProps<"div">;
+
+const TechLevelLabel = ({
+  variant,
+  side,
+  className,
+  children,
+  ...props
+}: TechLevelLabelProps) => (
+  <div className={cn("flex items-baseline gap-1", className)} {...props}>
+    <span className={cn(levelVariant({ variant, side }))}></span>
+    {children}
+  </div>
 );
 
-const TechBadge = ({ tech, level }: Tech) => (
-  <Badge variant="outline" className="mr-2 mb-2 cursor-pointer">
+const TechBadge = ({ tech, level, rusty }: Tech) => (
+  <Badge variant="outline" className="mr-2 mb-2 flex cursor-pointer gap-2">
     {tech}
-    <TechLevelIndicator level={level} />
+    <TechLevelLabel variant={level} />
+    {rusty && <Clock className="text-foreground" />}
   </Badge>
 );
 
@@ -40,15 +66,20 @@ const TechStackCard = ({ label, icon: IconComp, current }: TechStack) => (
   </Card>
 );
 
-const TechLevelLegend = () => {
+const TechLevelLegend = async () => {
+  const t = await getTranslations("home.techstacks.labels");
+
   return (
     <div className="flex gap-4">
       {techLevels.map((level) => (
-        <div key={level} className="flex items-baseline gap-1">
-          <TechLevelIndicator level={level} />
-          <span className="text-foreground">{level}</span>
-        </div>
+        <TechLevelLabel key={level} variant={level} side="left">
+          {t(`${level}`)}
+        </TechLevelLabel>
       ))}
+      <TechLevelLabel className="items-center">
+        <Clock className="mr-2 h-4 w-4" />
+        {t("not-used-in-a-while")}
+      </TechLevelLabel>
     </div>
   );
 };
@@ -57,4 +88,4 @@ const TechStackGrid = ({ children }: { children: ReactNode }) => (
   <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">{children}</div>
 );
 
-export { TechLevelIndicator, TechLevelLegend, TechStackCard, TechStackGrid };
+export { TechLevelLabel, TechLevelLegend, TechStackCard, TechStackGrid };

@@ -1,18 +1,21 @@
+import { levelVariant } from "@/components/card/tech-stack";
+import { VariantProps } from "class-variance-authority";
 import { Cloud, Code, Cpu, LucideIcon, Server } from "lucide-react";
 
-export const techLevels = ["expert", "proficient", "familiar"] as const;
+export type TechLevel = VariantProps<typeof levelVariant>["variant"];
 
-export type TechLevel = (typeof techLevels)[number];
-
-export const levelColors = {
-  expert: "bg-green-500",
-  proficient: "bg-blue-500",
-  familiar: "bg-yellow-500",
-} satisfies Record<TechLevel, string>;
+export const techLevels = [
+  "expert",
+  "experienced",
+  "proficient",
+  "familiar",
+  "willingToLearn",
+] satisfies TechLevel[];
 
 export interface Tech {
   tech: string;
   level: TechLevel;
+  rusty?: boolean;
 }
 
 export interface TechStack {
@@ -29,11 +32,11 @@ export const stacks = {
     current: [
       {
         tech: "TypeScript",
-        level: "expert",
+        level: "experienced",
       },
       {
         tech: "React",
-        level: "expert",
+        level: "proficient",
       },
       {
         tech: "Next.js",
@@ -47,7 +50,7 @@ export const stacks = {
     ifNeeded: [
       {
         tech: "JavaScript",
-        level: "expert",
+        level: "experienced",
       },
     ],
   },
@@ -59,15 +62,19 @@ export const stacks = {
         tech: "Python",
         level: "expert",
       },
+      {
+        tech: "Go",
+        level: "willingToLearn",
+      },
     ],
     ifNeeded: [
       {
         tech: "C#",
-        level: "familiar",
+        level: "proficient",
       },
       {
         tech: "Java",
-        level: "familiar",
+        level: "proficient",
       },
       {
         tech: "Ruby",
@@ -81,7 +88,7 @@ export const stacks = {
     current: [
       {
         tech: "AWS",
-        level: "proficient",
+        level: "experienced",
       },
       {
         tech: "Vercel",
@@ -98,16 +105,17 @@ export const stacks = {
         tech: "Rust",
         level: "familiar",
       },
-    ],
-    ifNeeded: [
       {
         tech: "C",
-        level: "proficient",
+        level: "expert",
+        rusty: true,
       },
       {
         tech: "C++",
-        level: "proficient",
+        level: "experienced",
+        rusty: true,
       },
     ],
+    ifNeeded: [],
   },
 } satisfies Record<string, TechStack>;

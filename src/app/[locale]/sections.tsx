@@ -57,7 +57,7 @@ import { cn, objectEntries, objectKeys } from "@/lib/utils";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { ContactAnimatedPill, ContactAnimatedText } from "./client";
 import { ContactProps, contacts } from "./config";
-import { skillsIcons } from "./icons";
+import { SkillKey, skillsIcons } from "./icons";
 
 export const Header = () => {
   return (
@@ -320,12 +320,20 @@ export const FormationSection = async () => {
   );
 };
 
+const skills = [
+  "approach",
+  "optimizer",
+  "perspective",
+  "leadership",
+  "adaptability",
+  "mentorship",
+] satisfies SkillKey[];
 export const SkillSection = async () => {
   const t = await getTranslations("home.skills.items");
 
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {objectKeys(skillsIcons).map((skill) => (
+      {skills.map((skill) => (
         <SkillCard
           key={skill}
           title={t(`${skill}.title`)}
@@ -340,17 +348,15 @@ export const SkillSection = async () => {
 export const TechStackSection = async () => {
   const t = await getTranslations("home.techstacks");
   return (
-    <>
+    <div className="space-y-6">
       <TechStackGrid>
         {objectEntries(stacks).map(([domain, stack]) => (
           <TechStackCard key={domain} {...stack} />
         ))}
       </TechStackGrid>
       <TechLevelLegend />
-      <TypographyBlockquote className="mt-6">
-        {t("disclaimer")}
-      </TypographyBlockquote>
-    </>
+      <TypographyBlockquote>{t("disclaimer")}</TypographyBlockquote>
+    </div>
   );
 };
 

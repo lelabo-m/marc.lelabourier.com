@@ -73,36 +73,44 @@
       "title": "Skills",
       "subtitle": "",
       "items": {
-        "perspective": {
-          "title": "Holistic Perspective",
-          "description": "Broad exposure across multiple fields, allowing for diverse problem-solving and critical thinking."
+        "approach": {
+          "title": "Transparent & Down-to-Earth",
+          "description": "Prioritize integrity and good faith, grounding interactions in reciprocity and fairness."
         },
         "optimizer": {
-          "title": "Problem Solver & Optimizer",
-          "description": "Quick to identify issues and streamline processes, devising practical, team-focused solutions."
+          "title": "Problem Solver",
+          "description": "Identify issues and streamline processes, devising practical solutions that improve overall efficiency."
         },
-        "team": {
-          "title": "Team Leadership & Collaboration",
+        "perspective": {
+          "title": "Holistic Perspective",
+          "description": "Leverage exposure across multiple fields to enable diverse problem-solving and critical thinking."
+        },
+        "leadership": {
+          "title": "Leadership & Collaboration",
           "description": "Lead by example, foster open communication, and ensure every team member's contribution is acknowledged."
         },
         "adaptability": {
-          "title": "Adaptability & Negotiation",
-          "description": "Facilitate communication and collaboration between technical teams, business stakeholders, and executive leadership, ensuring a shared understanding of objectives."
-        },
-        "approach": {
-          "title": "Ethical & Down-to-Earth Approach",
-          "description": "Work with integrity and in good faith, grounded in reciprocity and fairness."
+          "title": "Flexibility & Alignment",
+          "description": "Bridge gaps between technical teams, business stakeholders, and executive leadership to ensure a shared understanding of objectives."
         },
         "mentorship": {
-          "title": "Mentorship & Teaching",
-          "description": "Passionate about nurturing talent, from assisting first-year students to mentoring career-switching professionals. Foster a collaborative learning environment."
+          "title": "Mentorship & Learning",
+          "description": "Cultivate a collaborative environment for mutual growth, embracing both teaching, mentoring and learning from others."
         }
       }
     },
     "techstacks": {
       "title": "Technologies",
       "subtitle": "",
-      "disclaimer": "Please note: The tech stack shown here reflects my current preferences and areas of focus. I have experience with a broader range of technologies beyond those listed and am always excited to expand my skillset and embrace new challenges."
+      "disclaimer": "Please note: The tech stack shown here reflects my current preferences and areas of focus. I have experience with a broader range of technologies beyond those listed and am always excited to expand my skillset and embrace new challenges.",
+      "labels": {
+        "expert": "Expert",
+        "experienced": "Experienced",
+        "proficient": "Proficient",
+        "familiar": "Familiar",
+        "willingToLearn": "Willing to learn",
+        "not-used-in-a-while": "Not used in a while"
+      }
     },
     "hobbies": {
       "title": "Hobbies & Interests",
