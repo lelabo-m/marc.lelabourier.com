@@ -73,36 +73,44 @@
       "title": "Compétences",
       "subtitle": "",
       "items": {
-        "perspective": {
-          "title": "Point de vue holistique",
-          "description": "Large exposition à de multiples domaines, permettant une résolution de problèmes diversifiée et une pensée critique."
+        "approach": {
+          "title": "Transparent & Down-to-Earth",
+          "description": "Prioritize integrity and good faith, grounding interactions in reciprocity and fairness."
         },
         "optimizer": {
-          "title": "Optimisation et résolution de problèmes",
-          "description": "Rapide à identifier les problèmes et à rationaliser les processus, concevant des solutions pratiques et axées sur l'équipe."
+          "title": "Problem Solver",
+          "description": "Identify issues and streamline processes, devising practical solutions that improve overall efficiency."
         },
-        "team": {
-          "title": "Leadership d'équipe et collaboration",
-          "description": "Diriger par l'exemple, favoriser une communication ouverte et veiller à ce que la contribution de chaque membre de l'équipe soit reconnue."
+        "perspective": {
+          "title": "Point de vue holistique",
+          "description": "Leverage exposure across multiple fields to enable diverse problem-solving and critical thinking."
+        },
+        "leadership": {
+          "title": "Leadership & Collaboration",
+          "description": "Lead by example, foster open communication, and ensure every team member's contribution is acknowledged."
         },
         "adaptability": {
-          "title": "Adaptabilité et négociation",
-          "description": "Faciliter la communication et la collaboration entre les équipes techniques, les parties prenantes commerciales et la direction, en assurant une compréhension commune des objectifs."
-        },
-        "approach": {
-          "title": "Approche Éthique et Pragmatique",
-          "description": "Travail avec intégrité et de bonne foi, en se fondant sur la réciprocité et l'équité."
+          "title": "Flexibility & Alignment",
+          "description": "Bridge gaps between technical teams, business stakeholders, and executive leadership to ensure a shared understanding of objectives."
         },
         "mentorship": {
-          "title": "Mentorat et Enseignement",
-          "description": "Passionné par le développement des talents, qu'il s'agisse d'aider les étudiants de première année ou d'encadrer les professionnels en reconversion. Favoriser un environnement d'apprentissage collaboratif."
+          "title": "Mentorship & Learning",
+          "description": "Cultivate a collaborative environment for mutual growth, embracing both teaching, mentoring and learning from others."
         }
       }
     },
     "techstacks": {
       "title": "Technologies",
       "subtitle": "",
-      "disclaimer": "Note : Les technologies présentées ici reflète mes préférences actuelles et mes domaines d'intérêt. J'ai de l'expérience avec un éventail plus large que celles énumérées et je suis toujours ravi d'élargir mes compétences et de relever de nouveaux défis."
+      "disclaimer": "Note : Les technologies présentées ici reflète mes préférences actuelles et mes domaines d'intérêt. J'ai de l'expérience avec un éventail plus large que celles énumérées et je suis toujours ravi d'élargir mes compétences et de relever de nouveaux défis.",
+      "labels": {
+        "expert": "Expert",
+        "experienced": "Experienced",
+        "proficient": "Proficient",
+        "familiar": "Familiar",
+        "willingToLearn": "Willing to learn",
+        "not-used-in-a-while": "Not used in a while"
+      }
     },
     "hobbies": {
       "title": "Loisirs et Intérêts",
