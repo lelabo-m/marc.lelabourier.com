@@ -27,7 +27,11 @@ import {
 } from "@/components/card/hobby";
 import { PatentCard, PublicationCard } from "@/components/card/publication";
 import { SkillCard } from "@/components/card/skill";
-import { TechStackCard, TechStackGrid } from "@/components/card/tech-stack";
+import {
+  TechLevelLegend,
+  TechStackCard,
+  TechStackGrid,
+} from "@/components/card/tech-stack";
 import { CopyToClipboardButton } from "@/components/copy-to-clipboard-button";
 import { Github, Linkedin } from "@/components/icons";
 import { LocaleToggle } from "@/components/locale-toggle";
@@ -68,7 +72,7 @@ export const Header = () => {
 export const Hero = async () => {
   const t = await getTranslations("home");
   return (
-    <section className="pt-8 pb-16">
+    <section className="@container/hero pt-8 pb-16">
       <div className="container mx-auto">
         <TypographyH1 className="text-5xl font-medium lg:text-7xl">
           {profile.name}
@@ -76,78 +80,72 @@ export const Hero = async () => {
         <TypographyLead className="text-3xl lg:text-4xl">
           {profile.jobTitle}
         </TypographyLead>
-        <div className="mt-14 grid gap-10 lg:grid-cols-5">
-          <div className="m-auto max-w-1/2 sm:max-w-2/5 lg:col-span-2 lg:max-w-5/6">
-            <div className="overflow-hidden rounded-full">
-              <Image
-                src="/profile.jpg"
-                alt="Marc Le Labourier profile picture"
-                width={1400}
-                height={2100}
-                className="h-auto w-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="text-lg lg:order-first lg:col-span-3">
+        <div className="mt-14 flex gap-4 @max-2xl/hero:flex-col">
+          <HeroImage />
+          <div className="my-auto h-fit text-lg @2xl/hero:order-first @2xl/hero:max-w-1/2 @3xl/hero:max-w-2/3">
+            <HeroActions />
             <TypographyP>{t("hero.intro")}</TypographyP>
-            <TypographyP>{t("hero.objective")}</TypographyP>
-
-            <div className="mt-6 flex flex-col gap-4 sm:flex-row">
-              <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-row">
-                <ContactAnimatedText>
-                  <CopyContactButton text={profile.email}>
-                    <Mail className="h-4 w-4" />
-                    {profile.email}
-                  </CopyContactButton>
-                </ContactAnimatedText>
-
-                <ContactAnimatedText>
-                  <CopyContactButton text={profile.phone}>
-                    <Phone className="h-4 w-4" />
-                    {profile.phone}
-                  </CopyContactButton>
-                </ContactAnimatedText>
-              </div>
-            </div>
-
-            <div className="mt-4 flex gap-4">
-              <ContactAnimatedPill>
-                <a
-                  href={profile.socials.linkedin.href}
-                  className="border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-10 w-10 items-center justify-center rounded-full border"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Linkedin className="h-5 w-5" />
-                  <span className="sr-only">LinkedIn</span>
-                </a>
-              </ContactAnimatedPill>
-
-              <ContactAnimatedPill>
-                <a
-                  href={profile.socials.github.href}
-                  className="border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-10 w-10 items-center justify-center rounded-full border"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github className="h-5 w-5" />
-                  <span className="sr-only">GitHub</span>
-                </a>
-              </ContactAnimatedPill>
-
-              <ContactAnimatedPill>
-                <div className="border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-10 items-center justify-center gap-2 rounded-full border px-4">
-                  <MapPin className="h-4 w-4" />
-                  <span className="text-sm">{profile.location}</span>
-                </div>
-              </ContactAnimatedPill>
-            </div>
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+const HeroImage = () => (
+  <div className="m-auto @max-2xl/hero:w-1/2">
+    <div className="overflow-hidden rounded-4xl">
+      <Image
+        src="/profile.jpg"
+        alt="Marc Le Labourier profile picture"
+        width={1400}
+        height={2100}
+        className="h-auto w-full object-cover"
+      />
+    </div>
+  </div>
+);
+
+const HeroActions = () => (
+  <div className="@container/contacts mb-8 @max-2xl/hero:mt-4">
+    <div className="flex w-fit gap-4 @max-2xl/hero:mx-auto @max-2xl/hero:items-center @max-sm/contacts:flex-col">
+      <ContactAnimatedText>
+        <CopyContactButton text={profile.email}>
+          <Mail className="h-4 w-4" />
+          {profile.email}
+        </CopyContactButton>
+      </ContactAnimatedText>
+
+      <ContactAnimatedText>
+        <CopyContactButton text={profile.phone}>
+          <Phone className="h-4 w-4" />
+          {profile.phone}
+        </CopyContactButton>
+      </ContactAnimatedText>
+    </div>
+
+    <div className="mt-4 flex w-fit gap-4 @max-2xl/hero:mx-auto">
+      <ContactAnimatedPill asChild>
+        <ExternalLink href={profile.socials.linkedin.href}>
+          <Linkedin className="h-4 w-4" />
+          <span className="sr-only">LinkedIn</span>
+        </ExternalLink>
+      </ContactAnimatedPill>
+
+      <ContactAnimatedPill asChild>
+        <ExternalLink href={profile.socials.github.href}>
+          <Github className="h-5 w-5" />
+          <span className="sr-only">GitHub</span>
+        </ExternalLink>
+      </ContactAnimatedPill>
+
+      <ContactAnimatedPill className="w-auto gap-2 px-4 text-sm">
+        <MapPin className="h-4 w-4" />
+        {profile.location}
+      </ContactAnimatedPill>
+    </div>
+  </div>
+);
 
 const CopyContactButton = ({
   text,
@@ -215,7 +213,13 @@ const ContactElement = ({ icon: IconComp, text, link }: ContactProps) => {
   return (
     <div className="flex items-center">
       <IconComp className="text-muted-foreground mr-2 size-5" />
-      {link ? <ExternalLink href={link}>{text}</ExternalLink> : <>{text}</>}
+      {link ? (
+        <ExternalLink href={link} variant="text">
+          {text}
+        </ExternalLink>
+      ) : (
+        <>{text}</>
+      )}
     </div>
   );
 };
@@ -340,6 +344,7 @@ export const TechStackSection = async () => {
           <TechStackCard key={domain} {...stack} />
         ))}
       </TechStackGrid>
+      <TechLevelLegend />
       <TypographyBlockquote className="mt-6">
         {t("disclaimer")}
       </TypographyBlockquote>

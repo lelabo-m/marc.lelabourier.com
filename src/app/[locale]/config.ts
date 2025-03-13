@@ -89,6 +89,11 @@ export const sections = [
     key: "background",
     sections: [
       {
+        key: "formations",
+        icon: Microscope,
+        component: FormationSection,
+      },
+      {
         key: "experiences",
         icon: BriefcaseBusiness,
         component: ProfessionalExperienceSection,
@@ -97,12 +102,6 @@ export const sections = [
         key: "educations",
         icon: GraduationCap,
         component: EducationSection,
-      },
-
-      {
-        key: "formations",
-        icon: Microscope,
-        component: FormationSection,
       },
       {
         key: "publications",

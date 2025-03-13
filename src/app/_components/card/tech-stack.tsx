@@ -54,7 +54,7 @@ const TechLevelLegend = () => {
 };
 
 const TechStackGrid = ({ children }: { children: ReactNode }) => (
-  <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">{children}</div>
+  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">{children}</div>
 );
 
 export { TechLevelIndicator, TechLevelLegend, TechStackCard, TechStackGrid };

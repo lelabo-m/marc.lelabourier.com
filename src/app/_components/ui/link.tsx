@@ -1,14 +1,24 @@
 import { UiI18nLink } from "@/lib/i18n/fix";
 import { cn } from "@/lib/utils";
+import { cva, VariantProps } from "class-variance-authority";
 import { ComponentProps } from "react";
 
+const linkVariants = cva("", {
+  variants: {
+    variant: {
+      text: "text-blue-600 hover:underline",
+    },
+  },
+});
+
 const ExternalLink = ({
+  variant,
   className,
   children,
   ...props
-}: ComponentProps<"a">) => (
+}: ComponentProps<"a"> & VariantProps<typeof linkVariants>) => (
   <a
-    className={cn("text-blue-600 hover:underline", className)}
+    className={cn(linkVariants({ variant, className }))}
     target="_blank"
     rel="noopener noreferrer"
     {...props}
