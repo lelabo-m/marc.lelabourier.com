@@ -6,8 +6,7 @@
       "misc": "... et plus"
     },
     "hero": {
-      "intro": "Je suis un développeur français de 30 ans, fort d'une expérience pratique en informatique et en développement logiciel, acquise grâce à la pratique, à des projets autonomes et à des stages professionnels. Mon parcours professionnel m'a amené à contribuer à la recherche et à aider des startups à se développer, où j'ai perfectionné mon expertise en développement backend, en algorithmie, en données et en recherche, tout en élargissant mes compétences en frontend, en design et en infrastructure.",
-      "objective": "Après avoir surmonté d'importants problèmes de santé personnels, je suis maintenant prêt à réintégrer le monde professionnel avec un rôle à temps partiel (50-60 %) qui équilibre mon engagement envers le travail et mon cheminement continu vers un rétablissement complet."
+      "intro": "French developer with {yearsOfExperience}+ years of hands-on experience in computer science and software development, drawing from both cutting-edge R&I and dynamic startup environments, I honed my expertise in backend, applied research & innovation, data processing and analysis, while broadening my skills in frontend, design, and infrastructure."
     },
     "experiences": {
       "title": "Expérience professionnelle",
