@@ -6,8 +6,7 @@
       "misc": "... and more"
     },
     "hero": {
-      "intro": "I’m a 30-year-old French developer with a hands-on background in computer science and software development, gained through practice, self-directed projects, and professional internships. My career has taken me from contributing to cutting-edge R&I to helping dynamic startups scale, where I honed my expertise in backend development, algorithms, data, and research while broadening my skills in frontend, design, and infrastructure.",
-      "objective": "After overcoming significant personal health challenges, I’m now ready to rejoin the professional world with a part-time role (50-60%) that balances my commitment to work and my continued journey toward full recovery."
+      "intro": "French developer with {yearsOfExperience}+ years of hands-on experience in computer science and software development, drawing from both cutting-edge R&I and dynamic startup environments, I honed my expertise in backend, applied research & innovation, data processing and analysis, while broadening my skills in frontend, design, and infrastructure."
     },
     "experiences": {
       "title": "Professional Experience",

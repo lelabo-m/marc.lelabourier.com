@@ -71,6 +71,8 @@ export const Header = () => {
 
 export const Hero = async () => {
   const t = await getTranslations("home");
+  const yearsOfExperience = new Date().getFullYear() - 2011;
+
   return (
     <section className="@container/hero pt-8 pb-16">
       <div className="container mx-auto">
@@ -84,7 +86,7 @@ export const Hero = async () => {
           <HeroImage />
           <div className="my-auto h-fit text-lg @2xl/hero:order-first @2xl/hero:max-w-1/2 @3xl/hero:max-w-2/3">
             <HeroActions />
-            <TypographyP>{t("hero.intro")}</TypographyP>
+            <TypographyP>{t("hero.intro", { yearsOfExperience })}</TypographyP>
           </div>
         </div>
       </div>
