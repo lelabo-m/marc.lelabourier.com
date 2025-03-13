@@ -50,8 +50,10 @@ export default async function RootLocaleLayout({
           >
             <SidebarProvider defaultOpen={false}>
               <AppSidebar />
-              <div className="bg-background m-8 mx-auto max-w-5xl snap-x p-8 shadow-lg dark:border">
-                {children}
+              <div className="mx-auto w-full max-w-5xl">
+                <div className="bg-background m-8 snap-x p-8 shadow-lg dark:border">
+                  {children}
+                </div>
               </div>
             </SidebarProvider>
           </ThemeProvider>
