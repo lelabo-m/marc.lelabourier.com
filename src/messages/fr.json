@@ -1,4 +1,13 @@
 {
+  "common": {
+    "not-found": "Page introuvable",
+    "not-found-description": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "error": "Un problème est survenu",
+    "error-description": "Une erreur est survenue. Merci de réessayer ultérieurement.",
+    "back-button": "Précédent",
+    "back-to-home-button": "Page d'accueil",
+    "reset-button": "Essayez à nouveau"
+  },
   "home": {
     "sidebar": {
       "about-me": "À propos de moi",
@@ -6,66 +15,150 @@
       "misc": "... et plus"
     },
     "hero": {
-      "intro": "French developer with {yearsOfExperience}+ years of hands-on experience in computer science and software development, drawing from both cutting-edge R&I and dynamic startup environments, I honed my expertise in backend, applied research & innovation, data processing and analysis, while broadening my skills in frontend, design, and infrastructure."
+      "intro": "Développeur français, fort de {yearsOfExperience}+ années d'expérience en informatique et développement logiciel, acquises sur le terrain au sein d'environnements en centre de recherche et de jeunes startups dynamiques, j'ai développé une expertise en backend, innovation et recherche appliquée, traitement et analyse de données, tout en développant mes compétences en frontend, design et infrastructure."
     },
-    "experiences": {
-      "title": "Expérience professionnelle",
+    "career": {
+      "title": "Carrière et développement",
       "subtitle": "",
+      "labels": {
+        "tech": "Technologie / Connaissances principales",
+        "technical": "Compétences spécialisées (techniques)",
+        "soft": "Compétences transférables"
+      },
       "items": {
+        "entrepreneurialProgram": {
+          "type": "formation",
+          "title": "Edistart'up - Programme Entrepreneurial en Édition et Édition Numérique",
+          "duration": "5 mois",
+          "company": "edinovo FORMATION (Asfored) x LABO DE L'ÉDITION (PARIS&CO)",
+          "date": "Sept 2021 - Fév 2022",
+          "description": "J'ai participé à la première promotion d'un programme conçu pour lancer des maisons d'édition ou des entreprises liées au livre, développant une compréhension approfondie de l'écosystème de l'édition, de la viabilité du marché et de la navigation dans le paysage de l'édition numérique, tout en approfondissant mes connaissances entrepreneuriales grâce à des discussions avec des experts, des auteurs et des entrepreneurs chevronnés.",
+          "components": {
+            "1": "Une boîte à outils en ligne et 20 heures de modules e-learning",
+            "2": "7 ateliers en personne avec d'autres entrepreneurs et experts de l'industrie",
+            "3": "7 heures de mentorat personnalisé et 14 heures de consultation d'experts",
+            "4": "Accès à un espace de travail dédié au Labo de L'Édition"
+          }
+        },
+        "digitalPublishing": {
+          "type": "formation",
+          "title": "Formation professionnelle - Droits de l'édition et de l'édition numérique",
+          "duration": "35 heures",
+          "company": "edinovo FORMATION (Asfored)",
+          "date": "Mai - Juin 2021",
+          "description": "Cette formation m'a permis d'acquérir de solides compétences en matière de gestion des droits d'auteur, de droit de l'édition, et de gestion de projets numériques, aboutissant à une compréhension approfondie du processus éditorial, depuis sa conception jusqu'à sa diffusion.",
+          "components": {
+            "1": "Découvrir le métier d’éditeur | 7 heures | 17 Mai 2021",
+            "2": "Les bases du droit de l’édition | 7 heures | 25 Mai 2021",
+            "3": "De l'idée à la mise en œuvre d'un projet éditorial numérique | 14 heures | 26-27 Mai 2021",
+            "4": "Le droit de l'édition appliqué à l'édition numérique | 7 heures | 24 Juin 2021"
+          }
+        },
         "singlespot1": {
+          "type": "emploi",
           "title": "Responsable Backend, Données et Recherche",
+          "duration": "2 ans",
           "company": "Singlespot",
           "date": "Sep 2018 - Nov 2020",
           "description": "Suite au départ du CTO et aux changements réglementaires imminents (RGPD & CNIL), j'ai joué un rôle de premier plan dans la transition de Singlespot, d'une agence AdTech à une entreprise \"pur player\" technologique spécialisée dans la collecte et l'agrégation de données mobiles. J'ai conçu et dirigé le développement d'un nouveau pipeline de données hautement évolutif, géré les projets backend et d'infrastructure, et co-dirigé la stratégie technique aux côtés des PDG.",
-          "highlights": "<highlight><b>Architecte et responsable de la refonte complète du pipeline de données</b>, passant d'un système rigide à une architecture évolutive \"event-driven\", utilisant Apache Pulsar, Kubernetes et Snowflake.</highlight><highlight><b>Réalisation d'études technologiques approfondies et sélection de la technologie</b>, menant un processus d'évaluation structuré avec l'équipe de développement senior.</highlight><highlight><b>Établissement de partenariats avec des fournisseurs de technologies</b>, assurant un accès anticipé aux fonctionnalités de Snowflake et établissant de solides relations de soutien.</highlight><highlight><b>Direction d'une équipe d'ingénieurs backend et de chercheurs</b>, supervisant la conception, le développement, les tests et le déploiement du système.</highlight><highlight><b>Optimisation et mise à l'échelle de l'ingestion de données</b>, garantissant que le pipeline pouvait traiter plus de 10 millions de requêtes sans défaillance.</highlight><highlight><b>Refonte du service de géolocalisation</b>, développement d'une base de données de géolocalisation personnalisée avec des fonctionnalités de recommandation probabilistes.</highlight><highlight><b>Introduction de Rust pour le traitement de données à haute performance</b>, permettant une gestion efficace d'algorithmes complexes sur des ensembles de données à grande échelle.</highlight><highlight><b>Gestion de la transition technique lors du pivot et de la restructuration de l'entreprise</b> (réduction d'effectif par 5), en restructurant les services backend et de données.</highlight><highlight><b>Négociateur lors du licenciement collectif</b>, agissant en tant que représentant lors des discussions du CSE avec la direction de l'entreprise.</highlight>"
+          "components": {
+            "1": "<b>Architected and led the refactoring of the entire data pipeline</b>, moving from a rigid system to a scalable, event-driven architecture using Apache Pulsar, Kubernetes, and Snowflake.",
+            "2": "<b>Conducted extensive technology research and stack selection</b>, leading a structured evaluation process with the senior development team.",
+            "3": "<b>Established partnerships with tech vendors</b>, securing early access to Snowflake's features and building strong support relations.",
+            "4": "<b>Led a team of backend engineers and researchers</b>, overseeing system design, development, testing, and deployment.",
+            "5": "<b>Optimized and scaled data ingestion</b>, ensuring the pipeline could handle 10M+ requests without failures.",
+            "6": "<b>Refactored the geolocation service</b>, developing a custom geolocation database with probabilistic recommendation features.",
+            "7": "<b>Introduced Rust for high-performance data processing</b>, enabling efficient handling of complex algorithms on large-scale datasets.",
+            "8": "<b>Managed the technical transition as the company pivoted</b>, scaling down from 50 to 12 employees while restructuring backend and data services.",
+            "9": "<b>Acted as a key negotiator in employee layoffs</b>, serving as a representative in CSE discussions with company leadership."
+          }
         },
         "singlespot2": {
-          "title": "Développeur Backend Junior & Responsable de l'Ingénierie des Données",
+          "type": "job",
+          "title": "Junior Backend Developer & Lead Data Engineer",
+          "duration": "2 years",
           "company": "Singlespot",
-          "date": "Sep 2016 - Août 2018",
-          "description": "J'ai rejoint Singlespot, une startup AdTech en pleine croissance, en tant que stagiaire en ingénierie des données et recherche, avant de passer à un poste à temps plein supervisant les initiatives backend, de données et de recherche. Je me suis concentré sur l'exploitation des données, la recherche en apprentissage automatique et l'automatisation de la création d'audiences pour les campagnes de publicité mobile. J'ai joué un rôle clé dans l'expansion des capacités de données de l'entreprise alors que l'équipe passait de 5 à 50 employés.",
-          "highlights": "<highlight><b>Réalisation de recherches sur l'exploration de données et l'apprentissage automatique, explorant la segmentation de l'audience</b>, les moteurs de recommandation et la prédiction d'intention.</highlight><highlight><b>Conception et développement d'un outil de création d'audience</b>, permettant une segmentation dynamique des cohortes pour des campagnes publicitaires ciblées.</highlight><highlight><b>Gestion du traitement des données de campagne</b>, garantissant la création précise de l'audience, le reporting et le suivi des performances.</highlight><highlight><b>Encadrement d'un stagiaire en reconversion professionnelle</b>, le guidant vers un poste d'ingénieur logiciel junior en deux ans.</highlight><highlight><b>Direction de l'équipe backend et données</b>, supervisant l'infrastructure et l'automatisation en dehors du pipeline de données principal.</highlight><highlight><b>Supervision des efforts de recherche</b>, en collaboration avec un docteur et des ingénieurs pour explorer de nouvelles stratégies d'exploitation des données.</highlight>"
+          "date": "Sep 2016 - Aug 2018",
+          "description": "Joined Singlespot, a growing AdTech startup, as a Data Engineer & Research Intern, later transitioning into a full-time role overseeing backend, data, and research initiatives. Focused on data exploitation, machine learning research, and audience-building automation for mobile advertising campaigns. Played a key role in scaling the company's data capabilities as the team grew from 5 to 50 employees.",
+          "components": {
+            "1": "<b>Conducted research on data mining & machine learning, exploring audience segmentation</b>, recommendation engines, and intent prediction.",
+            "2": "<b>Designed and developed an audience-building tool</b>, enabling dynamic cohort segmentation for targeted ad campaigns.",
+            "3": "<b>Managed campaign data processing</b>, ensuring accurate audience creation, reporting, and performance tracking.",
+            "4": "<b>Mentored a career-switching intern</b>, guiding him to a junior software engineer role over two years.",
+            "5": "<b>Led the backend and data team</b>, overseeing infrastructure and automation beyond the core SDK pipeline.",
+            "6": "<b>Supervised research efforts</b>, working with a PhD and engineers to explore new data exploitation strategies."
+          }
         },
         "technicolor": {
-          "title": "Stagiaire Ingénieur de Recherche – Protection de modèles 3D",
+          "type": "job",
+          "title": "Research Engineer Intern – 3D Object Protection",
+          "duration": "1 year",
           "company": "Technicolor",
-          "date": "Sep 2014 - Juil 2015",
-          "description": "J'ai mené des activités de recherche et développement sur les techniques de protection d'objets 3D pour les industries du cinéma et du jeu vidéo au sein du centre de R&D de Technicolor. J'ai travaillé en étroite collaboration avec des chercheurs expérimentés pour mettre en œuvre et tester des algorithmes de protection, développer des stratégies d'attaque et contribuer à des brevets et à des publications universitaires.",
-          "highlights": "<highlight><b>Mise en œuvre de 4 algorithmes de protection brevetés</b> en tant que plugins MeshLab, améliorant la sécurité des actifs 3D.</highlight><highlight>Recherche et développement de nouvelles stratégies d'attaque contre les protections 3D, <b>conduisant à trois nouvelles méthodologies d'attaque</b>.</highlight><highlight><b>Co-auteur de trois brevets</b> (deux techniques de protection et une technologie de chiffrement en temps réel pour les modèles 3D) et <b>d'un article de recherche universitaire</b> (non publié).</highlight><highlight><b>Conception de cadres d'analyse des risques, d'évaluation comparative et de validation</b> pour évaluer les techniques de protection et d'attaque.</highlight><highlight>Collaboration avec des experts dans les domaines de la <b>sécurité, de la cryptographie, des graphiques 3D et de la protection du contenu</b> afin d'affiner les méthodologies de recherche.</highlight><highlight>Acquisition d'une expérience pratique dans les domaines de la <b>méthodologie de la recherche, de la rédaction de brevets et des processus de publication scientifique.</b></highlight>"
+          "date": "Sep 2014 - Jul 2015",
+          "description": "Conducted research and development on 3D object protection techniques for the film and gaming industries within Technicolor’s R&I center. Worked closely with senior researchers to implement and test protection algorithms, develop attack strategies, and contribute to patents and academic publications.",
+          "components": {
+            "1": "<b>Implemented four patented protection algorithms</b> as MeshLab plugins, enhancing 3D asset security.",
+            "2": "<b>Researched and developed new attack strategies against 3D protections</b>, leading to three novel attack methodologies.",
+            "3": "<b>Co-authored three patents</b> (two protection techniques and a real-time encryption technology for 3D models) and <b>an academic research paper</b> (not published).",
+            "4": "<b>Designed risk analysis, benchmark and validation frameworks</b> for evaluating protection and attacks techniques.",
+            "5": "<b>Collaborated with experts across security, cryptography, 3D graphics, and content protection</b> to refine research methodologies.",
+            "6": "<b>Gained hands-on experience in research methodology, patent writing, and scientific publication processes.</b>"
+          }
         },
         "epitech": {
-          "title": "Assistant Pédagogique Régional",
+          "type": "job",
+          "title": "Regional Teaching Assistant",
+          "duration": "7 months",
           "company": "Epitech",
-          "date": "Jan 2014 - Juil 2014",
-          "description": "J'ai fourni un soutien académique et un mentorat aux étudiants de première et deuxième année à Epitech. J'ai participé à l'organisation et à la supervision des examens, des travaux pratiques et des ateliers techniques. J'ai collaboré avec l'équipe pédagogique et les associations étudiantes pour améliorer les expériences d'apprentissage et coordonner les événements sur le campus.",
-          "highlights": "<highlight><b>Soutien scolaire aux étudiants de première année</b> en programmation, algorithmique, Unix et administration système, favorisant un environnement d'apprentissage entre pairs.</highlight><highlight><b>Supervision des examens et des travaux pratiques</b>, garantissant l'équité et le respect des normes d'évaluation.</highlight><highlight><b>Conception et animation de cours magistraux de base</b> sur des sujets fondamentaux de l'informatique.</highlight><highlight><b>Création et animation d'ateliers sur la sécurité</b>, initiant les étudiants aux concepts du hacking et de la cybersécurité.</highlight><highlight><b>Participation aux évaluations de projets</b>, évaluant les progrès des étudiants et validant l'acquisition de compétences.</highlight><highlight><b>Coordination avec les professeurs et l'administration</b> pour organiser les journées portes ouvertes, les événements et la planification académique.</highlight>"
+          "date": "Jan 2014 - Jul 2014",
+          "description": "Provided academic support and mentorship to first-year and second-year students at Epitech. Assisted in organizing and supervising exams, practical classes, and technical workshops. Collaborated with the pedagogical team and student committees to enhance learning experiences and coordinate campus events.",
+          "components": {
+            "1": "<b>Tutored first-year students</b> in programming, algorithms, Unix and system administration, fostering a peer-learning environment.",
+            "2": "<b>Supervised exams and practical classes</b>, ensuring fairness and adherence to evaluation standards.",
+            "3": "<b>Designed and delivered basic lectures</b> on foundational computer science topics.",
+            "4": "<b>Created and led security workshops</b>, introducing students to hacking and cybersecurity concepts.",
+            "5": "<b>Participated in project evaluations</b>, assessing student progress and validating skill acquisition.",
+            "6": "<b>Coordinated with faculty and administration</b> to organize open-days, events, and academic planning."
+          }
         },
         "creawave": {
-          "title": "Stagiaire Développeur Full-Stack",
+          "type": "job",
+          "title": "Full Stack Developer Intern",
+          "duration": "6 months",
           "company": "Creawave",
-          "date": "Juil 2013 - Dec 2013",
-          "description": "J'ai rejoint une startup en phase de démarrage développant des algorithmes avancés de découpage de phonèmes pour la synthèse vocale dynamique. Chargé d'améliorer les outils existants et de concevoir une nouvelle plateforme pour élargir l'offre de l'entreprise, j'ai travaillé de manière autonome pour développer des solutions backend et frontend, tout en collaborant étroitement avec des acteurs vocaux pour affiner les flux de travail.",
-          "highlights": "<highlight><b>Développement d'une plateforme web</b> pour la commande et la gestion d'enregistrements vocaux, intégrant la facturation, les notifications par e-mail et un catalogue de talents.</highlight><highlight><b>Refonte et expansion</b> du logiciel d'enregistrement existant, amélioration de l'UI/UX, ajout de nouvelles fonctionnalités et garantie de la compatibilité multiplateforme (Windows et macOS).</highlight><highlight><b>Création d'un backend basé sur Django</b> pour gérer les commandes, l'affectation des comédiens et le traitement automatisé des fichiers audio.</highlight><highlight><b>Collaboration étroite avec des acteurs vocaux</b>, recueillant des commentaires et optimisant les outils afin d'améliorer la convivialité et l'efficacité.</highlight><highlight><b>Auto-apprentissage de Python, Django et du développement web full-stack</b> pour mener à bien le projet en six mois.</highlight>"
+          "date": "Jul 2013 - Dec 2013",
+          "description": "Joined an early-stage startup developing advanced phoneme-cutting algorithms for dynamic voice synthesis. Tasked with improving existing tools and designing a new platform to expand the company’s offerings, I worked autonomously to develop both backend and frontend solutions while closely collaborating with voice actors to refine workflows.",
+          "components": {
+            "1": "<b>Developed a web platform for ordering and managing voice recordings</b>, integrating invoicing, email notifications, and a talent catalog.",
+            "2": "<b>Redesigned and expanded the existing recording software</b>, improving UI/UX, adding new features, and ensuring cross-platform compatibility (Windows & macOS).",
+            "3": "<b>Built a Django-based backend to handle orders, comedian assignments, and automated processing of audio files.</b>",
+            "4": "<b>Worked closely with voice actors</b>, collecting feedback and optimizing tools to improve usability and efficiency.",
+            "5": "<b>Self-taught Python, Django, and full-stack web development</b> to successfully deliver the project within six months."
+          }
         }
       }
     },
     "educations": {
       "title": "Études",
       "subtitle": "",
-      "degrees": {
+      "labels": {
+        "curriculum": "Curriculum",
+        "modules": "Modules"
+      },
+      "items": {
         "epitech": {
-          "title": "Expert en Technologies de l'Information (Master)",
+          "title": "Master's degree in Computer Science and Information Technology",
           "institution": "EPITECH (European Institute of Information Technology)",
           "location": "Rennes, Paris (France)",
           "date": "2012 - 2017",
-          "description": "Un programme dynamique, axé sur les projets, qui met l'accent sur l'application concrète et l'innovation. Conçu pour repousser les limites de l'enseignement traditionnel, ce cursus intègre l'apprentissage pratique aux technologies moderne, préparant les diplômés à exceller dans des environnements technologiques dynamiques et en constante évolution. En mettant l'accent sur le travail d'équipe, la résolution autonome de problèmes et l'adaptation continue, ce programme vous fournit à la fois l'expertise technique et l'état d'esprit entrepreneurial nécessaires pour prospérer dans le paysage numérique actuel."
+          "description": "A dynamic, project-driven program that emphasizes real-world application and innovation. Designed to push the boundaries of traditional education, the course integrates hands-on learning with cutting-edge technologies, preparing graduates to excel in fast-paced, ever-evolving tech environments. With an emphasis on teamwork, self-directed problem-solving, and continuous adaptation, this program equips you with both the technical expertise and entrepreneurial mindset needed to thrive in today’s digital landscape."
         },
         "kent": {
           "title": "Master of Science in Advanced Computer Science (Computationnal Intelligence)",
           "institution": "University of Kent",
           "location": "Canterbury (UK)",
           "date": "2016",
-          "description": "Conçu pour les diplômés désireux d'approfondir l'intelligence artificielle et les systèmes intelligents. Alliant des bases théoriques rigoureuses à des applications pratiques et concrètes, le programme offre un cursus flexible qui met l'accent sur les techniques d'IA avancées, de l'apprentissage profond et des réseaux neuronaux aux méthodes d'apprentissage automatique innovantes. Axé sur la recherche pratique et les projets pertinents pour l'industrie, ce cours vous fournit les compétences de pointe nécessaires pour relever des défis computationnels complexes et stimuler l'innovation dans le domaine de l'IA en évolution rapide."
+          "description": "Designed for graduates eager to delve deeply into artificial intelligence and intelligent systems. Blending rigorous theoretical foundations with practical, real-world applications, the program offers a flexible curriculum that emphasizes advanced AI techniques—from deep learning and neural networks to innovative machine learning methods. Focused on hands-on research and industry-relevant projects, this course equips you with the cutting-edge skills needed to tackle complex computational challenges and drive innovation in the rapidly evolving field of AI."
         }
       }
     },
@@ -73,72 +166,112 @@
       "title": "Compétences",
       "subtitle": "",
       "items": {
-        "perspective": {
-          "title": "Point de vue holistique",
-          "description": "Large exposition à de multiples domaines, permettant une résolution de problèmes diversifiée et une pensée critique."
+        "approach": {
+          "title": "Transparent & Down-to-Earth",
+          "description": "Prioritize integrity and good faith, grounding interactions in reciprocity and fairness."
         },
         "optimizer": {
-          "title": "Optimisation et résolution de problèmes",
-          "description": "Rapide à identifier les problèmes et à rationaliser les processus, concevant des solutions pratiques et axées sur l'équipe."
+          "title": "Problem Solver",
+          "description": "Identify issues and streamline processes, devising practical solutions that improve overall efficiency."
         },
-        "team": {
-          "title": "Leadership d'équipe et collaboration",
-          "description": "Diriger par l'exemple, favoriser une communication ouverte et veiller à ce que la contribution de chaque membre de l'équipe soit reconnue."
+        "perspective": {
+          "title": "Point de vue holistique",
+          "description": "Leverage exposure across multiple fields to enable diverse problem-solving and critical thinking."
+        },
+        "leadership": {
+          "title": "Leadership & Collaboration",
+          "description": "Lead by example, foster open communication, and ensure every team member's contribution is acknowledged."
         },
         "adaptability": {
-          "title": "Adaptabilité et négociation",
-          "description": "Faciliter la communication et la collaboration entre les équipes techniques, les parties prenantes commerciales et la direction, en assurant une compréhension commune des objectifs."
-        },
-        "approach": {
-          "title": "Approche Éthique et Pragmatique",
-          "description": "Travail avec intégrité et de bonne foi, en se fondant sur la réciprocité et l'équité."
+          "title": "Flexibility & Alignment",
+          "description": "Bridge gaps between technical teams, business stakeholders, and executive leadership to ensure a shared understanding of objectives."
         },
         "mentorship": {
-          "title": "Mentorat et Enseignement",
-          "description": "Passionné par le développement des talents, qu'il s'agisse d'aider les étudiants de première année ou d'encadrer les professionnels en reconversion. Favoriser un environnement d'apprentissage collaboratif."
+          "title": "Mentorship & Learning",
+          "description": "Cultivate a collaborative environment for mutual growth, embracing both teaching, mentoring and learning from others."
         }
       }
     },
     "techstacks": {
       "title": "Technologies",
       "subtitle": "",
-      "disclaimer": "Note : Les technologies présentées ici reflète mes préférences actuelles et mes domaines d'intérêt. J'ai de l'expérience avec un éventail plus large que celles énumérées et je suis toujours ravi d'élargir mes compétences et de relever de nouveaux défis."
+      "disclaimer": "Please note: This is my preferred stack, backed by broader experience and I am always open for more.",
+      "types": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "infrastructure": "Infrastructure",
+        "compute": "Systems & Compute"
+      },
+      "levels": {
+        "expert": "Expert",
+        "experienced": "Experienced",
+        "proficient": "Proficient",
+        "familiar": "Familiar",
+        "willing": "Willing to learn",
+        "not-used-in-a-while": "Not used in a while"
+      }
     },
     "hobbies": {
       "title": "Loisirs et Intérêts",
       "subtitle": "",
-      "description": "<p> En dehors du travail, je maintiens un style de vie équilibré grâce à un mélange d'activités créatives et actives. </p> <p> Récemment, la santé et la forme physique ont pris une place centrale dans ma vie. Cela se manifeste en partie par mon implication dans des initiatives de sensibilisation du public dans les écoles et les entreprises, afin d'éduquer les autres sur les handicaps et les avantages des sports inclusifs. </p>"
-    },
-    "formations": {
-      "title": "Développement professionnel et formation spécialisée",
-      "subtitle": "",
-      "entrepreneurialProgram": {
-        "title": "Programme entrepreneurial en Édition et Édition Numérique",
-        "description": "Edistart'up",
-        "duration": "5 mois",
-        "subtitle": "edinovo FORMATION (Asfored) x LABO DE L'ÉDITION (PARIS&CO)",
-        "date": "Septembre 2021 - Février 2022",
-        "content": "<description> <p>Participation à la première promotion d'un programme complet conçu pour lancer des maisons d'édition ou des entreprises liées au livre.</p>  <p>Développement d'une compréhension approfondie de l'écosystème de l'édition, de l'élaboration de modèles économiques et de la viabilité du marché.</p>  <p>Acquisition d'une expertise pratique dans la formulation de projets, la présentation stratégique et la navigation dans le paysage de l'édition numérique, tout en approfondissant les connaissances entrepreneuriales grâce à des discussions avec des experts chevronnés, des auteurs et des entrepreneurs.</p> </description> <modules> <module>Une boîte à outils en ligne et 20 heures de modules d'apprentissage en ligne</module>    <module>7 ateliers en personne avec d'autres entrepreneurs et des experts du secteur</module>     <module>7 heures de mentorat personnalisé et 14 heures de consultation d'experts</module>  <module>Accès à un espace de coworking dédié au Labo de L'Edition</module> </modules> ",
-        "modulesTitle": "Éléments du programme :"
-      },
-      "digitalPublishing": {
-        "title": "Droit de l'Édition et l'Édition numérique",
-        "description": "Formation professionnelle",
-        "duration": "35 heures",
-        "subtitle": "edinovo FORMATION (Asfored)",
-        "date": "Mai - Juin 2021",
-        "content": "<description>Acquisition de connaissances pratiques sur les droits d'édition, la gestion de projet et l'édition numérique.</description><modules><module>Découvrir le rôle d'un éditeur|7 heures | 17 mai 2021</module><module>Principes fondamentaux du droit de l'édition|7 heures | 25 mai 2021</module><module>De l'idée à la mise en œuvre d'un projet éditorial numérique|14 heures | 26–27 mai 2021</module><module>Le droit d'auteur appliqué à l'édition numérique|7 heures | 24 juin 2021</module></modules>",
-        "modulesTitle": "Modules :"
+      "categories": {
+        "entertainment": {
+          "title": "Entertainment",
+          "items": {
+            "1": "Manga & Webtoons",
+            "2": "Video & Board Games",
+            "3": "Podcasts & Audio Fiction"
+          }
+        },
+        "interests": {
+          "title": "Interests",
+          "items": {
+            "1": "Roleplaying Games",
+            "2": "Metabolism & Nutrition",
+            "3": "Anatomy & Physiology"
+          }
+        },
+        "sports": {
+          "title": "Sports & Community",
+          "items": {
+            "1": "Musculation",
+            "2": "Swimming",
+            "3": "Handball",
+            "4": "Wheelchair Handball",
+            "5": "Disability Awareness Initiatives"
+          }
+        }
       }
     },
     "publications": {
-      "title": "Publications",
+      "title": "Patents & Publications",
       "subtitle": "",
-      "description": "Une sélection de mes publications académiques et professionnelles."
+      "description": "Une sélection de mes publications académiques et professionnelles.",
+      "subsections": {
+        "patents": "Patents",
+        "publications": "Publications"
+      }
     },
     "information": {
       "title": "Informations complémentaires",
-      "subtitle": ""
+      "subtitle": "",
+      "driversLicense": {
+        "title": "Driver's License",
+        "status": "B (car)"
+      },
+      "languages": {
+        "title": "Languages",
+        "items": {
+          "french": {
+            "title": "French",
+            "level": "Native"
+          },
+          "english": {
+            "title": "English",
+            "level": "Proficient (reading, writing, speaking)"
+          }
+        }
+      }
     }
   }
 }
