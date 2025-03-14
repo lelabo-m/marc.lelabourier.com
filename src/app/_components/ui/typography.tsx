@@ -87,7 +87,7 @@ const TypographyBlockquote = ({
   ...props
 }: ComponentProps<"blockquote">) => (
   <blockquote
-    className={cn("mt-6 border-l-2 pl-6 italic", className)}
+    className={cn("mt-6 border-l-4 pl-6 italic", className)}
     {...props}
   >
     {children}

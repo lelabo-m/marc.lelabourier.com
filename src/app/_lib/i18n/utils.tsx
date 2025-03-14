@@ -2,54 +2,82 @@ import type {
   AbstractIntlMessages,
   NamespaceKeys,
   NestedKeyOf,
+  NestedValueOf,
   useTranslations,
 } from "next-intl";
-import type { getTranslations } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 
-type RichTextProps<Tag extends keyof any> = {
+export type IntlNamespaceKeys = NamespaceKeys<
+  IntlMessages,
+  NestedKeyOf<IntlMessages>
+>;
+
+// Example usage:
+// function RichText({ children }: RichTextProps<"p" | "b" | "i">) {
+//   return (
+//     <div className="prose">
+//       {children({
+//         p: (chunks: React.ReactNode) => <p>{chunks}</p>,
+//         b: (chunks: React.ReactNode) => (
+//           <b className="font-semibold">{chunks}</b>
+//         ),
+//         i: (chunks: React.ReactNode) => <i className="italic">{chunks}</i>,
+//       })}
+//     </div>
+//   );
+// }
+export type RichTextProps<Tag extends keyof any> = {
   children(
     tags: Record<Tag, (chunks: React.ReactNode) => React.ReactNode>,
   ): React.ReactNode;
 };
 
-function RichText({ children }: RichTextProps<"p" | "b" | "i">) {
-  return (
-    <div className="prose">
-      {children({
-        p: (chunks: React.ReactNode) => <p>{chunks}</p>,
-        b: (chunks: React.ReactNode) => (
-          <b className="font-semibold">{chunks}</b>
-        ),
-        i: (chunks: React.ReactNode) => <i className="italic">{chunks}</i>,
-      })}
-    </div>
-  );
-}
-
-function isAbstractIntlMessages(
-  value: string | AbstractIntlMessages,
-): value is AbstractIntlMessages {
-  return typeof value === "object" && value !== null;
-}
-
 /**
  * from https://github.com/amannn/next-intl/issues/1704
  * Type for passing around NextIntl getTranslation or useTranslations functions
  */
-type getTranslationsType<
-  T extends NamespaceKeys<IntlMessages, NestedKeyOf<IntlMessages>>,
-> =
-  | Awaited<ReturnType<typeof getTranslations<T>>>
-  | ReturnType<typeof useTranslations<T>>;
+export type getTranslationsType<Namespace extends IntlNamespaceKeys> =
+  | Awaited<ReturnType<typeof getTranslations<Namespace>>>
+  | ReturnType<typeof useTranslations<Namespace>>;
 
 /**
  * from https://github.com/amannn/next-intl/issues/1704
  * Type for passing around keys for given getTranslation or useTranslations functions
  */
-type getTranslationsKeys<
-  T extends NamespaceKeys<IntlMessages, NestedKeyOf<IntlMessages>>,
-> = Parameters<getTranslationsType<T>>[0];
+export type getTranslationsKeys<Namespace extends IntlNamespaceKeys> =
+  Parameters<getTranslationsType<Namespace>>[0];
 
-export type { getTranslationsKeys, getTranslationsType, RichTextProps };
+export function isAbstractIntlMessages(
+  value: string | AbstractIntlMessages | undefined,
+): value is AbstractIntlMessages {
+  return typeof value === "object" && value !== null;
+}
 
-export { isAbstractIntlMessages, RichText };
+export async function getMessageKeys<Namespace extends IntlNamespaceKeys>(
+  namespace: Namespace,
+) {
+  const messages = await getMessages();
+
+  const path = namespace.split(".");
+  let obj: AbstractIntlMessages = messages;
+  for (const key of path) {
+    const item = obj[key];
+    if (item === undefined) {
+      throw new Error(`${namespace} does not exist in messages.`);
+    }
+    if (typeof item === "string") {
+      throw new Error(`${namespace} is not a collection of messages.`);
+    }
+    obj = item;
+  }
+  if (obj === undefined) {
+    throw new Error(`${namespace} does not exist in messages.`);
+  }
+  if (typeof obj === "string") {
+    throw new Error(`${namespace} is not a collection of messages.`);
+  }
+  return Object.keys(obj) as unknown as (keyof NestedValueOf<
+    IntlMessages,
+    Namespace
+  >)[];
+}

@@ -3,23 +3,21 @@ import Image from "next/image";
 import React, { ReactNode } from "react";
 
 import {
+  CareerCard,
+  CareerCardContent,
+  CareerCardFormationComponents,
+  CareerCardHeader,
+  CareerCardHighlights,
+  CareerCardSkills,
+  CareerSkillsLegend,
+} from "@/components/card/career";
+import {
   EducationCard,
   EducationCardContent,
   EducationCardHeader,
   EducationCardLearnMoreButton,
   EducationCardModuleGrid,
 } from "@/components/card/education";
-import {
-  ExperienceCard,
-  ExperienceCardContent,
-  ExperienceCardHeader,
-  ExperienceCardSkills,
-} from "@/components/card/experience";
-import {
-  FormationCard,
-  FormationCardContent,
-  FormationCardHeader,
-} from "@/components/card/formation";
 import {
   HobbyCategoryCard,
   HobbyCategoryCardContent,
@@ -48,9 +46,9 @@ import {
   TypographyLead,
   TypographyP,
 } from "@/components/ui/typography";
-import { degrees, formations } from "@/data/education";
-import { skillsByExperience } from "@/data/experiences";
-import { experiences, hobbies, profile } from "@/data/profile";
+import { careerChronology, skillsByExperience } from "@/data/career";
+import { degrees } from "@/data/education";
+import { hobbies, profile } from "@/data/profile";
 import { patents, publications } from "@/data/publications";
 import { stacks } from "@/data/tech-stack";
 import { cn, objectEntries, objectKeys } from "@/lib/utils";
@@ -95,16 +93,14 @@ export const Hero = async () => {
 };
 
 const HeroImage = () => (
-  <div className="m-auto @max-2xl/hero:w-1/2">
-    <div className="overflow-hidden rounded-4xl">
-      <Image
-        src="/profile.jpg"
-        alt="Marc Le Labourier profile picture"
-        width={1400}
-        height={2100}
-        className="h-auto w-full object-cover"
-      />
-    </div>
+  <div className="bg-card text-card-foreground m-auto overflow-hidden rounded-2xl border shadow-sm @max-2xl/hero:w-1/2">
+    <Image
+      src="/profile.jpg"
+      alt="Marc Le Labourier profile picture"
+      width={1400}
+      height={2100}
+      className="h-auto w-full object-cover"
+    />
   </div>
 );
 
@@ -226,27 +222,62 @@ const ContactElement = ({ icon: IconComp, text, link }: ContactProps) => {
   );
 };
 
-export const ProfessionalExperienceSection = async () => {
-  const t = await getTranslations("home.experiences.items");
+export const CareerSection = async () => {
+  const t = await getTranslations("home.career");
 
   return (
-    <TimelineRenderList
-      items={experiences}
-      renderItem={(item) => (
-        <ExperienceCard className="w-full">
-          <ExperienceCardHeader
-            jobTitle={t(`${item}.title`)}
-            companyName={t(`${item}.company`)}
-            date={t(`${item}.date`)}
-          >
-            <ExperienceCardSkills skills={skillsByExperience[item]} />
-          </ExperienceCardHeader>
-          <ExperienceCardContent description={t(`${item}.description`)}>
-            {(tags) => t.rich(`${item}.highlights`, { ...tags })}
-          </ExperienceCardContent>
-        </ExperienceCard>
-      )}
-    />
+    <div>
+      <CareerSkillsLegend />
+      <TimelineRenderList
+        items={careerChronology}
+        renderItem={({ key, type }) => {
+          if (type === "experience") {
+            return (
+              <CareerCard className="w-full">
+                <CareerCardHeader
+                  jobTitle={t(`experiences.${key}.title`)}
+                  companyName={t(`experiences.${key}.company`)}
+                  date={t(`experiences.${key}.date`)}
+                >
+                  <CareerCardSkills skills={skillsByExperience[key]} />
+                </CareerCardHeader>
+                <CareerCardContent>
+                  <div className="text-left text-sm">
+                    <TypographyP>
+                      {t(`experiences.${key}.description`)}
+                    </TypographyP>
+                    <CareerCardHighlights experience={key} />
+                  </div>
+                </CareerCardContent>
+              </CareerCard>
+            );
+          }
+          if (type === "formation") {
+            return (
+              <CareerCard className="w-full">
+                <CareerCardHeader
+                  jobTitle={t(`formations.${key}.title`)}
+                  companyName={t(`formations.${key}.subtitle`)}
+                  date={t(`formations.${key}.date`)}
+                  duration={t(`formations.${key}.duration`)}
+                >
+                  <CareerCardSkills skills={skillsByExperience[key]} />
+                </CareerCardHeader>
+                <CareerCardContent>
+                  <div className="text-left text-sm">
+                    <div className="mb-4 space-y-2">
+                      <p>{t(`formations.${key}.description`)}</p>
+                    </div>
+                    <CareerCardFormationComponents formation={key} />
+                  </div>
+                </CareerCardContent>
+              </CareerCard>
+            );
+          }
+          return null;
+        }}
+      />
+    </div>
   );
 };
 
@@ -287,36 +318,6 @@ export const EducationSection = async () => {
         </EducationCard>
       )}
     />
-  );
-};
-
-export const FormationSection = async () => {
-  const t = await getTranslations("home.formations");
-
-  return (
-    <div className="mt-4 space-y-6">
-      <TimelineRenderList
-        items={formations}
-        renderItem={(item) => (
-          <FormationCard key={item}>
-            <FormationCardHeader
-              title={t(`${item}.title`)}
-              subtitle={t(`${item}.subtitle`)}
-              date={t(`${item}.date`)}
-              description={t(`${item}.description`)}
-              duration={t(`${item}.duration`)}
-            />
-            <FormationCardContent modulesTitle={t(`${item}.modulesTitle`)}>
-              {(tags) =>
-                t.rich(`${item}.content`, {
-                  ...tags,
-                })
-              }
-            </FormationCardContent>
-          </FormationCard>
-        )}
-      />
-    </div>
   );
 };
 

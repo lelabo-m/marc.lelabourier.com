@@ -1,9 +1,30 @@
-import { ProSkillBadge } from "@/components/card/experience";
+import { ProSkillBadge } from "@/components/card/career";
 import { Messages } from "global";
 
-type ExperienceKey = keyof Messages["home"]["experiences"]["items"];
+type ExperienceKey = keyof Messages["home"]["career"]["experiences"];
 
 export const skillsByExperience = {
+  entrepreneurialProgram: [
+    { name: "Entrepreneurship", type: "technical" },
+    { name: "Business Model Development", type: "technical" },
+    { name: "Market Analysis", type: "technical" },
+    { name: "Digital Publishing", type: "technical" },
+    { name: "Project Formulation", type: "soft" },
+    { name: "Strategic Pitching", type: "soft" },
+    { name: "Networking", type: "soft" },
+    { name: "Communication", type: "soft" },
+    { name: "Problem-Solving", type: "soft" },
+  ],
+  digitalPublishing: [
+    { name: "Editorial Project Implementation", type: "tech" },
+    { name: "Publisher Role", type: "tech" },
+    { name: "Edition Rights", type: "technical" },
+    { name: "Publishing Law", type: "technical" },
+    { name: "Digital Publishing", type: "technical" },
+    { name: "Copyright Law", type: "technical" },
+    { name: "Legal Compliance", type: "technical" },
+    { name: "Project Management", type: "soft" },
+  ],
   singlespot1: [
     { name: "Python", type: "tech" },
     { name: "Rust", type: "tech" },
@@ -70,4 +91,21 @@ export const skillsByExperience = {
     { name: "Self-Learning", type: "soft" },
     { name: "Project Management", type: "soft" },
   ],
-} satisfies Record<ExperienceKey, ProSkillBadge[]>;
+} satisfies Record<ExperienceKey | FormationKey, ProSkillBadge[]>;
+
+type FormationKey = keyof Messages["home"]["career"]["formations"];
+
+type CareerStep = {
+  key: ExperienceKey | FormationKey;
+  type: "experience" | "formation";
+};
+
+export const careerChronology = [
+  { key: "entrepreneurialProgram", type: "formation" },
+  { key: "digitalPublishing", type: "formation" },
+  { key: "singlespot1", type: "experience" },
+  { key: "singlespot2", type: "experience" },
+  { key: "technicolor", type: "experience" },
+  { key: "epitech", type: "experience" },
+  { key: "creawave", type: "experience" },
+] satisfies CareerStep[];

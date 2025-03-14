@@ -11,16 +11,14 @@ import {
   LucideIcon,
   Mail,
   MapPin,
-  Microscope,
   Phone,
   Sparkles,
 } from "lucide-react";
 import {
+  CareerSection,
   EducationSection,
-  FormationSection,
   HobbySection,
   InformationSection,
-  ProfessionalExperienceSection,
   PublicationSection,
   SkillSection,
   TechStackSection,
@@ -89,14 +87,9 @@ export const sections = [
     key: "background",
     sections: [
       {
-        key: "formations",
-        icon: Microscope,
-        component: FormationSection,
-      },
-      {
-        key: "experiences",
+        key: "career",
         icon: BriefcaseBusiness,
-        component: ProfessionalExperienceSection,
+        component: CareerSection,
       },
       {
         key: "educations",
