@@ -8,7 +8,8 @@ import {
   CardSubtitle,
   CardTitle,
 } from "@/components/ui/card";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink as ExternalLinkIcon } from "lucide-react";
+import { ExternalLink } from "../ui/link";
 
 export function CourseCard({
   title,
@@ -30,23 +31,20 @@ export function CourseCard({
 
   return (
     <Card>
-      <CardHeader>
-        <div className="flex justify-end">
-          <Badge variant={badgeVariant}>{type}</Badge>
-        </div>
-
-        <div className="flex items-start">
-          <CardTitle className="text-left text-lg">{title}</CardTitle>
-        </div>
-        <CardSubtitle className="flex items-baseline justify-between">
+      <CardHeader className="h-full p-4">
+        <CardTitle className="text-left text-base">{title}</CardTitle>
+        <CardSubtitle className="mt-auto flex flex-wrap items-baseline text-sm">
           {ref}
           {url && (
             <Button variant="link" className="px-0" asChild>
-              <a href={url} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="text-muted-foreground h-4 w-4" />
-              </a>
+              <ExternalLink href={url}>
+                <ExternalLinkIcon className="text-muted-foreground h-4 w-4" />
+              </ExternalLink>
             </Button>
           )}
+          <Badge className="ml-auto" variant={badgeVariant}>
+            {type}
+          </Badge>
         </CardSubtitle>
       </CardHeader>
     </Card>
