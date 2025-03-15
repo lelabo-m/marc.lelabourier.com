@@ -1,6 +1,7 @@
-import { Messages } from "global";
 import {
   Brain,
+  Flame,
+  Gamepad,
   GraduationCap,
   Handshake,
   Heart,
@@ -8,8 +9,9 @@ import {
   Puzzle,
   Users,
 } from "lucide-react";
+import { NestedValueOf } from "next-intl";
 
-export type SkillKey = keyof Messages["home"]["skills"]["items"];
+export type SkillKey = keyof NestedValueOf<IntlMessages, "home.skills.items">;
 
 export const skillsIcons = {
   perspective: Brain,
@@ -19,3 +21,11 @@ export const skillsIcons = {
   approach: Heart,
   mentorship: GraduationCap,
 } satisfies Record<SkillKey, LucideIcon>;
+
+type HobbyKey = keyof NestedValueOf<IntlMessages, "home.hobbies.categories">;
+
+export const hobbiesIcons = {
+  entertainment: Gamepad,
+  interests: Flame,
+  sports: Heart,
+} satisfies Record<HobbyKey, LucideIcon>;

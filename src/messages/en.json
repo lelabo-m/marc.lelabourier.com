@@ -195,7 +195,34 @@
     "hobbies": {
       "title": "Hobbies & Interests",
       "subtitle": "",
-      "description": "<p> Outside of work, I maintain a balanced lifestyle through a mix of creative and active pursuits. </p> <p> Recently, health and fitness have taken center stage in my life. Part of it manifest by my involvement in public awareness initiatives in schools and enterprises to educate others about disabilities and the benefits of inclusive sports. </p>"
+      "categories": {
+        "entertainment": {
+          "title": "Entertainment",
+          "items": {
+            "1": "Manga & Webtoons",
+            "2": "Video & Board Games",
+            "3": "Podcasts & Audio Fiction"
+          }
+        },
+        "interests": {
+          "title": "Interests",
+          "items": {
+            "1": "Roleplaying Games",
+            "2": "Metabolism & Nutrition",
+            "3": "Anatomy & Physiology"
+          }
+        },
+        "sports": {
+          "title": "Sports & Community",
+          "items": {
+            "1": "Musculation",
+            "2": "Swimming",
+            "3": "Handball",
+            "4": "Wheelchair Handball",
+            "5": "Disability Awareness Initiatives"
+          }
+        }
+      }
     },
     "publications": {
       "title": "Publications",
