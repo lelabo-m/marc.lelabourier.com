@@ -45,7 +45,9 @@ const EducationCardContent = ({ children }: { children: ReactNode }) => {
     <CollapsibleCardContent>
       <CollapsibleCardTrigger />
 
-      <CollapsibleCardDetails>{children}</CollapsibleCardDetails>
+      <CollapsibleCardDetails className="flex flex-col gap-4 text-left">
+        {children}
+      </CollapsibleCardDetails>
     </CollapsibleCardContent>
   );
 };

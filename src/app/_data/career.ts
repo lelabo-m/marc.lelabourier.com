@@ -1,7 +1,7 @@
 import { ProSkillBadge } from "@/components/card/career";
 import { Messages } from "global";
 
-type ExperienceKey = keyof Messages["home"]["career"]["experiences"];
+type ExperienceKey = keyof Messages["home"]["career"]["items"];
 
 export const skillsByExperience = {
   entrepreneurialProgram: [
@@ -91,21 +91,4 @@ export const skillsByExperience = {
     { name: "Self-Learning", type: "soft" },
     { name: "Project Management", type: "soft" },
   ],
-} satisfies Record<ExperienceKey | FormationKey, ProSkillBadge[]>;
-
-type FormationKey = keyof Messages["home"]["career"]["formations"];
-
-type CareerStep = {
-  key: ExperienceKey | FormationKey;
-  type: "experience" | "formation";
-};
-
-export const careerChronology = [
-  { key: "entrepreneurialProgram", type: "formation" },
-  { key: "digitalPublishing", type: "formation" },
-  { key: "singlespot1", type: "experience" },
-  { key: "singlespot2", type: "experience" },
-  { key: "technicolor", type: "experience" },
-  { key: "epitech", type: "experience" },
-  { key: "creawave", type: "experience" },
-] satisfies CareerStep[];
+} satisfies Record<ExperienceKey, ProSkillBadge[]>;

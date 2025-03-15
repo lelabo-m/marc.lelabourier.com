@@ -62,30 +62,56 @@ export const CareerCardContent = ({ children }: CareerCardContentProps) => {
   return (
     <CollapsibleCardContent>
       <CollapsibleCardTrigger />
-      <CollapsibleCardDetails>{children}</CollapsibleCardDetails>
+      <CollapsibleCardDetails className="space-y-4 text-left text-sm">
+        {children}
+      </CollapsibleCardDetails>
     </CollapsibleCardContent>
   );
 };
 
-type Exprience = keyof NestedValueOf<IntlMessages, "home.career.experiences">;
+type ExprienceKey = keyof NestedValueOf<IntlMessages, "home.career.items">;
 
-export const CareerCardHighlights = async ({
-  experience,
+export const CareerCardContentComponents = async ({
+  item,
+  type,
 }: {
-  experience: Exprience;
+  item: ExprienceKey;
+  type: string;
 }) => {
-  const t = await getTranslations("home.career.experiences");
-  const highlightKeys = await getMessageKeys(
-    `home.career.experiences.${experience}.highlights`,
+  const t = await getTranslations("home.career.items");
+  const components = await getMessageKeys(
+    `home.career.items.${item}.components`,
   );
 
+  if (type === "formation") {
+    return (
+      <ul className="space-y-2">
+        {components.map((component) => {
+          const [title, ...info] = t(`${item}.components.${component}`).split(
+            "|",
+          );
+
+          return (
+            <li key={component} className="flex justify-between">
+              <div className="flex items-center">
+                <span className="mr-2 inline-block size-1 rounded-full bg-current align-middle" />
+                {title}
+              </div>
+              <span className="text-muted-foreground text-xs">{info}</span>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+
   return (
-    <ul className="text-foreground flex flex-col gap-2 pt-6 text-left">
-      {highlightKeys.map((key) => (
-        <li key={key} className="flex items-start">
+    <ul className="flex flex-col gap-2">
+      {components.map((component) => (
+        <li key={component} className="flex items-start">
           <CircleCheckBig className="mt-1 size-3 shrink-0" />
           <p className="ml-2">
-            {t.rich(`${experience}.highlights.${key}`, {
+            {t.rich(`${item}.components.${component}`, {
               b: (chunks) => <b className="font-semibold">{chunks}</b>,
             })}
           </p>
@@ -140,37 +166,5 @@ export const CareerSkillsLegend = async () => {
       <SkillBadge name={t("technical")} type="technical" />
       <SkillBadge name={t("soft")} type="soft" />
     </div>
-  );
-};
-
-type Formation = keyof NestedValueOf<IntlMessages, "home.career.formations">;
-
-export const CareerCardFormationComponents = async ({
-  formation,
-}: {
-  formation: Formation;
-}) => {
-  const t = await getTranslations("home.career.formations");
-
-  const componentKeys = await getMessageKeys(
-    `home.career.formations.${formation}.components`,
-  );
-
-  return (
-    <ul className="space-y-2">
-      {componentKeys.map((key) => {
-        const [title, ...info] = t(`${formation}.components.${key}`).split("|");
-
-        return (
-          <li key={key} className="flex justify-between">
-            <div className="flex items-center">
-              <span className="mr-2 inline-block size-1 rounded-full bg-current align-middle" />
-              {title}
-            </div>
-            <span className="text-muted-foreground text-xs">{info}</span>
-          </li>
-        );
-      })}
-    </ul>
   );
 };

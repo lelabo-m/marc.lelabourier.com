@@ -5,9 +5,8 @@ import React, { ReactNode } from "react";
 import {
   CareerCard,
   CareerCardContent,
-  CareerCardFormationComponents,
+  CareerCardContentComponents,
   CareerCardHeader,
-  CareerCardHighlights,
   CareerCardSkills,
   CareerSkillsLegend,
 } from "@/components/card/career";
@@ -46,11 +45,12 @@ import {
   TypographyLead,
   TypographyP,
 } from "@/components/ui/typography";
-import { careerChronology, skillsByExperience } from "@/data/career";
+import { skillsByExperience } from "@/data/career";
 import { degrees } from "@/data/education";
 import { hobbies, profile } from "@/data/profile";
 import { patents, publications } from "@/data/publications";
 import { stacks } from "@/data/tech-stack";
+import { getMessageKeys } from "@/lib/i18n/utils";
 import { cn, objectEntries, objectKeys } from "@/lib/utils";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { ContactAnimatedPill, ContactAnimatedText } from "./client";
@@ -225,56 +225,33 @@ const ContactElement = ({ icon: IconComp, text, link }: ContactProps) => {
 export const CareerSection = async () => {
   const t = await getTranslations("home.career");
 
+  const experiences = await getMessageKeys("home.career.items");
+
   return (
     <div>
       <CareerSkillsLegend />
       <TimelineRenderList
-        items={careerChronology}
-        renderItem={({ key, type }) => {
-          if (type === "experience") {
-            return (
-              <CareerCard className="w-full">
-                <CareerCardHeader
-                  jobTitle={t(`experiences.${key}.title`)}
-                  companyName={t(`experiences.${key}.company`)}
-                  date={t(`experiences.${key}.date`)}
-                >
-                  <CareerCardSkills skills={skillsByExperience[key]} />
-                </CareerCardHeader>
-                <CareerCardContent>
-                  <div className="text-left text-sm">
-                    <TypographyP>
-                      {t(`experiences.${key}.description`)}
-                    </TypographyP>
-                    <CareerCardHighlights experience={key} />
-                  </div>
-                </CareerCardContent>
-              </CareerCard>
-            );
-          }
-          if (type === "formation") {
-            return (
-              <CareerCard className="w-full">
-                <CareerCardHeader
-                  jobTitle={t(`formations.${key}.title`)}
-                  companyName={t(`formations.${key}.subtitle`)}
-                  date={t(`formations.${key}.date`)}
-                  duration={t(`formations.${key}.duration`)}
-                >
-                  <CareerCardSkills skills={skillsByExperience[key]} />
-                </CareerCardHeader>
-                <CareerCardContent>
-                  <div className="text-left text-sm">
-                    <div className="mb-4 space-y-2">
-                      <p>{t(`formations.${key}.description`)}</p>
-                    </div>
-                    <CareerCardFormationComponents formation={key} />
-                  </div>
-                </CareerCardContent>
-              </CareerCard>
-            );
-          }
-          return null;
+        items={experiences}
+        renderItem={(item) => {
+          return (
+            <CareerCard className="w-full">
+              <CareerCardHeader
+                jobTitle={t(`items.${item}.title`)}
+                companyName={t(`items.${item}.company`)}
+                date={t(`items.${item}.date`)}
+                duration={t(`items.${item}.duration`)}
+              >
+                <CareerCardSkills skills={skillsByExperience[item]} />
+              </CareerCardHeader>
+              <CareerCardContent>
+                <TypographyP>{t(`items.${item}.description`)}</TypographyP>
+                <CareerCardContentComponents
+                  type={t(`items.${item}.type`)}
+                  item={item}
+                />
+              </CareerCardContent>
+            </CareerCard>
+          );
         }}
       />
     </div>
@@ -296,24 +273,18 @@ export const EducationSection = async () => {
             date={t(`${item}.date`)}
           />
           <EducationCardContent>
-            <div className="flex flex-col gap-4">
-              <TypographyP className="text-left">
-                {t(`${item}.description`)}
-              </TypographyP>
-              <div className="flex items-baseline justify-between">
-                <div className="flex gap-4">
-                  <EducationCardLearnMoreButton href={degrees[item].cursusUrl}>
-                    Cursus
-                  </EducationCardLearnMoreButton>
-                  <EducationCardLearnMoreButton href={degrees[item].coursesUrl}>
-                    Modules
-                  </EducationCardLearnMoreButton>
-                </div>
-              </div>
-              <div>
-                <EducationCardModuleGrid courses={degrees[item].courses} />
-              </div>
+            <TypographyP>{t(`${item}.description`)}</TypographyP>
+
+            <div className="flex gap-4">
+              <EducationCardLearnMoreButton href={degrees[item].cursusUrl}>
+                Cursus
+              </EducationCardLearnMoreButton>
+              <EducationCardLearnMoreButton href={degrees[item].coursesUrl}>
+                Modules
+              </EducationCardLearnMoreButton>
             </div>
+
+            <EducationCardModuleGrid courses={degrees[item].courses} />
           </EducationCardContent>
         </EducationCard>
       )}

@@ -16,11 +16,12 @@
         "technical": "Specialized (Technical) Skills",
         "soft": "Transferable Skills"
       },
-      "formations": {
+      "items": {
         "entrepreneurialProgram": {
+          "type": "formation",
           "title": "Edistart'up - Entrepreneurial Program in Publishing & Edition",
           "duration": "5 months",
-          "subtitle": "edinovo FORMATION (Asfored) x LABO DE L'ÉDITION (PARIS&CO)",
+          "company": "edinovo FORMATION (Asfored) x LABO DE L'ÉDITION (PARIS&CO)",
           "date": "Sept 2021 - Feb 2022",
           "description": "Participated in the inaugural cohort of a comprehensive program designed to launch publishing houses or book-related businesses, developing a deep understanding of the publishing ecosystem, market viability, and navigating the digital publishing landscape, while deepening entrepreneurial insights through discussions with seasoned experts, authors, and entrepreneurs.",
           "components": {
@@ -31,9 +32,10 @@
           }
         },
         "digitalPublishing": {
+          "type": "formation",
           "title": "Professional Training - Digital Publishing & Edition Rights",
           "duration": "35 hours",
-          "subtitle": "edinovo FORMATION (Asfored)",
+          "company": "edinovo FORMATION (Asfored)",
           "date": "May – Jun 2021",
           "description": "Developed a solid foundation in edition rights, publishing law, and digital project management, providing a comprehensive understanding of the publishing process from concept to distribution.",
           "components": {
@@ -42,15 +44,15 @@
             "3": "From Idea to Implementation of a Digital Editorial Project | 14 hours | 26–27 May 2021",
             "4": "Copyright Applied to Digital Publishing | 7 hours | 24 June 2021"
           }
-        }
-      },
-      "experiences": {
+        },
         "singlespot1": {
+          "type": "job",
           "title": "Head of Backend, Data, and Research",
+          "duration": "2 years",
           "company": "Singlespot",
           "date": "Sep 2018 - Nov 2020",
           "description": "Following the departure of the CTO and impending regulatory changes, took a leading role in Singlespot's pivot from an AdTech agency to a pure tech company specializing in mobile data collection and aggregation. Designed and led the development of a new, highly scalable data pipeline, managed backend and infrastructure projects, and co-led technical strategy alongside the CEOs.",
-          "highlights": {
+          "components": {
             "1": "<b>Architected and led the refactoring of the entire data pipeline</b>, moving from a rigid system to a scalable, event-driven architecture using Apache Pulsar, Kubernetes, and Snowflake.",
             "2": "<b>Conducted extensive technology research and stack selection</b>, leading a structured evaluation process with the senior development team.",
             "3": "<b>Established partnerships with tech vendors</b>, securing early access to Snowflake's features and building strong support relations.",
@@ -63,11 +65,13 @@
           }
         },
         "singlespot2": {
+          "type": "job",
           "title": "Junior Backend Developer & Lead Data Engineer",
+          "duration": "2 years",
           "company": "Singlespot",
           "date": "Sep 2016 - Aug 2018",
           "description": "Joined Singlespot, a growing AdTech startup, as a Data Engineer & Research Intern, later transitioning into a full-time role overseeing backend, data, and research initiatives. Focused on data exploitation, machine learning research, and audience-building automation for mobile advertising campaigns. Played a key role in scaling the company's data capabilities as the team grew from 5 to 50 employees.",
-          "highlights": {
+          "components": {
             "1": "<b>Conducted research on data mining & machine learning, exploring audience segmentation</b>, recommendation engines, and intent prediction.",
             "2": "<b>Designed and developed an audience-building tool</b>, enabling dynamic cohort segmentation for targeted ad campaigns.",
             "3": "<b>Managed campaign data processing</b>, ensuring accurate audience creation, reporting, and performance tracking.",
@@ -77,11 +81,13 @@
           }
         },
         "technicolor": {
+          "type": "job",
           "title": "Research Engineer Intern – 3D Object Protection",
+          "duration": "1 year",
           "company": "Technicolor",
           "date": "Sep 2014 - Jul 2015",
           "description": "Conducted research and development on 3D object protection techniques for the film and gaming industries within Technicolor’s R&I center. Worked closely with senior researchers to implement and test protection algorithms, develop attack strategies, and contribute to patents and academic publications.",
-          "highlights": {
+          "components": {
             "1": "<b>Implemented four patented protection algorithms</b> as MeshLab plugins, enhancing 3D asset security.",
             "2": "<b>Researched and developed new attack strategies against 3D protections</b>, leading to three novel attack methodologies.",
             "3": "<b>Co-authored three patents</b> (two protection techniques and a real-time encryption technology for 3D models) and <b>an academic research paper</b> (not published).",
@@ -91,11 +97,13 @@
           }
         },
         "epitech": {
+          "type": "job",
           "title": "Regional Teaching Assistant",
+          "duration": "7 months",
           "company": "Epitech",
           "date": "Jan 2014 - Jul 2014",
           "description": "Provided academic support and mentorship to first-year and second-year students at Epitech. Assisted in organizing and supervising exams, practical classes, and technical workshops. Collaborated with the pedagogical team and student committees to enhance learning experiences and coordinate campus events.",
-          "highlights": {
+          "components": {
             "1": "<b>Tutored first-year students</b> in programming, algorithms, Unix and system administration, fostering a peer-learning environment.",
             "2": "<b>Supervised exams and practical classes</b>, ensuring fairness and adherence to evaluation standards.",
             "3": "<b>Designed and delivered basic lectures</b> on foundational computer science topics.",
@@ -105,11 +113,13 @@
           }
         },
         "creawave": {
+          "type": "job",
           "title": "Full Stack Developer Intern",
+          "duration": "6 months",
           "company": "Creawave",
           "date": "Jul 2013 - Dec 2013",
           "description": "Joined an early-stage startup developing advanced phoneme-cutting algorithms for dynamic voice synthesis. Tasked with improving existing tools and designing a new platform to expand the company’s offerings, I worked autonomously to develop both backend and frontend solutions while closely collaborating with voice actors to refine workflows.",
-          "highlights": {
+          "components": {
             "1": "<b>Developed a web platform for ordering and managing voice recordings</b>, integrating invoicing, email notifications, and a talent catalog.",
             "2": "<b>Redesigned and expanded the existing recording software</b>, improving UI/UX, adding new features, and ensuring cross-platform compatibility (Windows & macOS).",
             "3": "<b>Built a Django-based backend to handle orders, comedian assignments, and automated processing of audio files.</b>",
