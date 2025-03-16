@@ -1,8 +1,10 @@
 import { Patent, Publication } from "@/data/publications";
 import { Award, Clock, FileText } from "lucide-react";
 import { getFormatter } from "next-intl/server";
+import { ReactNode } from "react";
 import { Button } from "../ui/button";
 import { Card, CardFooter, CardHeader } from "../ui/card";
+import { ExternalLink } from "../ui/link";
 
 const PatentCard = async ({ title, patentNumber, date, url }: Patent) => {
   const format = await getFormatter();
@@ -30,12 +32,7 @@ const PatentCard = async ({ title, patentNumber, date, url }: Patent) => {
         </div>
       </CardHeader>
       <CardFooter className="flex">
-        <Button variant="outline" asChild>
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            <FileText className="h-4 w-4" />
-            View Patent
-          </a>
-        </Button>
+        <PublicationCardAction href={url}> View Patent</PublicationCardAction>
       </CardFooter>
     </Card>
   );
@@ -75,21 +72,28 @@ const PublicationCard = async ({
         </div>
       </CardHeader>
       <CardFooter className="flex gap-4">
-        <Button variant="outline" asChild>
-          <a href={docUrl} target="_blank" rel="noopener noreferrer">
-            <FileText className="h-4 w-4" />
-            View Paper
-          </a>
-        </Button>
-        <Button variant="outline" asChild>
-          <a href={confUrl} target="_blank" rel="noopener noreferrer">
-            <FileText className="h-4 w-4" />
-            View Journal / Conference
-          </a>
-        </Button>
+        <PublicationCardAction href={docUrl}>View Paper</PublicationCardAction>
+        <PublicationCardAction href={confUrl}>
+          View Journal / Conference
+        </PublicationCardAction>
       </CardFooter>
     </Card>
   );
 };
+
+export const PublicationCardAction = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) => (
+  <Button variant="outline" asChild>
+    <ExternalLink href={href}>
+      <FileText className="h-4 w-4" />
+      {children}
+    </ExternalLink>
+  </Button>
+);
 
 export { PatentCard, PublicationCard };

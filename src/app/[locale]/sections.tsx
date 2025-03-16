@@ -105,7 +105,7 @@ export const CareerSection = async () => {
 };
 
 export const EducationSection = async () => {
-  const t = await getTranslations("home.educations.degrees");
+  const t = await getTranslations("home.educations");
 
   return (
     <TimelineRenderList
@@ -113,23 +113,21 @@ export const EducationSection = async () => {
       renderItem={(item) => (
         <EducationCard className="w-full">
           <EducationCardHeader
-            degree={t(`${item}.title`)}
-            institution={t(`${item}.institution`)}
-            location={t(`${item}.location`)}
-            date={t(`${item}.date`)}
+            degree={t(`degrees.${item}.title`)}
+            institution={t(`degrees.${item}.institution`)}
+            location={t(`degrees.${item}.location`)}
+            date={t(`degrees.${item}.date`)}
           />
           <EducationCardContent>
-            <TypographyP>{t(`${item}.description`)}</TypographyP>
-
+            <TypographyP>{t(`degrees.${item}.description`)}</TypographyP>
             <div className="flex gap-4">
               <EducationCardLearnMoreButton href={degrees[item].cursusUrl}>
-                Cursus
+                {t("labels.curriculum")}
               </EducationCardLearnMoreButton>
               <EducationCardLearnMoreButton href={degrees[item].coursesUrl}>
-                Modules
+                {t("labels.modules")}
               </EducationCardLearnMoreButton>
             </div>
-
             <EducationCardModuleGrid courses={degrees[item].courses} />
           </EducationCardContent>
         </EducationCard>
@@ -207,15 +205,16 @@ export const HobbySection = async () => {
   );
 };
 
-export const PublicationSection = () => {
+export const PublicationSection = async () => {
+  const t = await getTranslations("home.publications");
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-xl font-semibold">Patents</h3>
+      <h3 className="text-xl font-semibold">{t("subsections.patents")}</h3>
       {patents.map((patent, index) => (
         <PatentCard key={index} {...patent} />
       ))}
 
-      <h3 className="text-xl font-semibold">Publications</h3>
+      <h3 className="text-xl font-semibold">{t("subsections.publications")}</h3>
       {publications.map((publication, index) => (
         <PublicationCard key={index} {...publication} />
       ))}
@@ -223,32 +222,39 @@ export const PublicationSection = () => {
   );
 };
 
-export const InformationSection = () => {
+export const InformationSection = async () => {
+  const t = await getTranslations("home.information");
+
   return (
     <Card className="w-full">
       <CardContent className="pt-6">
         <div className="space-y-4">
+          <ul className="mt-1 list-inside space-y-1">
+            <li className="flex justify-between">
+              <TypographyH3 className="text-lg">
+                {t("driversLicense.title")}
+              </TypographyH3>
+              <span className="text-foreground">
+                {t("driversLicense.status")}
+              </span>
+            </li>
+          </ul>
+
           <div>
+            <TypographyH3 className="text-lg">
+              {t("languages.title")}
+            </TypographyH3>
             <ul className="mt-1 list-inside space-y-1">
               <li className="flex justify-between">
-                <TypographyH3 className="text-lg">
-                  Driver's License
-                </TypographyH3>
-                <span className="text-foreground">Yes</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <TypographyH3 className="text-lg">Languages</TypographyH3>
-            <ul className="mt-1 list-inside space-y-1">
-              <li className="flex justify-between">
-                <span>French</span>
-                <span className="text-foreground">Native</span>
-              </li>
-              <li className="flex justify-between">
-                <span>English</span>
+                <span>{t("languages.items.french.title")}</span>
                 <span className="text-foreground">
-                  Proficient (reading, writing, speaking)
+                  {t("languages.items.french.level")}
+                </span>
+              </li>
+              <li className="flex justify-between">
+                <span>{t("languages.items.english.title")}</span>
+                <span className="text-foreground">
+                  {t("languages.items.english.level")}
                 </span>
               </li>
             </ul>

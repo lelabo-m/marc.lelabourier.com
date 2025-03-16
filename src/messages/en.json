@@ -132,6 +132,10 @@
     "educations": {
       "title": "Education",
       "subtitle": "",
+      "labels": {
+        "curriculum": "Curriculum",
+        "modules": "Modules"
+      },
       "degrees": {
         "epitech": {
           "title": "Master's degree in Computer Science and Information Technology",
@@ -225,13 +229,31 @@
       }
     },
     "publications": {
-      "title": "Publications",
+      "title": "Patents & Publications",
       "subtitle": "",
-      "description": "A selection of my academic and professional publications."
+      "description": "A selection of my academic and professional publications.",
+      "subsections": {
+        "patents": "Patents",
+        "publications": "Publications"
+      }
     },
     "information": {
       "title": "Additional Information",
-      "subtitle": ""
+      "subtitle": "",
+      "driversLicense": {
+        "title": "Driver's License",
+        "status": "B (car)"
+      },
+      "languages": {
+        "title": "Languages",
+        "items": {
+          "french": { "title": "French", "level": "Native" },
+          "english": {
+            "title": "English",
+            "level": "Proficient (reading, writing, speaking)"
+          }
+        }
+      }
     }
   }
 }
