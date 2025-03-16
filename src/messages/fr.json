@@ -132,6 +132,10 @@
     "educations": {
       "title": "Études",
       "subtitle": "",
+      "labels": {
+        "curriculum": "Curriculum",
+        "modules": "Modules"
+      },
       "degrees": {
         "epitech": {
           "title": "Expert en Technologies de l'Information (Master)",
@@ -225,13 +229,34 @@
       }
     },
     "publications": {
-      "title": "Publications",
+      "title": "Patents & Publications",
       "subtitle": "",
-      "description": "Une sélection de mes publications académiques et professionnelles."
+      "description": "Une sélection de mes publications académiques et professionnelles.",
+      "subsections": {
+        "patents": "Patents",
+        "publications": "Publications"
+      }
     },
     "information": {
       "title": "Informations complémentaires",
-      "subtitle": ""
+      "subtitle": "",
+      "driversLicense": {
+        "title": "Driver's License",
+        "status": "B (car)"
+      },
+      "languages": {
+        "title": "Languages",
+        "items": {
+          "french": {
+            "title": "French",
+            "level": "Native"
+          },
+          "english": {
+            "title": "English",
+            "level": "Proficient (reading, writing, speaking)"
+          }
+        }
+      }
     }
   }
 }
