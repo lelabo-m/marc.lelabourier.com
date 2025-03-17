@@ -70,11 +70,10 @@ export const Section = ({
 
 export const CareerSection = async () => {
   const t = await getTranslations("home.career");
-
   const experiences = await getMessageKeys("home.career.items");
 
   return (
-    <div>
+    <>
       <CareerSkillsLegend />
       <TimelineRenderList
         items={experiences}
@@ -100,7 +99,7 @@ export const CareerSection = async () => {
           );
         }}
       />
-    </div>
+    </>
   );
 };
 

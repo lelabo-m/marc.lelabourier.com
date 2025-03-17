@@ -12,6 +12,9 @@ export type IntlNamespaceKeys = NamespaceKeys<
   NestedKeyOf<IntlMessages>
 >;
 
+export type IntlKeysOf<Namespace extends IntlNamespaceKeys> =
+  keyof NestedValueOf<IntlMessages, Namespace>;
+
 // Example usage:
 // function RichText({ children }: RichTextProps<"p" | "b" | "i">) {
 //   return (
@@ -59,6 +62,7 @@ export async function getMessageKeys<Namespace extends IntlNamespaceKeys>(
   const messages = await getMessages();
 
   const path = namespace.split(".");
+
   let obj: AbstractIntlMessages = messages;
   for (const key of path) {
     const item = obj[key];
@@ -70,14 +74,13 @@ export async function getMessageKeys<Namespace extends IntlNamespaceKeys>(
     }
     obj = item;
   }
+
   if (obj === undefined) {
     throw new Error(`${namespace} does not exist in messages.`);
   }
   if (typeof obj === "string") {
     throw new Error(`${namespace} is not a collection of messages.`);
   }
-  return Object.keys(obj) as unknown as (keyof NestedValueOf<
-    IntlMessages,
-    Namespace
-  >)[];
+
+  return Object.keys(obj) as unknown as IntlKeysOf<Namespace>[];
 }

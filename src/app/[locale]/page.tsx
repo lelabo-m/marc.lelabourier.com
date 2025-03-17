@@ -1,7 +1,10 @@
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
-import { CopyToClipboardButton } from "@/components/copy-to-clipboard-button";
+import {
+  CopyToClipboardButton,
+  CopyToClipboardButtonProps,
+} from "@/components/copy-to-clipboard-button";
 import { Github, Linkedin } from "@/components/icons";
 import { LocaleToggle } from "@/components/locale-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -14,10 +17,10 @@ import {
   TypographyP,
 } from "@/components/ui/typography";
 import { profile } from "@/data/profile";
+import { cn } from "@/lib/utils";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { ReactNode } from "react";
 import { ContactAnimatedPill, ContactAnimatedText } from "./client";
-import { ContactProps, contacts, sections } from "./config";
+import { sections } from "./config";
 import { Section } from "./sections";
 
 export default async function HomePage() {
@@ -27,18 +30,16 @@ export default async function HomePage() {
     <>
       <Header />
       <Hero />
-      {sections.map(({ sections: subsections }) =>
-        subsections.map(({ key, component }) => (
-          <Section
-            key={key}
-            id={key}
-            title={t(`${key}.title`)}
-            subtitle={t(`${key}.subtitle`)}
-          >
-            {component()}
-          </Section>
-        )),
-      )}
+      {sections.map(({ key, component }) => (
+        <Section
+          key={key}
+          id={key}
+          title={t(`${key}.title`)}
+          subtitle={t(`${key}.subtitle`)}
+        >
+          {component()}
+        </Section>
+      ))}
 
       <Footer />
       <Toaster position="top-right" />
@@ -48,11 +49,11 @@ export default async function HomePage() {
 
 const Header = () => {
   return (
-    <div className="bg-background sticky top-0 z-10 pt-4">
+    <header className="bg-background sticky top-0 z-10 pt-4">
       <SidebarTrigger />
       <ThemeToggle />
       <LocaleToggle />
-    </div>
+    </header>
   );
 };
 
@@ -135,16 +136,14 @@ const HeroActions = () => (
 );
 
 const CopyContactButton = ({
-  text,
+  className,
   children,
-}: {
-  text: string;
-  children: ReactNode;
-}) => (
+  ...props
+}: CopyToClipboardButtonProps) => (
   <CopyToClipboardButton
-    text={text}
     timeout={1000}
-    className="flex items-center gap-2"
+    {...props}
+    className={cn("flex items-center gap-2", className)}
   >
     {children}
   </CopyToClipboardButton>
@@ -158,32 +157,12 @@ const Footer = () => {
   });
   return (
     <footer className="mt-12 border-t border-gray-200 pt-6">
-      <div className="grid grid-cols-1 gap-4 text-sm text-gray-600 md:grid-cols-2 lg:grid-cols-3">
-        {contacts.map((contact, index) => (
-          <ContactElement key={index} {...contact} />
-        ))}
-      </div>
-      <div className="mt-4 flex flex-col items-center justify-between text-xs text-gray-500 md:flex-row">
+      <div className="text-muted-foreground mt-4 flex flex-col items-center justify-between text-xs md:flex-row">
         <p>
           © {buildDate.getFullYear()} Marc Le Labourier. All rights reserved.
         </p>
         <p className="mt-2 md:mt-0">Last updated: {formattedDate}</p>
       </div>
     </footer>
-  );
-};
-
-const ContactElement = ({ icon: IconComp, text, link }: ContactProps) => {
-  return (
-    <div className="flex items-center">
-      <IconComp className="text-muted-foreground mr-2 size-5" />
-      {link ? (
-        <ExternalLink href={link} variant="text">
-          {text}
-        </ExternalLink>
-      ) : (
-        <>{text}</>
-      )}
-    </div>
   );
 };

@@ -7,7 +7,7 @@ import {
 import { ButtonHTMLAttributes, ClassAttributes, ReactNode } from "react";
 import { toast } from "sonner";
 
-type CopyToClipboardButtonProps = CopyToClipboardProps & {
+export type CopyToClipboardButtonProps = CopyToClipboardProps & {
   text: string;
   children: ((props: { isCopied: boolean }) => ReactNode) | ReactNode;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> &

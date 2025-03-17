@@ -33,7 +33,10 @@ export function CourseCard({
     <Card>
       <CardHeader className="h-full p-4">
         <CardTitle className="text-left text-base">{title}</CardTitle>
-        <CardSubtitle className="mt-auto flex flex-wrap items-baseline text-sm">
+        <CardSubtitle className="mt-auto flex flex-wrap items-baseline">
+          <Badge className="mr-auto" variant={badgeVariant}>
+            {type}
+          </Badge>
           {ref}
           {url && (
             <Button variant="link" className="px-0" asChild>
@@ -42,9 +45,6 @@ export function CourseCard({
               </ExternalLink>
             </Button>
           )}
-          <Badge className="ml-auto" variant={badgeVariant}>
-            {type}
-          </Badge>
         </CardSubtitle>
       </CardHeader>
     </Card>

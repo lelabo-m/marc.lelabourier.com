@@ -36,7 +36,7 @@ export default async function RootLocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${GeistSans.variable} scroll-smooth`}
+      className={`${GeistSans.variable}`}
       suppressHydrationWarning
     >
       <meta name="apple-mobile-web-app-title" content="Marc Le Labourier" />

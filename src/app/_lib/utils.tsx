@@ -36,3 +36,5 @@ export type DeepValue<T, Path extends string> = Path extends keyof T
         : never
       : never
     : never;
+
+export type ConfigRecord<Key extends string, Type> = Partial<Record<Key, Type>>;

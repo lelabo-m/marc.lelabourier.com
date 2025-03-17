@@ -1,5 +1,12 @@
+import { HobbyKey, SectionKey, SkillKey } from "@/lib/types";
+import { ConfigRecord } from "@/lib/utils";
 import {
+  Braces,
   Brain,
+  BriefcaseBusiness,
+  Dices,
+  Ellipsis,
+  FileBadge,
   Flame,
   Gamepad,
   GraduationCap,
@@ -7,11 +14,11 @@ import {
   Heart,
   LucideIcon,
   Puzzle,
+  Sparkles,
   Users,
 } from "lucide-react";
-import { NestedValueOf } from "next-intl";
 
-export type SkillKey = keyof NestedValueOf<IntlMessages, "home.skills.items">;
+type IconSet<Keys extends string> = ConfigRecord<Keys, LucideIcon>;
 
 export const skillsIcons = {
   perspective: Brain,
@@ -20,12 +27,20 @@ export const skillsIcons = {
   adaptability: Handshake,
   approach: Heart,
   mentorship: GraduationCap,
-} satisfies Record<SkillKey, LucideIcon>;
-
-type HobbyKey = keyof NestedValueOf<IntlMessages, "home.hobbies.categories">;
+} satisfies IconSet<SkillKey>;
 
 export const hobbiesIcons = {
   entertainment: Gamepad,
   interests: Flame,
   sports: Heart,
-} satisfies Record<HobbyKey, LucideIcon>;
+} satisfies IconSet<HobbyKey>;
+
+export const sectionIcons = {
+  skills: Sparkles,
+  techstacks: Braces,
+  career: BriefcaseBusiness,
+  educations: GraduationCap,
+  publications: FileBadge,
+  hobbies: Dices,
+  information: Ellipsis,
+} satisfies IconSet<SectionKey>;

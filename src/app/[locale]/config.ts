@@ -1,19 +1,5 @@
-import { CustomIcon, Github, Linkedin } from "@/components/icons";
-import { profile } from "@/data/profile";
-import { Messages } from "global";
-import {
-  Braces,
-  BriefcaseBusiness,
-  Dices,
-  Ellipsis,
-  FileBadge,
-  GraduationCap,
-  LucideIcon,
-  Mail,
-  MapPin,
-  Phone,
-  Sparkles,
-} from "lucide-react";
+import { SectionKey, SidebarKey } from "@/lib/types";
+import { ConfigRecord } from "@/lib/utils";
 import {
   CareerSection,
   EducationSection,
@@ -24,98 +10,39 @@ import {
   TechStackSection,
 } from "./sections";
 
-export interface ContactProps {
-  icon: CustomIcon | LucideIcon;
-  link?: string;
-  text: string;
-}
+export const sectionComponents = {
+  skills: SkillSection,
+  techstacks: TechStackSection,
+  career: CareerSection,
+  educations: EducationSection,
+  publications: PublicationSection,
+  hobbies: HobbySection,
+  information: InformationSection,
+} as const satisfies ConfigRecord<SectionKey, React.FC>;
 
-export const contacts = [
-  {
-    icon: Mail,
-    link: `mailto:${profile.email}`,
-    text: profile.email,
-  },
-  {
-    icon: Phone,
-    text: profile.phone,
-  },
-  {
-    icon: MapPin,
-    text: profile.location,
-  },
-  {
-    icon: Linkedin,
-    link: profile.socials.linkedin.href,
-    text: profile.socials.linkedin.text,
-  },
-  {
-    icon: Github,
-    link: profile.socials.github.href,
-    text: profile.socials.github.text,
-  },
-] satisfies ContactProps[];
-
-export type SubSection = {
-  key: keyof IntlMessages["home"];
-  icon?: LucideIcon;
-  component: React.FC;
+type SidebarGroup = {
+  key: SidebarKey;
+  sections: SectionKey[];
 };
 
-export type Section = {
-  key: keyof Messages["home"]["sidebar"];
-  sections: SubSection[];
-};
-
-export const sections = [
+export const sidebarMapping = [
   {
     key: "about-me",
-    sections: [
-      {
-        key: "skills",
-        icon: Sparkles,
-        component: SkillSection,
-      },
-      {
-        key: "techstacks",
-        icon: Braces,
-        component: TechStackSection,
-      },
-    ],
+    sections: ["skills", "techstacks"],
   },
   {
     key: "background",
-    sections: [
-      {
-        key: "career",
-        icon: BriefcaseBusiness,
-        component: CareerSection,
-      },
-      {
-        key: "educations",
-        icon: GraduationCap,
-        component: EducationSection,
-      },
-      {
-        key: "publications",
-        icon: FileBadge,
-        component: PublicationSection,
-      },
-    ],
+    sections: ["career", "educations", "publications"],
   },
   {
     key: "misc",
-    sections: [
-      {
-        key: "hobbies",
-        icon: Dices,
-        component: HobbySection,
-      },
-      {
-        key: "information",
-        icon: Ellipsis,
-        component: InformationSection,
-      },
-    ],
+    sections: ["hobbies", "information"],
   },
-] as const satisfies Section[];
+] as const satisfies SidebarGroup[];
+
+export const sections = sidebarMapping.flatMap(({ sections }) =>
+  sections.map((key) => ({
+    key,
+    component: sectionComponents[key],
+  })),
+);

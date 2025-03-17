@@ -11,7 +11,8 @@ export const ScrollToTopLink = ({
   children,
   ...props
 }: Omit<ComponentProps<typeof InternalLink>, "href">) => (
-  <InternalLink
+  // Only work with a tag.
+  <a
     href="#"
     onClick={(e) => {
       onClick?.(e);
@@ -20,7 +21,7 @@ export const ScrollToTopLink = ({
     {...props}
   >
     {children}
-  </InternalLink>
+  </a>
 );
 
 export const ContactAnimatedText = ({
