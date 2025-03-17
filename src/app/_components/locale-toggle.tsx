@@ -1,6 +1,5 @@
-import { Link } from "@/lib/i18n/navigation";
+"use client";
 import { routing } from "@/lib/i18n/routing";
-import { getLocale } from "next-intl/server";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -9,8 +8,24 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
-const LocaleToggle = async () => {
-  const currentLocale = await getLocale();
+import { usePathname, useRouter } from "@/lib/i18n/navigation";
+import { useLocale } from "next-intl";
+import { useSearchParams } from "next/navigation";
+import { useCallback } from "react";
+
+const LocaleToggle = () => {
+  const currentLocale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const handleChangeLocale = useCallback(() => {
+    const params = new URLSearchParams(searchParams).toString();
+    const anchor = window.location.hash;
+    const newPath = `${pathname}?${params.toString()}${anchor}`;
+
+    router.replace(newPath, { locale: currentLocale });
+  }, [router, currentLocale]);
 
   return (
     <DropdownMenu>
@@ -21,10 +36,8 @@ const LocaleToggle = async () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-1">
         {routing.locales.map((locale) => (
-          <DropdownMenuItem key={locale}>
-            <Link href="/" locale={locale}>
-              {locale}
-            </Link>
+          <DropdownMenuItem key={locale} onClick={handleChangeLocale}>
+            {locale}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
