@@ -35,7 +35,7 @@ const TechLevelLabel = ({
   ...props
 }: TechLevelLabelProps) => (
   <div className={cn("flex items-baseline gap-1", className)} {...props}>
-    <span className={cn(levelVariant({ variant, side }))}></span>
+    {variant && <span className={cn(levelVariant({ variant, side }))}></span>}
     {children}
   </div>
 );
@@ -70,7 +70,7 @@ const TechLevelLegend = async () => {
   const t = await getTranslations("home.techstacks.labels");
 
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-wrap gap-4">
       {techLevels.map((level) => (
         <TechLevelLabel key={level} variant={level} side="left">
           {t(`${level}`)}

@@ -71,7 +71,7 @@ const PublicationCard = async ({
           </div>
         </div>
       </CardHeader>
-      <CardFooter className="flex gap-4">
+      <CardFooter className="flex flex-wrap gap-4">
         <PublicationCardAction href={docUrl}>View Paper</PublicationCardAction>
         <PublicationCardAction href={confUrl}>
           View Journal / Conference

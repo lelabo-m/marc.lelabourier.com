@@ -51,7 +51,7 @@ export const ContactAnimatedPill = ({
     <motion.div whileHover={{ scale: 1.1 }} className="flex items-center">
       <div
         className={cn(
-          "border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-10 w-10 items-center justify-center rounded-full border",
+          "border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex min-h-10 min-w-10 items-center justify-center rounded-full border",
           className,
         )}
       >

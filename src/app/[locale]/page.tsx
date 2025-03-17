@@ -127,7 +127,7 @@ const HeroActions = () => (
         </ExternalLink>
       </ContactAnimatedPill>
 
-      <ContactAnimatedPill className="w-auto gap-2 px-4 text-sm">
+      <ContactAnimatedPill className="w-auto flex-wrap gap-2 px-4 text-sm">
         <MapPin className="h-4 w-4" />
         {profile.location}
       </ContactAnimatedPill>
