@@ -49,7 +49,7 @@ export default async function HomePage() {
 
 const Header = () => {
   return (
-    <header className="bg-background sticky top-0 z-10 pt-4">
+    <header className="bg-background sticky top-0 z-10 -mx-1 flex items-center pt-4">
       <SidebarTrigger />
       <ThemeToggle />
       <LocaleToggle />
