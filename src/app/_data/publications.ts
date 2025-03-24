@@ -20,13 +20,6 @@ export const patents = [
     date: new Date("2015-11-24"),
     url: "https://patents.google.com/patent/US20180357741A1",
   },
-  {
-    title:
-      "Methods and apparatuses for embedding and decoding data in a three-dimensional model",
-    patentNumber: "WO2017091208A1",
-    date: new Date("2015-11-24"),
-    url: "https://patents.google.com/patent/WO2017091208A1",
-  },
 ] satisfies Patent[];
 
 export interface Publication {

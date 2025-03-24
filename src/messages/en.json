@@ -136,7 +136,7 @@
         "curriculum": "Curriculum",
         "modules": "Modules"
       },
-      "degrees": {
+      "items": {
         "epitech": {
           "title": "Master's degree in Computer Science and Information Technology",
           "institution": "EPITECH (European Institute of Information Technology)",

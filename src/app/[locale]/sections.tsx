@@ -1,34 +1,14 @@
-import { getTranslations } from "next-intl/server";
+import { getFormatter, getTranslations } from "next-intl/server";
 import React from "react";
 
 import {
-  CareerCard,
-  CareerCardContent,
-  CareerCardContentComponents,
-  CareerCardHeader,
+  CareerCardComponents,
   CareerCardSkills,
   CareerSkillsLegend,
 } from "@/components/card/career";
-import {
-  EducationCard,
-  EducationCardContent,
-  EducationCardHeader,
-  EducationCardLearnMoreButton,
-  EducationCardModuleGrid,
-} from "@/components/card/education";
-import {
-  HobbyCategoryCard,
-  HobbyCategoryCardContent,
-  HobbyCategoryCardHeader,
-} from "@/components/card/hobby";
-import { PatentCard, PublicationCard } from "@/components/card/publication";
-import { SkillCard } from "@/components/card/skill";
-import {
-  TechLevelLegend,
-  TechStackCard,
-  TechStackGrid,
-} from "@/components/card/tech-stack";
-import { Card, CardContent } from "@/components/ui/card";
+import { TechBadge, TechLevelLegend } from "@/components/tech-stack-badge";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { TimelineRenderList } from "@/components/ui/timeline";
 import {
   TypographyBlockquote,
@@ -37,12 +17,23 @@ import {
   TypographyLead,
   TypographyP,
 } from "@/components/ui/typography";
+
+import {
+  CardButtonLink,
+  DetailledCard,
+  DetailledCardDetails,
+} from "@/components/card/detailled-card";
 import { skillsByExperience } from "@/data/career";
-import { degrees } from "@/data/education";
+import { Course, degreeModules, degreeReferences } from "@/data/education";
 import { patents, publications } from "@/data/publications";
 import { stacks } from "@/data/tech-stack";
 import { getMessageKeys } from "@/lib/i18n/utils";
-import { cn, objectEntries, objectKeys } from "@/lib/utils";
+import { cn, objectEntries } from "@/lib/utils";
+import { Award, ExternalLinkIcon, FileText } from "lucide-react";
+
+import { CompactCard, CompactCardGrid } from "@/components/card/compact-card";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "@/components/ui/link";
 import { hobbiesIcons, skillsIcons } from "./icons";
 
 export type SectionProps = {
@@ -79,23 +70,23 @@ export const CareerSection = async () => {
         items={experiences}
         renderItem={(item) => {
           return (
-            <CareerCard className="w-full">
-              <CareerCardHeader
-                jobTitle={t(`items.${item}.title`)}
-                companyName={t(`items.${item}.company`)}
-                date={t(`items.${item}.date`)}
-                duration={t(`items.${item}.duration`)}
-              >
-                <CareerCardSkills skills={skillsByExperience[item]} />
-              </CareerCardHeader>
-              <CareerCardContent>
-                <TypographyP>{t(`items.${item}.description`)}</TypographyP>
-                <CareerCardContentComponents
+            <DetailledCard
+              title={t(`items.${item}.title`)}
+              highlight={t(`items.${item}.duration`)}
+              description={t(`items.${item}.company`)}
+              date={t(`items.${item}.date`)}
+            >
+              <CareerCardSkills skills={skillsByExperience[item]} />
+              <DetailledCardDetails>
+                <TypographyP className="leading-5">
+                  {t(`items.${item}.description`)}
+                </TypographyP>
+                <CareerCardComponents
                   type={t(`items.${item}.type`)}
                   item={item}
                 />
-              </CareerCardContent>
-            </CareerCard>
+              </DetailledCardDetails>
+            </DetailledCard>
           );
         }}
       />
@@ -105,34 +96,71 @@ export const CareerSection = async () => {
 
 export const EducationSection = async () => {
   const t = await getTranslations("home.educations");
+  const degrees = await getMessageKeys("home.educations.items");
 
   return (
     <TimelineRenderList
-      items={objectKeys(degrees)}
-      renderItem={(item) => (
-        <EducationCard className="w-full">
-          <EducationCardHeader
-            degree={t(`degrees.${item}.title`)}
-            institution={t(`degrees.${item}.institution`)}
-            location={t(`degrees.${item}.location`)}
-            date={t(`degrees.${item}.date`)}
-          />
-          <EducationCardContent>
-            <TypographyP>{t(`degrees.${item}.description`)}</TypographyP>
-            <div className="flex gap-4">
-              <EducationCardLearnMoreButton href={degrees[item].cursusUrl}>
-                {t("labels.curriculum")}
-              </EducationCardLearnMoreButton>
-              <EducationCardLearnMoreButton href={degrees[item].coursesUrl}>
-                {t("labels.modules")}
-              </EducationCardLearnMoreButton>
-            </div>
-            <EducationCardModuleGrid courses={degrees[item].courses} />
-          </EducationCardContent>
-        </EducationCard>
-      )}
+      items={degrees}
+      renderItem={(item) => {
+        const { curriculum, modules } = degreeReferences[item];
+        const modulesList = degreeModules[item];
+        return (
+          <DetailledCard
+            key={item}
+            title={t(`items.${item}.title`)}
+            description={t(`items.${item}.institution`)}
+            date={t(`items.${item}.date`)}
+          >
+            <DetailledCardDetails>
+              <TypographyP>{t(`items.${item}.description`)}</TypographyP>
+              <div className="flex flex-wrap gap-4">
+                <CardButtonLink href={curriculum} icon={ExternalLinkIcon}>
+                  {t("labels.curriculum")}
+                </CardButtonLink>
+                <CardButtonLink href={modules} icon={ExternalLinkIcon}>
+                  {t("labels.modules")}
+                </CardButtonLink>
+              </div>
+
+              <CompactCardGrid className="grid-cols-repeat-60">
+                {modulesList.map((module) => (
+                  <EducationModuleCard key={module.title} {...module} />
+                ))}
+              </CompactCardGrid>
+            </DetailledCardDetails>
+          </DetailledCard>
+        );
+      }}
     />
   );
+};
+
+const EducationModuleCard = ({ title, type, modules, url }: Course) => (
+  <CompactCard title={title}>
+    <div className="flex items-baseline justify-between">
+      {url ? (
+        <Button variant="link" className="has-[>svg]:px-0" asChild>
+          <ExternalLink href={url}>
+            {modules}
+            <ExternalLinkIcon className="h-4 w-4" />
+          </ExternalLink>
+        </Button>
+      ) : (
+        modules
+      )}
+      <CourseBadge type={type} />
+    </div>
+  </CompactCard>
+);
+
+const CourseBadge = ({ type }: Pick<Course, "type">) => {
+  const badgeVariant =
+    type === "Core"
+      ? "default"
+      : type === "Specialized"
+        ? "secondary"
+        : "outline";
+  return <Badge variant={badgeVariant}>{type}</Badge>;
 };
 
 export const SkillSection = async () => {
@@ -140,16 +168,17 @@ export const SkillSection = async () => {
   const skills = await getMessageKeys("home.skills.items");
 
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <CompactCardGrid>
       {skills.map((skill) => (
-        <SkillCard
+        <CompactCard
           key={skill}
           title={t(`${skill}.title`)}
           icon={skillsIcons[skill]}
-          description={t(`${skill}.description`)}
-        />
+        >
+          <p>{t(`${skill}.description`)}</p>
+        </CompactCard>
       ))}
-    </div>
+    </CompactCardGrid>
   );
 };
 
@@ -157,11 +186,17 @@ export const TechStackSection = async () => {
   const t = await getTranslations("home.techstacks");
   return (
     <div className="space-y-6">
-      <TechStackGrid>
+      <CompactCardGrid className="sm:grid-cols-repeat-80">
         {objectEntries(stacks).map(([domain, stack]) => (
-          <TechStackCard key={domain} {...stack} />
+          <CompactCard key={domain} title={stack.label} icon={stack.icon}>
+            <div className="flex flex-wrap items-baseline">
+              {stack.current.map((tech, index) => (
+                <TechBadge key={index} {...tech} />
+              ))}
+            </div>
+          </CompactCard>
         ))}
-      </TechStackGrid>
+      </CompactCardGrid>
       <TechLevelLegend />
       <TypographyBlockquote>{t("disclaimer")}</TypographyBlockquote>
     </div>
@@ -169,54 +204,92 @@ export const TechStackSection = async () => {
 };
 
 export const HobbySection = async () => {
+  const t = await getTranslations(`home.hobbies.categories`);
   const categories = await getMessageKeys("home.hobbies.categories");
-
   return (
-    <div className="flex w-full flex-wrap gap-6">
+    <CompactCardGrid>
       {categories.map(async (category) => {
-        const t = await getTranslations(`home.hobbies.categories`);
         const items = await getMessageKeys(
           `home.hobbies.categories.${category}.items`,
         );
-        const Icon = hobbiesIcons[category];
 
         return (
-          <HobbyCategoryCard key={category} className="flex-1 basis-60">
-            <HobbyCategoryCardHeader>
-              <div className="flex items-center">
-                <Icon className="mr-2 h-6 w-6" />
-                {t(`${category}.title`)}
-              </div>
-            </HobbyCategoryCardHeader>
-            <HobbyCategoryCardContent>
-              <ul className="list-inside list-disc">
-                {items.map((item) => (
-                  <li key={item} className="mb-1">
-                    {t(`${category}.items.${item}`)}
-                  </li>
-                ))}
-              </ul>
-            </HobbyCategoryCardContent>
-          </HobbyCategoryCard>
+          <CompactCard
+            key={category}
+            title={t(`${category}.title`)}
+            icon={hobbiesIcons[category]}
+          >
+            <ul className="list-inside list-disc">
+              {items.map((item) => (
+                <li key={item} className="mb-1">
+                  {t(`${category}.items.${item}`)}
+                </li>
+              ))}
+            </ul>
+          </CompactCard>
         );
       })}
-    </div>
+    </CompactCardGrid>
   );
 };
 
 export const PublicationSection = async () => {
   const t = await getTranslations("home.publications");
+  const format = await getFormatter();
+
   return (
     <div className="flex flex-col gap-4">
       <h3 className="text-xl font-semibold">{t("subsections.patents")}</h3>
-      {patents.map((patent, index) => (
-        <PatentCard key={index} {...patent} />
-      ))}
+      {patents.map((patent) => {
+        const formattedDate = format.dateTime(patent.date, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
+        return (
+          <DetailledCard
+            key={patent.patentNumber}
+            title={patent.title}
+            description={patent.patentNumber}
+            date={formattedDate}
+            icon={Award}
+          >
+            <CardFooter className="flex px-0">
+              <CardButtonLink href={patent.url} icon={FileText}>
+                View Patent
+              </CardButtonLink>
+            </CardFooter>
+          </DetailledCard>
+        );
+      })}
 
       <h3 className="text-xl font-semibold">{t("subsections.publications")}</h3>
-      {publications.map((publication, index) => (
-        <PublicationCard key={index} {...publication} />
-      ))}
+      {publications.map((publication) => {
+        const formattedDate = format.dateTime(publication.date, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
+        return (
+          <DetailledCard
+            key={publication.title}
+            title={publication.title}
+            description={publication.where}
+            highlight={publication.status}
+            date={formattedDate}
+            icon={FileText}
+          >
+            <CardFooter className="flex flex-wrap gap-4 px-0">
+              <CardButtonLink href={publication.docUrl} icon={FileText}>
+                View Paper
+              </CardButtonLink>
+              <CardButtonLink href={publication.confUrl} icon={FileText}>
+                View Journal / Conference
+              </CardButtonLink>
+            </CardFooter>
+          </DetailledCard>
+        );
+      })}
     </div>
   );
 };
@@ -225,7 +298,7 @@ export const InformationSection = async () => {
   const t = await getTranslations("home.information");
 
   return (
-    <Card className="w-full">
+    <Card>
       <CardContent className="pt-6">
         <div className="space-y-4">
           <ul className="mt-1 list-inside space-y-1">

@@ -30,6 +30,7 @@ export const sidebarMapping = [
     key: "about-me",
     sections: ["skills", "techstacks"],
   },
+
   {
     key: "background",
     sections: ["career", "educations", "publications"],

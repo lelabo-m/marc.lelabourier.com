@@ -1,7 +1,5 @@
-import { ProSkillBadge } from "@/components/card/career";
-import { Messages } from "global";
-
-type ExperienceKey = keyof Messages["home"]["career"]["items"];
+import { CareerSkillBadge } from "@/components/card/career";
+import { CareerKey } from "@/lib/types";
 
 export const skillsByExperience = {
   entrepreneurialProgram: [
@@ -91,4 +89,4 @@ export const skillsByExperience = {
     { name: "Self-Learning", type: "soft" },
     { name: "Project Management", type: "soft" },
   ],
-} satisfies Record<ExperienceKey, ProSkillBadge[]>;
+} satisfies Record<CareerKey, CareerSkillBadge[]>;

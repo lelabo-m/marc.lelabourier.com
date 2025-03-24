@@ -12,7 +12,7 @@ const TimelineContent = ({
   <div
     data-slot="timeline-content"
     className={cn(
-      "mx-auto flex flex-col items-center justify-center text-center sm:max-w-xl",
+      "mx-auto flex flex-col items-center justify-center sm:max-w-xl",
       className,
     )}
     {...props}
@@ -57,7 +57,7 @@ const TimelineRenderList = <T,>({
   renderSpacer,
 }: TimelineRenderListProps<T>) => {
   return (
-    <Timeline>
+    <Timeline className="mx-auto">
       <TimelineContent className="mt-8 sm:max-w-5xl">
         {items.map((item, index) => (
           <React.Fragment key={index}>

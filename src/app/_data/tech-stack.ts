@@ -1,4 +1,4 @@
-import { levelVariant } from "@/components/card/tech-stack";
+import { levelVariant } from "@/components/tech-stack-badge";
 import { VariantProps } from "class-variance-authority";
 import { Cloud, Code, Cpu, LucideIcon, Server } from "lucide-react";
 

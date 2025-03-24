@@ -134,6 +134,17 @@
   }
 }
 
+@utility grid-cols-repeat-* {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(--spacing(--value(number)), 1fr)
+  );
+}
+
+@utility tab-* {
+  margin-bottom: --spacing(--value(number));
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50 scroll-smooth;

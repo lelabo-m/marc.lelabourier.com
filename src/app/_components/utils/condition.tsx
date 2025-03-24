@@ -1,3 +1,4 @@
+"use client";
 import { createContext, ReactNode, use } from "react";
 
 type ConditionContextProps = {

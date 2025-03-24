@@ -90,6 +90,7 @@ const HeroImage = () => (
       width={1400}
       height={2100}
       className="h-auto w-full object-cover"
+      priority
     />
   </div>
 );

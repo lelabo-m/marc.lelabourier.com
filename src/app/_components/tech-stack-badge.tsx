@@ -1,11 +1,10 @@
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tech, techLevels, TechStack } from "@/data/tech-stack";
+import { Tech, techLevels } from "@/data/tech-stack";
 import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 import { Clock } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import { ComponentProps, ReactNode } from "react";
+import { ComponentProps } from "react";
 
 export const levelVariant = cva("inline-block size-3 rounded-full", {
   variants: {
@@ -40,30 +39,12 @@ const TechLevelLabel = ({
   </div>
 );
 
-const TechBadge = ({ tech, level, rusty }: Tech) => (
+export const TechBadge = ({ tech, level, rusty }: Tech) => (
   <Badge variant="outline" className="mr-2 mb-2 flex cursor-pointer gap-2">
     {tech}
     <TechLevelLabel variant={level} />
     {rusty && <Clock className="text-foreground" />}
   </Badge>
-);
-
-const TechStackCard = ({ label, icon: IconComp, current }: TechStack) => (
-  <Card>
-    <CardHeader>
-      <CardTitle className="flex items-center gap-2">
-        <IconComp className="h-6 w-6" />
-        {label}
-      </CardTitle>
-    </CardHeader>
-    <CardContent className="pb-4">
-      <div className="flex flex-wrap items-baseline">
-        {current.map((tech, index) => (
-          <TechBadge key={index} {...tech} />
-        ))}
-      </div>
-    </CardContent>
-  </Card>
 );
 
 const TechLevelLegend = async () => {
@@ -84,8 +65,4 @@ const TechLevelLegend = async () => {
   );
 };
 
-const TechStackGrid = ({ children }: { children: ReactNode }) => (
-  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">{children}</div>
-);
-
-export { TechLevelLabel, TechLevelLegend, TechStackCard, TechStackGrid };
+export { TechLevelLabel, TechLevelLegend };
