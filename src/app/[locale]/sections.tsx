@@ -1,12 +1,7 @@
 import { getFormatter, getTranslations } from "next-intl/server";
 import React from "react";
 
-import {
-  CareerCardComponents,
-  CareerCardSkills,
-  CareerSkillsLegend,
-} from "@/components/card/career";
-import { TechBadge, TechLevelLegend } from "@/components/tech-stack-badge";
+import { TechStackBadge, TechStackLegend } from "@/components/tech-stack-badge";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { TimelineRenderList } from "@/components/ui/timeline";
@@ -16,6 +11,7 @@ import {
   TypographyH3,
   TypographyLead,
   TypographyP,
+  TypographyText,
 } from "@/components/ui/typography";
 
 import {
@@ -23,17 +19,24 @@ import {
   DetailledCard,
   DetailledCardDetails,
 } from "@/components/card/detailled-card";
-import { skillsByExperience } from "@/data/career";
 import { Course, degreeModules, degreeReferences } from "@/data/education";
-import { patents, publications } from "@/data/publications";
+import { patents, publications } from "@/data/portfolio";
+import { skillsByExperience } from "@/data/skills";
 import { stacks } from "@/data/tech-stack";
 import { getMessageKeys } from "@/lib/i18n/utils";
 import { cn, objectEntries } from "@/lib/utils";
-import { Award, ExternalLinkIcon, FileText } from "lucide-react";
+import {
+  Award,
+  CircleCheckBig,
+  ExternalLinkIcon,
+  FileText,
+} from "lucide-react";
 
 import { CompactCard, CompactCardGrid } from "@/components/card/compact-card";
+import { SkillLegend, SkillList } from "@/components/skill-badges";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/ui/link";
+import { CareerKey } from "@/lib/types";
 import { hobbiesIcons, skillsIcons } from "./icons";
 
 export type SectionProps = {
@@ -65,7 +68,7 @@ export const CareerSection = async () => {
 
   return (
     <>
-      <CareerSkillsLegend />
+      <SkillLegend />
       <TimelineRenderList
         items={experiences}
         renderItem={(item) => {
@@ -76,21 +79,68 @@ export const CareerSection = async () => {
               description={t(`items.${item}.company`)}
               date={t(`items.${item}.date`)}
             >
-              <CareerCardSkills skills={skillsByExperience[item]} />
+              <SkillList skills={skillsByExperience[item]} />
               <DetailledCardDetails>
                 <TypographyP className="leading-5">
                   {t(`items.${item}.description`)}
                 </TypographyP>
-                <CareerCardComponents
-                  type={t(`items.${item}.type`)}
-                  item={item}
-                />
+                <CareerComponents type={t(`items.${item}.type`)} item={item} />
               </DetailledCardDetails>
             </DetailledCard>
           );
         }}
       />
     </>
+  );
+};
+
+const CareerComponents = async ({
+  item,
+  type,
+}: {
+  item: CareerKey;
+  type: string;
+}) => {
+  const t = await getTranslations("home.career.items");
+  const components = await getMessageKeys(
+    `home.career.items.${item}.components`,
+  );
+
+  if (type === "formation") {
+    return (
+      <ul className="space-y-2">
+        {components.map((component) => {
+          const [title, ...info] = t(`${item}.components.${component}`).split(
+            "|",
+          );
+
+          return (
+            <li key={component} className="flex justify-between">
+              <div className="flex items-center">
+                <span className="mr-2 inline-block size-1 rounded-full bg-current align-middle" />
+                {title}
+              </div>
+              <span className="text-muted-foreground text-xs">{info}</span>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+
+  return (
+    <ul className="flex flex-col gap-2">
+      {components.map((component) => (
+        <li key={component} className="flex items-start">
+          <CircleCheckBig className="mt-1 size-3 shrink-0" />
+          <p className="ml-2">
+            {t.rich(`${item}.components.${component}`, {
+              b: (chunks) => <b className="font-semibold">{chunks}</b>,
+            })}
+          </p>
+        </li>
+      ))}
+    </ul>
   );
 };
 
@@ -189,15 +239,15 @@ export const TechStackSection = async () => {
       <CompactCardGrid className="sm:grid-cols-repeat-80">
         {objectEntries(stacks).map(([domain, stack]) => (
           <CompactCard key={domain} title={stack.label} icon={stack.icon}>
-            <div className="flex flex-wrap items-baseline">
+            <div className="flex flex-wrap items-baseline gap-2">
               {stack.current.map((tech, index) => (
-                <TechBadge key={index} {...tech} />
+                <TechStackBadge key={index} {...tech} />
               ))}
             </div>
           </CompactCard>
         ))}
       </CompactCardGrid>
-      <TechLevelLegend />
+      <TechStackLegend />
       <TypographyBlockquote>{t("disclaimer")}</TypographyBlockquote>
     </div>
   );
@@ -299,18 +349,16 @@ export const InformationSection = async () => {
 
   return (
     <Card>
-      <CardContent className="pt-6">
+      <CardContent>
         <div className="space-y-4">
-          <ul className="mt-1 list-inside space-y-1">
-            <li className="flex justify-between">
-              <TypographyH3 className="text-lg">
-                {t("driversLicense.title")}
-              </TypographyH3>
-              <span className="text-foreground">
-                {t("driversLicense.status")}
-              </span>
-            </li>
-          </ul>
+          <div className="flex justify-between">
+            <TypographyH3 className="text-lg">
+              {t("driversLicense.title")}
+            </TypographyH3>
+            <TypographyText className="text-foreground">
+              {t("driversLicense.status")}
+            </TypographyText>
+          </div>
 
           <div>
             <TypographyH3 className="text-lg">
@@ -318,16 +366,20 @@ export const InformationSection = async () => {
             </TypographyH3>
             <ul className="mt-1 list-inside space-y-1">
               <li className="flex justify-between">
-                <span>{t("languages.items.french.title")}</span>
-                <span className="text-foreground">
+                <TypographyText>
+                  {t("languages.items.french.title")}
+                </TypographyText>
+                <TypographyText>
                   {t("languages.items.french.level")}
-                </span>
+                </TypographyText>
               </li>
               <li className="flex justify-between">
-                <span>{t("languages.items.english.title")}</span>
-                <span className="text-foreground">
+                <TypographyText>
+                  {t("languages.items.english.title")}
+                </TypographyText>
+                <TypographyText>
                   {t("languages.items.english.level")}
-                </span>
+                </TypographyText>
               </li>
             </ul>
           </div>

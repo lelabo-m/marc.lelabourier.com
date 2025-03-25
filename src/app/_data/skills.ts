@@ -1,4 +1,4 @@
-import { CareerSkillBadge } from "@/components/card/career";
+import { SkillBadge } from "@/components/skill-badges";
 import { CareerKey } from "@/lib/types";
 
 export const skillsByExperience = {
@@ -89,4 +89,4 @@ export const skillsByExperience = {
     { name: "Self-Learning", type: "soft" },
     { name: "Project Management", type: "soft" },
   ],
-} satisfies Record<CareerKey, CareerSkillBadge[]>;
+} satisfies Record<CareerKey, SkillBadge[]>;

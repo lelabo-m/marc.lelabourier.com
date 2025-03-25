@@ -1,21 +1,5 @@
 import { EducationKey } from "@/lib/types";
 
-export const formations = [
-  "entrepreneurialProgram",
-  "digitalPublishing",
-] as const;
-
-export type Formation = (typeof formations)[number];
-
-export type CourseType = "Core" | "Elective" | "Specialized";
-
-export type Course = {
-  title: string;
-  modules: string;
-  type: CourseType;
-  url?: string;
-};
-
 export type Reference = {
   curriculum: string;
   modules: string;
@@ -33,6 +17,15 @@ export const degreeReferences = {
     modules: "https://www.kent.ac.uk/courses/modules/",
   },
 } satisfies Record<EducationKey, Reference>;
+
+export type CourseType = "Core" | "Elective" | "Specialized";
+
+export type Course = {
+  title: string;
+  modules: string;
+  type: CourseType;
+  url?: string;
+};
 
 export const degreeModules = {
   epitech: [

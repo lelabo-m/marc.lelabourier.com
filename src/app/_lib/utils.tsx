@@ -38,3 +38,9 @@ export type DeepValue<T, Path extends string> = Path extends keyof T
     : never;
 
 export type ConfigRecord<Key extends string, Type> = Partial<Record<Key, Type>>;
+
+export function assertIsDefined<T>(value: T): asserts value is NonNullable<T> {
+  if (value === undefined || value === null) {
+    throw new Error(`${value} is not defined`);
+  }
+}

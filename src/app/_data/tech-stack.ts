@@ -1,28 +1,11 @@
-import { levelVariant } from "@/components/tech-stack-badge";
-import { VariantProps } from "class-variance-authority";
+import { TechStackBadgeProps } from "@/components/tech-stack-badge";
 import { Cloud, Code, Cpu, LucideIcon, Server } from "lucide-react";
-
-export type TechLevel = VariantProps<typeof levelVariant>["variant"];
-
-export const techLevels = [
-  "expert",
-  "experienced",
-  "proficient",
-  "familiar",
-  "willingToLearn",
-] satisfies TechLevel[];
-
-export interface Tech {
-  tech: string;
-  level: TechLevel;
-  rusty?: boolean;
-}
 
 export interface TechStack {
   label: string;
   icon: LucideIcon;
-  current: Tech[];
-  ifNeeded: Tech[];
+  current: TechStackBadgeProps[];
+  ifNeeded: TechStackBadgeProps[];
 }
 
 export const stacks = {
@@ -31,25 +14,25 @@ export const stacks = {
     icon: Code,
     current: [
       {
-        tech: "TypeScript",
+        name: "TypeScript",
         level: "experienced",
       },
       {
-        tech: "React",
+        name: "React",
         level: "proficient",
       },
       {
-        tech: "Next.js",
+        name: "Next.js",
         level: "proficient",
       },
       {
-        tech: "Tailwind CSS",
+        name: "Tailwind CSS",
         level: "proficient",
       },
     ],
     ifNeeded: [
       {
-        tech: "JavaScript",
+        name: "JavaScript",
         level: "experienced",
       },
     ],
@@ -59,25 +42,25 @@ export const stacks = {
     icon: Server,
     current: [
       {
-        tech: "Python",
+        name: "Python",
         level: "expert",
       },
       {
-        tech: "Go",
-        level: "willingToLearn",
+        name: "Go",
+        level: "willing",
       },
     ],
     ifNeeded: [
       {
-        tech: "C#",
+        name: "C#",
         level: "proficient",
       },
       {
-        tech: "Java",
+        name: "Java",
         level: "proficient",
       },
       {
-        tech: "Ruby",
+        name: "Ruby",
         level: "familiar",
       },
     ],
@@ -87,11 +70,11 @@ export const stacks = {
     icon: Cloud,
     current: [
       {
-        tech: "AWS",
+        name: "AWS",
         level: "experienced",
       },
       {
-        tech: "Vercel",
+        name: "Vercel",
         level: "familiar",
       },
     ],
@@ -102,18 +85,18 @@ export const stacks = {
     icon: Cpu,
     current: [
       {
-        tech: "Rust",
+        name: "Rust",
         level: "familiar",
       },
       {
-        tech: "C",
+        name: "C",
         level: "expert",
-        rusty: true,
+        notRecent: true,
       },
       {
-        tech: "C++",
+        name: "C++",
         level: "experienced",
-        rusty: true,
+        notRecent: true,
       },
     ],
     ifNeeded: [],

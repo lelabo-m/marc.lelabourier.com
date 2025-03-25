@@ -1,10 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
-import {
-  CopyToClipboardButton,
-  CopyToClipboardButtonProps,
-} from "@/components/copy-to-clipboard-button";
 import { Github, Linkedin } from "@/components/icons";
 import { LocaleToggle } from "@/components/locale-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -16,6 +12,10 @@ import {
   TypographyLead,
   TypographyP,
 } from "@/components/ui/typography";
+import {
+  CopyToClipboardButton,
+  CopyToClipboardButtonProps,
+} from "@/components/utils/copy-to-clipboard-button";
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/utils";
 import { Mail, MapPin, Phone } from "lucide-react";

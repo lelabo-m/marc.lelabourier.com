@@ -163,6 +163,16 @@ const TypographyMuted = ({
   </p>
 );
 
+const TypographyText = ({
+  className,
+  children,
+  ...props
+}: ComponentProps<"span">) => (
+  <span className={cn("text-foreground", className)} {...props}>
+    {children}
+  </span>
+);
+
 export {
   TypographyBlockquote,
   TypographyH1,
@@ -176,4 +186,5 @@ export {
   TypographyMuted,
   TypographyP,
   TypographySmall,
+  TypographyText,
 };
