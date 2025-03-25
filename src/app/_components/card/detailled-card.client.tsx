@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { CollapsibleTrigger } from "@/components/ui/collapsible";
-import { useCollapsibleContext } from "@/components/utils/collapsible-provider";
+import { useCollapsibleContext } from "@/components/ui/collapsible-provider";
 import { Condition } from "@/components/utils/condition";
 import { cn } from "@/lib/utils";
 import { ChevronDown, ChevronUp } from "lucide-react";

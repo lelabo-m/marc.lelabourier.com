@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { CollapsibleContent } from "@/components/ui/collapsible";
-import { CollapsibleProvider } from "@/components/utils/collapsible-provider";
+import { CollapsibleProvider } from "@/components/ui/collapsible-provider";
 import { cn } from "@/lib/utils";
 import { Calendar, LucideIcon } from "lucide-react";
 import { ComponentProps, PropsWithChildren, ReactNode } from "react";

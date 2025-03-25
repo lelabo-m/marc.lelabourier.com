@@ -13,7 +13,7 @@ import { Home } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { ScrollToTopLink } from "./client";
 import { sidebarMapping } from "./config";
-import { sectionIcons } from "./icons";
+import { sidebarIcons } from "./icons";
 
 export async function AppSidebar() {
   const t = await getTranslations("home");
@@ -37,7 +37,7 @@ export async function AppSidebar() {
             <SidebarGroupContent>
               <SidebarMenu>
                 {group.sections.map((section) => {
-                  const IconComponent = sectionIcons[section];
+                  const IconComponent = sidebarIcons[section];
                   return (
                     <SidebarMenuItem key={section}>
                       <SidebarMenuButton asChild>

@@ -187,12 +187,18 @@
       "title": "Technologies",
       "subtitle": "",
       "disclaimer": "Please note: This is my preferred stack, backed by broader experience and I am always open for more.",
-      "labels": {
+      "types": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "infrastructure": "Infrastructure",
+        "compute": "Systems & Compute"
+      },
+      "levels": {
         "expert": "Expert",
         "experienced": "Experienced",
         "proficient": "Proficient",
         "familiar": "Familiar",
-        "willingToLearn": "Willing to learn",
+        "willing": "Willing to learn",
         "not-used-in-a-while": "Not used in a while"
       }
     },

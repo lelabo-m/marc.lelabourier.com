@@ -1,4 +1,5 @@
 import { SkillBadge } from "@/components/skill-badges";
+import { TechStackBadgeProps } from "@/components/tech-stack-badge";
 import { CareerKey } from "@/lib/types";
 
 export const skillsByExperience = {
@@ -90,3 +91,95 @@ export const skillsByExperience = {
     { name: "Project Management", type: "soft" },
   ],
 } satisfies Record<CareerKey, SkillBadge[]>;
+
+export interface TechStack {
+  current: TechStackBadgeProps[];
+  ifNeeded: TechStackBadgeProps[];
+}
+
+export const techStack = {
+  frontend: {
+    current: [
+      {
+        name: "TypeScript",
+        level: "experienced",
+      },
+      {
+        name: "React",
+        level: "proficient",
+      },
+      {
+        name: "Next.js",
+        level: "proficient",
+      },
+      {
+        name: "Tailwind CSS",
+        level: "proficient",
+      },
+    ],
+    ifNeeded: [
+      {
+        name: "JavaScript",
+        level: "experienced",
+      },
+    ],
+  },
+  backend: {
+    current: [
+      {
+        name: "Python",
+        level: "expert",
+      },
+      {
+        name: "Go",
+        level: "willing",
+      },
+    ],
+    ifNeeded: [
+      {
+        name: "C#",
+        level: "proficient",
+      },
+      {
+        name: "Java",
+        level: "proficient",
+      },
+      {
+        name: "Ruby",
+        level: "familiar",
+      },
+    ],
+  },
+  infrastructure: {
+    current: [
+      {
+        name: "AWS",
+        level: "experienced",
+      },
+      {
+        name: "Vercel",
+        level: "familiar",
+      },
+    ],
+    ifNeeded: [],
+  },
+  compute: {
+    current: [
+      {
+        name: "Rust",
+        level: "familiar",
+      },
+      {
+        name: "C",
+        level: "expert",
+        notRecent: true,
+      },
+      {
+        name: "C++",
+        level: "experienced",
+        notRecent: true,
+      },
+    ],
+    ifNeeded: [],
+  },
+} satisfies Record<string, TechStack>;

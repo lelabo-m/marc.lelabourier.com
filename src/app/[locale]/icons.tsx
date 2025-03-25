@@ -1,9 +1,12 @@
-import { HobbyKey, SectionKey, SkillKey } from "@/lib/types";
+import { HobbyKey, SectionKey, SkillKey, TechStackTypeKey } from "@/lib/types";
 import { ConfigRecord } from "@/lib/utils";
 import {
   Braces,
   Brain,
   BriefcaseBusiness,
+  Cloud,
+  Code,
+  Cpu,
   Dices,
   Ellipsis,
   FileBadge,
@@ -14,11 +17,22 @@ import {
   Heart,
   LucideIcon,
   Puzzle,
+  Server,
   Sparkles,
   Users,
 } from "lucide-react";
 
 type IconSet<Keys extends string> = ConfigRecord<Keys, LucideIcon>;
+
+export const sidebarIcons = {
+  skills: Sparkles,
+  techstacks: Braces,
+  career: BriefcaseBusiness,
+  educations: GraduationCap,
+  publications: FileBadge,
+  hobbies: Dices,
+  information: Ellipsis,
+} satisfies IconSet<SectionKey>;
 
 export const skillsIcons = {
   perspective: Brain,
@@ -35,12 +49,9 @@ export const hobbiesIcons = {
   sports: Heart,
 } satisfies IconSet<HobbyKey>;
 
-export const sectionIcons = {
-  skills: Sparkles,
-  techstacks: Braces,
-  career: BriefcaseBusiness,
-  educations: GraduationCap,
-  publications: FileBadge,
-  hobbies: Dices,
-  information: Ellipsis,
-} satisfies IconSet<SectionKey>;
+export const techStackIcons = {
+  frontend: Code,
+  backend: Server,
+  infrastructure: Cloud,
+  compute: Cpu,
+} satisfies IconSet<TechStackTypeKey>;

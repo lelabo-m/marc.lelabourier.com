@@ -21,8 +21,7 @@ import {
 } from "@/components/card/detailled-card";
 import { Course, degreeModules, degreeReferences } from "@/data/education";
 import { patents, publications } from "@/data/portfolio";
-import { skillsByExperience } from "@/data/skills";
-import { stacks } from "@/data/tech-stack";
+import { skillsByExperience, techStack } from "@/data/skills";
 import { getMessageKeys } from "@/lib/i18n/utils";
 import { cn, objectEntries } from "@/lib/utils";
 import {
@@ -37,7 +36,7 @@ import { SkillLegend, SkillList } from "@/components/skill-badges";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/ui/link";
 import { CareerKey } from "@/lib/types";
-import { hobbiesIcons, skillsIcons } from "./icons";
+import { hobbiesIcons, skillsIcons, techStackIcons } from "./icons";
 
 export type SectionProps = {
   title: string;
@@ -234,11 +233,16 @@ export const SkillSection = async () => {
 
 export const TechStackSection = async () => {
   const t = await getTranslations("home.techstacks");
+
   return (
     <div className="space-y-6">
       <CompactCardGrid className="sm:grid-cols-repeat-80">
-        {objectEntries(stacks).map(([domain, stack]) => (
-          <CompactCard key={domain} title={stack.label} icon={stack.icon}>
+        {objectEntries(techStack).map(([domain, stack]) => (
+          <CompactCard
+            key={domain}
+            title={t(`types.${domain}`)}
+            icon={techStackIcons[domain]}
+          >
             <div className="flex flex-wrap items-baseline gap-2">
               {stack.current.map((tech, index) => (
                 <TechStackBadge key={index} {...tech} />
@@ -320,12 +324,12 @@ export const PublicationSection = async () => {
           month: "short",
           day: "numeric",
         });
+        const title = `${publication.title} (${publication.status})`;
         return (
           <DetailledCard
             key={publication.title}
-            title={publication.title}
+            title={title}
             description={publication.where}
-            highlight={publication.status}
             date={formattedDate}
             icon={FileText}
           >
