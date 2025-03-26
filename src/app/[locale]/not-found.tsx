@@ -1,35 +1,42 @@
 import { Button } from "@/components/ui/button";
 import { InternalLink } from "@/components/ui/link";
 import { Toaster } from "@/components/ui/sonner";
+import {
+  TypographyH1,
+  TypographyH2,
+  TypographyP,
+} from "@/components/ui/typography";
 import { BackButton } from "@/components/utils/back-button";
 import { ArrowLeft, Home } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Footer, Header } from "./page";
 
 export default function NotFoundPage() {
+  return <NotFound />;
+}
+
+export const NotFound = () => {
   return (
     <div className="min-container-h-32 flex flex-col">
       <Header />
-      <NotFound />
+      <NotFoundMain />
       <Footer />
       <Toaster position="top-right" />
     </div>
   );
-}
+};
 
-const NotFound = async () => {
+const NotFoundMain = async () => {
   const t = await getTranslations("common");
 
   return (
     <main className="flex flex-1 flex-col items-center justify-center text-center">
       <div className="mb-8">
-        <h2 className="mb-4 text-6xl font-bold">404</h2>
-        <h3 className="mb-2 text-2xl font-semibold md:text-3xl">
-          {t("not-found")}
-        </h3>
-        <p className="mx-auto mb-8 max-w-md text-gray-600">
+        <TypographyH1 className="mb-4">404</TypographyH1>
+        <TypographyH2 className="mb-2">{t("not-found")}</TypographyH2>
+        <TypographyP className="mx-auto mb-8 max-w-md">
           {t("not-found-description")}
-        </p>
+        </TypographyP>
       </div>
 
       <div className="mt-4 flex flex-col gap-4 sm:flex-row">

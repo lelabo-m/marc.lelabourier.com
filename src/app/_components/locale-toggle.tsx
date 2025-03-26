@@ -14,10 +14,14 @@ import { useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
 const LocaleToggle = () => {
-  const currentLocale = useLocale();
+  let currentLocale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  if (!routing.locales.includes(currentLocale as any)) {
+    currentLocale = routing.defaultLocale;
+  }
 
   const handleChangeLocale = useCallback(() => {
     const params = new URLSearchParams(searchParams).toString();

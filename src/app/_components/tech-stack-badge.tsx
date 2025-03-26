@@ -37,7 +37,7 @@ const techStackLevels: Record<TechStackLevelKey, TechStackLevel> = {
     textColor: "text-orange-600",
   },
   willing: {
-    color: "bg-amber-300",
+    color: "text-amber-500",
     textColor: "text-amber-600",
     icon: Lightbulb,
     special: true,
@@ -69,21 +69,18 @@ export const TechStackBadge = async ({
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Badge
-            variant="outline"
-            className="flex items-center gap-2 bg-white transition-colors hover:bg-gray-50 [&>svg]:size-3.5"
-          >
+          <Badge variant="outline" className="gap-2 [&>svg]:size-3.5">
             {name}
 
             {IconComponent ? (
-              <IconComponent className={textColor} />
+              <IconComponent className={color} />
             ) : (
               <span className={`inline-block size-3 rounded-full ${color}`} />
             )}
             {notRecent && <Clock />}
           </Badge>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent avoidCollisions>
           <p className="text-xs">{t(level)}</p>
         </TooltipContent>
       </Tooltip>
