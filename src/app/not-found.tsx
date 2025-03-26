@@ -1,8 +1,9 @@
 import { GeistSans } from "geist/font/sans";
 
+import { AppSkeleton } from "@/components/layout/app";
+import { PageNotFound } from "@/components/layout/not-found";
+import { RootLayoutSkeleton } from "@/components/layout/root-layout";
 import "~/styles/app.css";
-import { RootLayoutContent } from "./[locale]/layout";
-import { NotFoundLayout } from "./[locale]/not-found";
 
 export default function NotFoundPage() {
   return (
@@ -14,9 +15,11 @@ export default function NotFoundPage() {
       <meta name="apple-mobile-web-app-title" content="Marc Le Labourier" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body>
-        <RootLayoutContent>
-          <NotFoundLayout />
-        </RootLayoutContent>
+        <RootLayoutSkeleton>
+          <AppSkeleton>
+            <PageNotFound />
+          </AppSkeleton>
+        </RootLayoutSkeleton>
       </body>
     </html>
   );

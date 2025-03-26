@@ -2,11 +2,8 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
 import { Github, Linkedin } from "@/components/icons";
-import { LocaleToggle } from "@/components/locale-toggle";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { AppSkeleton } from "@/components/layout/app";
 import { ExternalLink } from "@/components/ui/link";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Toaster } from "@/components/ui/sonner";
 import {
   TypographyH1,
   TypographyLead,
@@ -19,16 +16,15 @@ import {
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/utils";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { ContactAnimatedPill, ContactAnimatedText } from "./client";
+import { Section } from "./_components/sections";
 import { sections } from "./config";
-import { Section } from "./sections";
+import { ContactAnimatedPill, ContactAnimatedText } from "./page.client";
 
 export default async function HomePage() {
   const t = await getTranslations("home");
 
   return (
-    <>
-      <Header />
+    <AppSkeleton>
       <Hero />
       {sections.map(({ key, component }) => (
         <Section
@@ -40,22 +36,9 @@ export default async function HomePage() {
           {component()}
         </Section>
       ))}
-
-      <Footer />
-      <Toaster position="top-right" />
-    </>
+    </AppSkeleton>
   );
 }
-
-export const Header = () => {
-  return (
-    <header className="bg-background sticky top-0 z-10 -mx-1 flex items-center py-2">
-      <SidebarTrigger />
-      <ThemeToggle />
-      <LocaleToggle />
-    </header>
-  );
-};
 
 const Hero = async () => {
   const t = await getTranslations("home");
@@ -149,21 +132,3 @@ const CopyContactButton = ({
     {children}
   </CopyToClipboardButton>
 );
-
-export const Footer = () => {
-  const buildDate = new Date();
-  const formattedDate = buildDate.toLocaleString("en-US", {
-    month: "long",
-    year: "numeric",
-  });
-  return (
-    <footer className="mt-12 border-t border-gray-200 pt-6">
-      <div className="text-muted-foreground mt-4 flex flex-col items-center justify-between text-xs md:flex-row">
-        <p>
-          © {buildDate.getFullYear()} Marc Le Labourier. All rights reserved.
-        </p>
-        <p className="mt-2 md:mt-0">Last updated: {formattedDate}</p>
-      </div>
-    </footer>
-  );
-};

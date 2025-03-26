@@ -1,7 +1,6 @@
 import { getFormatter, getTranslations } from "next-intl/server";
 import React from "react";
 
-import { TechStackBadge, TechStackLegend } from "@/components/tech-stack-badge";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { TimelineRenderList } from "@/components/ui/timeline";
@@ -13,6 +12,7 @@ import {
   TypographyP,
   TypographyText,
 } from "@/components/ui/typography";
+import { TechStackBadge, TechStackLegend } from "./tech-stack-badge";
 
 import {
   CardButtonLink,
@@ -32,11 +32,14 @@ import {
 } from "lucide-react";
 
 import { CompactCard, CompactCardGrid } from "@/components/card/compact-card";
-import { SkillLegend, SkillList } from "@/components/skill-badges";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/ui/link";
 import { CareerKey } from "@/lib/types";
-import { hobbiesIcons, skillsIcons, techStackIcons } from "./icons";
+import {
+  SkillLegend,
+  SkillList,
+} from "~/app/[locale]/_components/skill-badges";
+import { hobbiesIcons, skillsIcons, techStackIcons } from "../icons";
 
 export type SectionProps = {
   title: string;

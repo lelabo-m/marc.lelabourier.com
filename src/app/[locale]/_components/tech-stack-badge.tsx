@@ -1,15 +1,15 @@
 import { Badge } from "@/components/ui/badge";
 import { cn, objectEntries } from "@/lib/utils";
 
-import { TechStackLevelKey } from "@/lib/types";
-import { Clock, Lightbulb, LucideIcon } from "lucide-react";
-import { getTranslations } from "next-intl/server";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from "@/components/ui/tooltip";
+import { TechStackLevelKey } from "@/lib/types";
+import { Clock, Lightbulb, LucideIcon } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 export type TechStackLevel = {
   color: string;

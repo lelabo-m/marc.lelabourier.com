@@ -8,7 +8,7 @@ import {
   PublicationSection,
   SkillSection,
   TechStackSection,
-} from "./sections";
+} from "./_components/sections";
 
 export const sectionComponents = {
   skills: SkillSection,

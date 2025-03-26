@@ -1,4 +1,8 @@
+import { ButtonHTMLAttributes, ClassAttributes } from "react";
 import { IntlKeysOf } from "./i18n/utils";
+
+export type BaseButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  ClassAttributes<HTMLButtonElement>;
 
 export type SectionKey = IntlKeysOf<"home">;
 export type SidebarKey = IntlKeysOf<"home.sidebar">;
