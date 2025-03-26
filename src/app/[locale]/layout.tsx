@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { routing } from "@/lib/i18n/routing";
+import { PropsWithChildren } from "react";
 import "~/styles/app.css";
 import { AppSidebar } from "./sidebar";
 
@@ -43,23 +44,27 @@ export default async function RootLocaleLayout({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body>
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <SidebarProvider defaultOpen={false}>
-              <AppSidebar />
-              <div className="@container/root-layout mx-auto min-h-svh w-full max-w-5xl">
-                <div className="bg-background min-container-h sm:min-container-h-16 @container/frame snap-x p-4 shadow-lg sm:m-8 sm:p-8 dark:border">
-                  {children}
-                </div>
-              </div>
-            </SidebarProvider>
-          </ThemeProvider>
+          <RootLayoutContent>{children}</RootLayoutContent>
         </NextIntlClientProvider>
       </body>
     </html>
   );
 }
+
+export const RootLayoutContent = ({ children }: PropsWithChildren) => (
+  <ThemeProvider
+    attribute="class"
+    defaultTheme="system"
+    enableSystem
+    disableTransitionOnChange
+  >
+    <SidebarProvider defaultOpen={false}>
+      <AppSidebar />
+      <div className="@container/root-layout mx-auto min-h-svh w-full max-w-5xl">
+        <div className="bg-background min-container-h sm:min-container-h-16 @container/frame snap-x p-4 shadow-lg sm:m-8 sm:p-8 dark:border">
+          {children}
+        </div>
+      </div>
+    </SidebarProvider>
+  </ThemeProvider>
+);
