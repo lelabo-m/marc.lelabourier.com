@@ -47,7 +47,7 @@ export default async function HomePage() {
   );
 }
 
-const Header = () => {
+export const Header = () => {
   return (
     <header className="bg-background sticky top-0 z-10 -mx-1 flex items-center py-2">
       <SidebarTrigger />
@@ -150,7 +150,7 @@ const CopyContactButton = ({
   </CopyToClipboardButton>
 );
 
-const Footer = () => {
+export const Footer = () => {
   const buildDate = new Date();
   const formattedDate = buildDate.toLocaleString("en-US", {
     month: "long",

@@ -51,8 +51,8 @@ export default async function RootLocaleLayout({
           >
             <SidebarProvider defaultOpen={false}>
               <AppSidebar />
-              <div className="mx-auto w-full max-w-5xl">
-                <div className="bg-background snap-x p-4 shadow-lg sm:m-8 sm:p-8 dark:border">
+              <div className="@container/root-layout mx-auto min-h-svh w-full max-w-5xl">
+                <div className="bg-background min-container-h sm:min-container-h-16 @container/frame snap-x p-4 shadow-lg sm:m-8 sm:p-8 dark:border">
                   {children}
                 </div>
               </div>

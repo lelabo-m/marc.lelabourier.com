@@ -141,8 +141,12 @@
   );
 }
 
-@utility tab-* {
-  margin-bottom: --spacing(--value(number));
+@utility min-container-h {
+  min-height: 100cqh;
+}
+
+@utility min-container-h-* {
+  min-height: calc(100cqh - (--spacing(--value(number))));
 }
 
 @layer base {
