@@ -13,23 +13,29 @@ import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
+function validateLocale(locale: string) {
+  if (!routing.locales.includes(locale as any)) {
+    return routing.defaultLocale;
+  }
+  return locale;
+}
+
 const LocaleToggle = () => {
-  let currentLocale = useLocale();
+  const currentLocale = validateLocale(useLocale());
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  if (!routing.locales.includes(currentLocale as any)) {
-    currentLocale = routing.defaultLocale;
-  }
+  const handleChangeLocale = useCallback(
+    (newLocale: string) => {
+      const params = new URLSearchParams(searchParams).toString();
+      const anchor = window.location.hash;
+      const newPath = `${pathname}?${params.toString()}${anchor}`;
 
-  const handleChangeLocale = useCallback(() => {
-    const params = new URLSearchParams(searchParams).toString();
-    const anchor = window.location.hash;
-    const newPath = `${pathname}?${params.toString()}${anchor}`;
-
-    router.replace(newPath, { locale: currentLocale });
-  }, [router, currentLocale]);
+      router.replace(newPath, { locale: newLocale });
+    },
+    [router, currentLocale],
+  );
 
   return (
     <DropdownMenu>
@@ -40,7 +46,10 @@ const LocaleToggle = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-1">
         {routing.locales.map((locale) => (
-          <DropdownMenuItem key={locale} onClick={handleChangeLocale}>
+          <DropdownMenuItem
+            key={locale}
+            onClick={() => handleChangeLocale(locale)}
+          >
             {locale}
           </DropdownMenuItem>
         ))}
