@@ -44,3 +44,7 @@ export function assertIsDefined<T>(value: T): asserts value is NonNullable<T> {
     throw new Error(`${value} is not defined`);
   }
 }
+
+export function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
