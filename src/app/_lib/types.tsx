@@ -1,11 +1,11 @@
-import { ButtonHTMLAttributes, ClassAttributes } from "react";
-import { IntlKeysOf } from "./i18n/utils";
+import type { ButtonHTMLAttributes, ClassAttributes } from "react";
+import type { IntlKeysOf } from "./i18n/utils";
 
 export type BaseButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   ClassAttributes<HTMLButtonElement>;
 
 export type SectionKey = IntlKeysOf<"home">;
-export type SidebarKey = IntlKeysOf<"home.sidebar">;
+export type SidebarKey = IntlKeysOf<"sidebar">;
 export type SkillKey = IntlKeysOf<"home.skills.items">;
 export type HobbyKey = IntlKeysOf<"home.hobbies.categories">;
 export type CareerKey = IntlKeysOf<"home.career.items">;

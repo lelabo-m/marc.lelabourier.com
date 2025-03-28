@@ -1,8 +1,8 @@
 import { getMessageKeys } from "@/lib/i18n/utils";
 import { cn } from "@/lib/utils";
-import { cva, VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { getTranslations } from "next-intl/server";
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 const skillBadgeVariants = cva("px-2 py-1 text-xs font-medium rounded-full", {
   variants: {

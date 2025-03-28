@@ -1,5 +1,5 @@
 "use client";
-import { createContext, ReactNode, use } from "react";
+import { createContext, type ReactNode, use } from "react";
 
 type ConditionContextProps = {
   condition: boolean;

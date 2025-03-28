@@ -1,5 +1,5 @@
-import { SectionKey, SidebarKey } from "@/lib/types";
-import { ConfigRecord } from "@/lib/utils";
+import type { SectionKey, SidebarKey } from "@/lib/types";
+import type { ConfigRecord } from "@/lib/utils";
 import {
   CareerSection,
   EducationSection,

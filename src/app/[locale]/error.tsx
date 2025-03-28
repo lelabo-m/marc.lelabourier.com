@@ -2,7 +2,7 @@
 
 import { AppSkeleton } from "@/components/layout/app";
 import { ErrorPage } from "@/components/layout/error";
-import { NextErrorProps } from "@/lib/nextjs";
+import type { NextErrorProps } from "@/lib/nextjs";
 import { useEffect } from "react";
 import "~/styles/app.css";
 

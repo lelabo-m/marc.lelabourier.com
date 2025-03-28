@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 import { Toaster } from "../ui/sonner";
 import { Footer } from "./footer";
 import { Header } from "./header";

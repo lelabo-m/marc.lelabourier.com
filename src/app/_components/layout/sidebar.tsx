@@ -16,7 +16,7 @@ import { sidebarIcons } from "~/app/[locale]/icons";
 import { ScrollToTopLink } from "./sidebar.client";
 
 export async function AppSidebar() {
-  const t = await getTranslations("home");
+  const t = await getTranslations();
 
   return (
     <Sidebar>
@@ -26,7 +26,7 @@ export async function AppSidebar() {
             <SidebarMenuButton asChild>
               <ScrollToTopLink>
                 <Home />
-                Home
+                {"Home"}
               </ScrollToTopLink>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -43,7 +43,7 @@ export async function AppSidebar() {
                       <SidebarMenuButton asChild>
                         <InternalLink href={`#${section}`}>
                           <IconComponent />
-                          {t(`${section}.title`)}
+                          {t(`home.${section}.title`)}
                         </InternalLink>
                       </SidebarMenuButton>
                     </SidebarMenuItem>

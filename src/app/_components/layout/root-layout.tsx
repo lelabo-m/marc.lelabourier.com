@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { ThemeProvider } from "../theme-provider";
 import { SidebarProvider } from "../ui/sidebar";
 import { AppSidebar } from "./sidebar";

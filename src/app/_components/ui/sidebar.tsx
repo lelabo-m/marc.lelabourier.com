@@ -1,7 +1,7 @@
 "use client";
 
 import { Slot } from "@radix-ui/react-slot";
-import { VariantProps, cva } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
 import { Menu } from "lucide-react";
 import * as React from "react";
 
@@ -185,8 +185,8 @@ function Sidebar({
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
         <SheetHeader className="sr-only">
-          <SheetTitle>Sidebar</SheetTitle>
-          <SheetDescription>Displays the mobile sidebar.</SheetDescription>
+          <SheetTitle>{"Sidebar"}</SheetTitle>
+          <SheetDescription>{"Displays the mobile sidebar."}</SheetDescription>
         </SheetHeader>
         <SheetContent
           data-sidebar="sidebar"
@@ -272,7 +272,7 @@ function SidebarTrigger({
       {...props}
     >
       <Menu />
-      <span className="sr-only">Toggle Sidebar</span>
+      <span className="sr-only">{"Toggle Sidebar"}</span>
     </Button>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { Footer } from "@/components/layout/footer";
+import { InternalLink } from "@/components/ui/link";
 import {
   TypographyH1,
   TypographyH2,
@@ -10,7 +11,6 @@ import {
 } from "@/components/ui/typography";
 import { profile } from "@/data/profile";
 import { Home, RefreshCw } from "lucide-react";
-import Link from "next/link";
 import { useEffect } from "react";
 
 export default function GlobalError({
@@ -38,29 +38,31 @@ export default function GlobalError({
 
               <main className="flex flex-1 flex-col items-center justify-center text-center">
                 <div className="mb-8">
-                  <TypographyH2 className="mb-4">Oops!</TypographyH2>
+                  <TypographyH2 className="mb-4">{"Oops!"}</TypographyH2>
                   <TypographyH3 className="mb-2">
-                    Something went wrong
+                    {"Something went wrong"}
                   </TypographyH3>
                   <TypographyP className="mx-auto mb-8 max-w-md">
-                    An unexpected error has occurred. Please try again later.
+                    {
+                      "An unexpected error has occurred. Please try again later."
+                    }
                   </TypographyP>
                 </div>
 
                 <div className="flex flex-col gap-4 sm:flex-row">
-                  <Link
+                  <InternalLink
                     href="/"
                     className="flex items-center justify-center gap-2 rounded-md bg-black px-6 py-3 text-white transition-colors hover:bg-gray-800"
                   >
                     <Home size={18} />
-                    <span>Back to Home</span>
-                  </Link>
+                    <span>{"Back to Home"}</span>
+                  </InternalLink>
                   <button
                     onClick={() => reset()}
                     className="flex items-center justify-center gap-2 rounded-md border border-gray-300 px-6 py-3 transition-colors hover:bg-gray-50"
                   >
                     <RefreshCw size={18} />
-                    <span>Try Again</span>
+                    <span>{"Try Again"}</span>
                   </button>
                 </div>
               </main>

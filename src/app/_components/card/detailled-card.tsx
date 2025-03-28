@@ -10,8 +10,8 @@ import {
 import { CollapsibleContent } from "@/components/ui/collapsible";
 import { CollapsibleProvider } from "@/components/ui/collapsible-provider";
 import { cn } from "@/lib/utils";
-import { Calendar, LucideIcon } from "lucide-react";
-import { ComponentProps, PropsWithChildren, ReactNode } from "react";
+import { Calendar, type LucideIcon } from "lucide-react";
+import type { ComponentProps, PropsWithChildren, ReactNode } from "react";
 import { Button } from "../ui/button";
 import { ExternalLink } from "../ui/link";
 import { DetailledCardTrigger } from "./detailled-card.client";
@@ -58,7 +58,7 @@ export const DetailledCardHeader = ({
     )}
 
     <CardDescription className="row-start-2 flex items-start gap-4">
-      <span>{description}</span> |
+      <span>{description}</span> {"|"}
       <span className="flex">
         <Calendar className="mr-2 size-4" />
         {date}

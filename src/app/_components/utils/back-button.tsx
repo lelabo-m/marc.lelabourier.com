@@ -1,5 +1,5 @@
 "use client";
-import { ButtonHTMLAttributes, ClassAttributes } from "react";
+import type { ButtonHTMLAttributes, ClassAttributes } from "react";
 
 export type BackButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   ClassAttributes<HTMLButtonElement>;

@@ -1,7 +1,7 @@
 "use client";
 
-import { InternalLink } from "@/components/ui/link";
-import { ComponentProps } from "react";
+import type { InternalLink } from "@/components/ui/link";
+import type { ComponentProps } from "react";
 
 export const ScrollToTopLink = ({
   onClick,

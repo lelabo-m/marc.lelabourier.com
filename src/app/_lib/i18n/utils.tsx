@@ -5,7 +5,7 @@ import type {
   NestedValueOf,
   useTranslations,
 } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getMessages, type getTranslations } from "next-intl/server";
 
 export type IntlNamespaceKeys = NamespaceKeys<
   IntlMessages,
@@ -29,7 +29,7 @@ export type IntlKeysOf<Namespace extends IntlNamespaceKeys> =
 //     </div>
 //   );
 // }
-export type RichTextProps<Tag extends keyof any> = {
+export type RichTextProps<Tag extends keyof unknown> = {
   children(
     tags: Record<Tag, (chunks: React.ReactNode) => React.ReactNode>,
   ): React.ReactNode;

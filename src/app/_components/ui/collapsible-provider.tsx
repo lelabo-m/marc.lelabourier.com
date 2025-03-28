@@ -1,6 +1,6 @@
 "use client";
 import { Collapsible } from "@radix-ui/react-collapsible";
-import { createContext, PropsWithChildren, use, useState } from "react";
+import { createContext, type PropsWithChildren, use, useState } from "react";
 
 export const CollapsibleContext = createContext<{
   isExpanded: boolean;

@@ -1,8 +1,8 @@
 "use client";
-import { NextErrorProps } from "@/lib/nextjs";
+import type { NextErrorProps } from "@/lib/nextjs";
 import { Home, RefreshCw } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { Button } from "../ui/button";
 import { InternalLink } from "../ui/link";
 
@@ -14,7 +14,7 @@ export const ErrorPage = ({ reset }: ErrorPageProps) => {
   return (
     <main className="flex flex-1 flex-col items-center justify-center text-center">
       <div className="mb-8">
-        <h2 className="mb-4 text-6xl font-bold">Oops!</h2>
+        <h2 className="mb-4 text-6xl font-bold">{"Oops!"}</h2>
         <h3 className="mb-2 text-2xl font-semibold md:text-3xl">
           {t("error")}
         </h3>

@@ -1,7 +1,7 @@
 import { UiI18nLink } from "@/lib/i18n/fix";
 import { cn } from "@/lib/utils";
-import { cva, VariantProps } from "class-variance-authority";
-import { ComponentProps } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import type { ComponentProps } from "react";
 
 const linkVariants = cva("", {
   variants: {

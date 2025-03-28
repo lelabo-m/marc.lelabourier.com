@@ -1,6 +1,6 @@
-import { CareerKey } from "@/lib/types";
-import { SkillBadge } from "~/app/[locale]/_components/skill-badges";
-import { TechStackBadgeProps } from "~/app/[locale]/_components/tech-stack-badge";
+import type { CareerKey } from "@/lib/types";
+import type { SkillBadge } from "~/app/[locale]/_components/skill-badges";
+import type { TechStackBadgeProps } from "~/app/[locale]/_components/tech-stack-badge";
 
 export const skillsByExperience = {
   entrepreneurialProgram: [

@@ -1,4 +1,4 @@
-import { EducationKey } from "@/lib/types";
+import type { EducationKey } from "@/lib/types";
 
 export type Reference = {
   curriculum: string;

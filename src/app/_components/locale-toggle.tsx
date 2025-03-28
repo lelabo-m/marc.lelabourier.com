@@ -14,7 +14,7 @@ import { useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
 function validateLocale(locale: string) {
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     return routing.defaultLocale;
   }
   return locale;
@@ -34,7 +34,7 @@ const LocaleToggle = () => {
 
       router.replace(newPath, { locale: newLocale });
     },
-    [router, currentLocale],
+    [searchParams, pathname, router],
   );
 
   return (

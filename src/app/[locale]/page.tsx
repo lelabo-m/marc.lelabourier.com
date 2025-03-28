@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/typography";
 import {
   CopyToClipboardButton,
-  CopyToClipboardButtonProps,
+  type CopyToClipboardButtonProps,
 } from "@/components/utils/copy-to-clipboard-button";
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/utils";
@@ -100,14 +100,14 @@ const HeroActions = () => (
       <ContactAnimatedPill asChild>
         <ExternalLink href={profile.socials.linkedin.href}>
           <Linkedin className="h-4 w-4" />
-          <span className="sr-only">LinkedIn</span>
+          <span className="sr-only">{"LinkedIn"}</span>
         </ExternalLink>
       </ContactAnimatedPill>
 
       <ContactAnimatedPill asChild>
         <ExternalLink href={profile.socials.github.href}>
           <Github className="h-5 w-5" />
-          <span className="sr-only">GitHub</span>
+          <span className="sr-only">{"GitHub"}</span>
         </ExternalLink>
       </ContactAnimatedPill>
 

@@ -9,11 +9,11 @@ export type RemoveReadonly<T> = {
   -readonly [key in keyof T]: T[key];
 };
 
-export function objectKeys<Obj extends {}>(obj: Obj): (keyof Obj)[] {
+export function objectKeys<Obj extends object>(obj: Obj): (keyof Obj)[] {
   return Object.keys(obj) as (keyof Obj)[];
 }
 
-export function objectEntries<Obj extends {}>(obj: Obj) {
+export function objectEntries<Obj extends object>(obj: Obj) {
   return Object.entries(obj) as [keyof Obj, Obj[keyof Obj]][];
 }
 
@@ -39,9 +39,11 @@ export type DeepValue<T, Path extends string> = Path extends keyof T
 
 export type ConfigRecord<Key extends string, Type> = Partial<Record<Key, Type>>;
 
-export function assertIsDefined<T>(value: T): asserts value is NonNullable<T> {
+export function assertIsDefined<Value>(
+  value: Value,
+): asserts value is NonNullable<Value> {
   if (value === undefined || value === null) {
-    throw new Error(`${value} is not defined`);
+    throw new Error(`${value as string} is not defined`);
   }
 }
 

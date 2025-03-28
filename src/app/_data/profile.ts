@@ -1,4 +1,4 @@
-import { Flame, Gamepad, Heart, LucideIcon } from "lucide-react";
+import { Flame, Gamepad, Heart, type LucideIcon } from "lucide-react";
 
 export const profile = {
   name: "Marc Le Labourier",

@@ -1,5 +1,10 @@
-import { HobbyKey, SectionKey, SkillKey, TechStackTypeKey } from "@/lib/types";
-import { ConfigRecord } from "@/lib/utils";
+import type {
+  HobbyKey,
+  SectionKey,
+  SkillKey,
+  TechStackTypeKey,
+} from "@/lib/types";
+import type { ConfigRecord } from "@/lib/utils";
 import {
   Braces,
   Brain,
@@ -15,7 +20,7 @@ import {
   GraduationCap,
   Handshake,
   Heart,
-  LucideIcon,
+  type LucideIcon,
   Puzzle,
   Server,
   Sparkles,

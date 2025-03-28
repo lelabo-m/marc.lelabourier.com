@@ -7,8 +7,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { TechStackLevelKey } from "@/lib/types";
-import { Clock, Lightbulb, LucideIcon } from "lucide-react";
+import type { TechStackLevelKey } from "@/lib/types";
+import { Clock, Lightbulb, type LucideIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 export type TechStackLevel = {
@@ -63,7 +63,7 @@ export const TechStackBadge = async ({
   notRecent,
 }: TechStackBadgeProps) => {
   const t = await getTranslations("home.techstacks.levels");
-  const { color, textColor, icon: IconComponent } = techStackLevels[level];
+  const { color, icon: IconComponent } = techStackLevels[level];
 
   return (
     <TooltipProvider>

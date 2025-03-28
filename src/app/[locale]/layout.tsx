@@ -1,16 +1,11 @@
 import { RootLayoutSkeleton } from "@/components/layout/root-layout";
 import { routing } from "@/lib/i18n/routing";
 import { GeistSans } from "geist/font/sans";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "~/styles/app.css";
-
-type LayoutProps = Readonly<{
-  children: React.ReactNode;
-  params: { locale: string };
-}>;
 
 export const metadata: Metadata = {
   title: "Marc Le Labourier | Full Stack Developer",
@@ -19,11 +14,16 @@ export const metadata: Metadata = {
   // icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+type LayoutProps = Readonly<{
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}>;
+
 export default async function Layout({ children, params }: LayoutProps) {
-  let { locale } = await params;
+  const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
   // Enable static rendering

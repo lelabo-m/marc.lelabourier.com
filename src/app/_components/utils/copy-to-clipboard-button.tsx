@@ -1,10 +1,10 @@
 "use client";
 
 import {
-  CopyToClipboardProps,
+  type CopyToClipboardProps,
   useCopyToClipboard,
 } from "@/hooks/use-copy-to-clipboard";
-import { ButtonHTMLAttributes, ClassAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, ClassAttributes, ReactNode } from "react";
 import { toast } from "sonner";
 
 export type CopyToClipboardButtonProps = CopyToClipboardProps & {

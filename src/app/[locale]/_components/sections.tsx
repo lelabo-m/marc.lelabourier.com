@@ -19,7 +19,7 @@ import {
   DetailledCard,
   DetailledCardDetails,
 } from "@/components/card/detailled-card";
-import { Course, degreeModules, degreeReferences } from "@/data/education";
+import { type Course, degreeModules, degreeReferences } from "@/data/education";
 import { patents, publications } from "@/data/portfolio";
 import { skillsByExperience, techStack } from "@/data/skills";
 import { getMessageKeys } from "@/lib/i18n/utils";
@@ -34,7 +34,7 @@ import {
 import { CompactCard, CompactCardGrid } from "@/components/card/compact-card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/ui/link";
-import { CareerKey } from "@/lib/types";
+import type { CareerKey } from "@/lib/types";
 import {
   SkillLegend,
   SkillList,
@@ -291,12 +291,12 @@ export const HobbySection = async () => {
 };
 
 export const PublicationSection = async () => {
-  const t = await getTranslations("home.publications");
+  const t = await getTranslations("home.publications.labels");
   const format = await getFormatter();
 
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-xl font-semibold">{t("subsections.patents")}</h3>
+      <h3 className="text-xl font-semibold">{t("patents")}</h3>
       {patents.map((patent) => {
         const formattedDate = format.dateTime(patent.date, {
           year: "numeric",
@@ -313,14 +313,14 @@ export const PublicationSection = async () => {
           >
             <CardFooter className="flex px-0">
               <CardButtonLink href={patent.url} icon={FileText}>
-                View Patent
+                {t("patent-button")}
               </CardButtonLink>
             </CardFooter>
           </DetailledCard>
         );
       })}
 
-      <h3 className="text-xl font-semibold">{t("subsections.publications")}</h3>
+      <h3 className="text-xl font-semibold">{t("publications")}</h3>
       {publications.map((publication) => {
         const formattedDate = format.dateTime(publication.date, {
           year: "numeric",
@@ -338,10 +338,10 @@ export const PublicationSection = async () => {
           >
             <CardFooter className="flex flex-wrap gap-4 px-0">
               <CardButtonLink href={publication.docUrl} icon={FileText}>
-                View Paper
+                {t("publication-button-1")}
               </CardButtonLink>
               <CardButtonLink href={publication.confUrl} icon={FileText}>
-                View Journal / Conference
+                {t("publication-button-2")}
               </CardButtonLink>
             </CardFooter>
           </DetailledCard>

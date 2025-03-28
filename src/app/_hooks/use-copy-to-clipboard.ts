@@ -26,7 +26,7 @@ export const useCopyToClipboard = ({
     } catch (err) {
       onError?.(err);
     }
-  }, [text, timeout, onError]);
+  }, [text, timeout, onCopy, onError]);
 
   return {
     isCopied,

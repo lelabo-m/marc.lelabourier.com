@@ -8,12 +8,12 @@
     "back-to-home-button": "Back to Home",
     "reset-button": "Try Again"
   },
+  "sidebar": {
+    "about-me": "About me",
+    "background": "Professional & Academic Background",
+    "misc": "... and more"
+  },
   "home": {
-    "sidebar": {
-      "about-me": "About me",
-      "background": "Professional & Academic Background",
-      "misc": "... and more"
-    },
     "hero": {
       "intro": "French developer with {yearsOfExperience}+ years of hands-on experience in computer science and software development, drawing from both cutting-edge R&I and dynamic startup environments, I honed my expertise in backend, applied research & innovation, data processing and analysis, while broadening my skills in frontend, design, and infrastructure."
     },
@@ -247,9 +247,12 @@
       "title": "Patents & Publications",
       "subtitle": "",
       "description": "A selection of my academic and professional publications.",
-      "subsections": {
+      "labels": {
         "patents": "Patents",
-        "publications": "Publications"
+        "patent-button": "View Patent",
+        "publications": "Publications",
+        "publication-button-1": "View Paper",
+        "publication-button-2": "View Journal / Conference"
       }
     },
     "information": {

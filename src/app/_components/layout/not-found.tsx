@@ -10,7 +10,7 @@ export const PageNotFound = async () => {
   return (
     <main className="flex flex-1 flex-col items-center justify-center text-center">
       <div className="mb-8">
-        <TypographyH1 className="mb-4">404</TypographyH1>
+        <TypographyH1 className="mb-4">{"404"}</TypographyH1>
         <TypographyH2 className="mb-2">{t("not-found")}</TypographyH2>
         <TypographyP className="mx-auto mb-8 max-w-md">
           {t("not-found-description")}

@@ -1,9 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Slot } from "@radix-ui/react-slot";
 import { motion } from "framer-motion";
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 export const ContactAnimatedText = ({
   className,
@@ -21,13 +20,10 @@ export const ContactAnimatedText = ({
 
 export const ContactAnimatedPill = ({
   className,
-  asChild = false,
   children,
-  ...props
 }: ComponentProps<"div"> & {
   asChild?: boolean;
 }) => {
-  const Comp = asChild ? Slot : "div";
   return (
     <motion.div whileHover={{ scale: 1.1 }} className="flex items-center">
       <div
