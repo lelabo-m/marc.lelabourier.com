@@ -31,6 +31,7 @@ export default function GlobalError({
     <html>
       <meta name="apple-mobile-web-app-title" content="Marc Le Labourier" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" type="image/svg+xml" href="/favicon/icon.svg" />
       <link rel="shortcut icon" href="/favicon/favicon.ico" />
       <link
         rel="apple-touch-icon"
