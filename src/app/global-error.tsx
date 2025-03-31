@@ -10,6 +10,7 @@ import {
   TypographyP,
 } from "@/components/ui/typography";
 import { profile } from "@/data/profile";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Home, RefreshCw } from "lucide-react";
 import PlausibleProvider from "next-plausible";
 import { useEffect } from "react";
@@ -74,6 +75,7 @@ export default function GlobalError({
             </div>
           </div>
         </PlausibleProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -3,6 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import { AppSkeleton } from "@/components/layout/app";
 import { PageNotFound } from "@/components/layout/not-found";
 import { RootLayoutSkeleton } from "@/components/layout/root-layout";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import PlausibleProvider from "next-plausible";
@@ -29,6 +30,7 @@ export default async function NotFoundPage() {
             </RootLayoutSkeleton>
           </NextIntlClientProvider>
         </PlausibleProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

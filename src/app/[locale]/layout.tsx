@@ -1,5 +1,6 @@
 import { RootLayoutSkeleton } from "@/components/layout/root-layout";
 import { routing } from "@/lib/i18n/routing";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
@@ -47,6 +48,7 @@ export default async function Layout({ children, params }: LayoutProps) {
             <RootLayoutSkeleton>{children}</RootLayoutSkeleton>
           </NextIntlClientProvider>
         </PlausibleProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
