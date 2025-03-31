@@ -29,6 +29,20 @@ export default function GlobalError({
 
   return (
     <html>
+      <meta name="apple-mobile-web-app-title" content="Marc Le Labourier" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="/favicon/favicon.ico" />
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/favicon/apple-icon.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="96x96"
+        href="/favicon/icon.png"
+      />
       <body>
         <PlausibleProvider domain="lelabourier.com">
           <div className="@container/root-layout mx-auto min-h-svh w-full max-w-5xl">
