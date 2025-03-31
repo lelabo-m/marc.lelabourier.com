@@ -1,18 +1,17 @@
 import type { MetadataRoute } from "next";
-
-const DOMAIN = "https://marc.lelabourier.com";
+import { env } from "~/env";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: DOMAIN,
+      url: env.DOMAIN,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
       alternates: {
         languages: {
-          en: `${DOMAIN}/en`,
-          fr: `${DOMAIN}/fr`,
+          en: `${env.DOMAIN}/en`,
+          fr: `${env.DOMAIN}/fr`,
         },
       },
     },
