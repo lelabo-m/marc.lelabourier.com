@@ -3,6 +3,7 @@
  * for Docker builds.
  */
 import createNextIntlPlugin from "next-intl/plugin";
+import { withPlausibleProxy } from "next-plausible";
 import "./src/env.js";
 
 const withNextIntl = createNextIntlPlugin("./src/app/_lib/i18n/request.ts");
@@ -10,4 +11,4 @@ const withNextIntl = createNextIntlPlugin("./src/app/_lib/i18n/request.ts");
 /** @type {import("next").NextConfig} */
 const config = {};
 
-export default withNextIntl(config);
+export default withPlausibleProxy()(withNextIntl(config));
