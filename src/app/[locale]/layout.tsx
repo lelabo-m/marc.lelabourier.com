@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import PlausibleProvider from "next-plausible";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import "~/styles/app.css";
 
 export const metadata: Metadata = {
@@ -42,6 +43,12 @@ export default async function Layout({ children, params }: LayoutProps) {
     >
       <meta name="apple-mobile-web-app-title" content="Marc Le Labourier" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <Script
+        defer
+        data-domain="marc.lelabourier.com"
+        src="https://plausible.io/js/script.hash.outbound-links.tagged-events.js"
+      ></Script>
+
       <body>
         <PlausibleProvider domain="marc.lelabourier.com">
           <NextIntlClientProvider messages={messages}>
