@@ -13,7 +13,6 @@ import { profile } from "@/data/profile";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Home, RefreshCw } from "lucide-react";
 import PlausibleProvider from "next-plausible";
-import Script from "next/script";
 import { useEffect } from "react";
 
 export default function GlobalError({
@@ -30,14 +29,8 @@ export default function GlobalError({
 
   return (
     <html>
-      <Script
-        defer
-        data-domain="marc.lelabourier.com"
-        src="https://plausible.io/js/script.hash.outbound-links.tagged-events.js"
-      ></Script>
-
       <body>
-        <PlausibleProvider domain="marc.lelabourier.com">
+        <PlausibleProvider domain="lelabourier.com">
           <div className="@container/root-layout mx-auto min-h-svh w-full max-w-5xl">
             <div className="bg-background min-container-h sm:min-container-h-16 @container/frame snap-x p-4 shadow-lg sm:m-8 sm:p-8 dark:border">
               <div className="min-container-h-32 flex flex-col">
