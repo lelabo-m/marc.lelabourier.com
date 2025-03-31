@@ -5,6 +5,7 @@ import { PageNotFound } from "@/components/layout/not-found";
 import { RootLayoutSkeleton } from "@/components/layout/root-layout";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import PlausibleProvider from "next-plausible";
 import "~/styles/app.css";
 
 export default async function NotFoundPage() {
@@ -19,13 +20,15 @@ export default async function NotFoundPage() {
       <meta name="apple-mobile-web-app-title" content="Marc Le Labourier" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <RootLayoutSkeleton>
-            <AppSkeleton>
-              <PageNotFound />
-            </AppSkeleton>
-          </RootLayoutSkeleton>
-        </NextIntlClientProvider>
+        <PlausibleProvider domain="marc.lelabourier.com">
+          <NextIntlClientProvider messages={messages}>
+            <RootLayoutSkeleton>
+              <AppSkeleton>
+                <PageNotFound />
+              </AppSkeleton>
+            </RootLayoutSkeleton>
+          </NextIntlClientProvider>
+        </PlausibleProvider>
       </body>
     </html>
   );
