@@ -9,9 +9,9 @@
     "reset-button": "Essayez à nouveau"
   },
   "sidebar": {
-    "about-me": "About me",
-    "background": "Professional & Academic Background",
-    "misc": "... and more"
+    "about-me": "À propos de moi",
+    "background": "Expérience professionnelle et universitaire",
+    "misc": "... et plus"
   },
   "home": {
     "hero": {
@@ -248,11 +248,11 @@
       "subtitle": "",
       "description": "Une sélection de mes publications académiques et professionnelles.",
       "labels": {
-        "patents": "Patents",
-        "patent-button": "View Patent",
+        "patents": "Brevets",
+        "patent-button": "Consulter le brevet",
         "publications": "Publications",
-        "publication-button-1": "View Paper",
-        "publication-button-2": "View Journal / Conference"
+        "publication-button-1": "Consulter l'article",
+        "publication-button-2": "Consulter la conférence"
       }
     },
     "information": {
