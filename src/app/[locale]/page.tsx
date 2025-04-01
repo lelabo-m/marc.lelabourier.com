@@ -39,9 +39,19 @@ export default async function HomePage() {
         </Section>
       ))}
       <Script
-        id="schema-markup"
+        id="schema-me"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.me) }}
+      />
+      <Script
+        id="schema-profile-page"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.profilePage) }}
+      />
+      <Script
+        id="schema-job-posting"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.jobPosting) }}
       />
     </AppSkeleton>
   );
