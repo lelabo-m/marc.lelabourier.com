@@ -1,19 +1,18 @@
-import type {
-  AbstractIntlMessages,
-  NamespaceKeys,
-  NestedKeyOf,
-  NestedValueOf,
-  useTranslations,
+import {
+  hasLocale,
+  type AbstractIntlMessages,
+  type Messages,
+  type NamespaceKeys,
+  type NestedKeyOf,
+  type NestedValueOf,
 } from "next-intl";
 import { getMessages, type getTranslations } from "next-intl/server";
+import { routing } from "./routing";
 
-export type IntlNamespaceKeys = NamespaceKeys<
-  IntlMessages,
-  NestedKeyOf<IntlMessages>
->;
+export type IntlNamespaceKeys = NamespaceKeys<Messages, NestedKeyOf<Messages>>;
 
 export type IntlKeysOf<Namespace extends IntlNamespaceKeys> =
-  keyof NestedValueOf<IntlMessages, Namespace>;
+  keyof NestedValueOf<Messages, Namespace>;
 
 // Example usage:
 // function RichText({ children }: RichTextProps<"p" | "b" | "i">) {
@@ -39,9 +38,10 @@ export type RichTextProps<Tag extends keyof unknown> = {
  * from https://github.com/amannn/next-intl/issues/1704
  * Type for passing around NextIntl getTranslation or useTranslations functions
  */
-export type getTranslationsType<Namespace extends IntlNamespaceKeys> =
-  | Awaited<ReturnType<typeof getTranslations<Namespace>>>
-  | ReturnType<typeof useTranslations<Namespace>>;
+export type getTranslationsType<Namespace extends IntlNamespaceKeys> = Awaited<
+  ReturnType<typeof getTranslations<Namespace>>
+>;
+// | ReturnType<typeof useTranslations<Namespace>>;
 
 /**
  * from https://github.com/amannn/next-intl/issues/1704
@@ -84,3 +84,10 @@ export async function getMessageKeys<Namespace extends IntlNamespaceKeys>(
 
   return Object.keys(obj) as unknown as IntlKeysOf<Namespace>[];
 }
+
+export const validateLocale = (requestedLocale: string | undefined) => {
+  const locale = hasLocale(routing.locales, requestedLocale)
+    ? requestedLocale
+    : routing.defaultLocale;
+  return locale;
+};

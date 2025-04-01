@@ -35,7 +35,7 @@ export default async function NotFoundPage() {
       />
       <body>
         <PlausibleProvider domain="lelabourier.com">
-          <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider>
             <RootLayoutSkeleton>
               <AppSkeleton>
                 <PageNotFound />

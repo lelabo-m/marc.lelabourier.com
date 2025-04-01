@@ -9,25 +9,20 @@ import {
 } from "./ui/dropdown-menu";
 
 import { usePathname, useRouter } from "@/lib/i18n/navigation";
-import { useLocale } from "next-intl";
+import { validateLocale } from "@/lib/i18n/utils";
+import { type Locale, useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
-function validateLocale(locale: string) {
-  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
-    return routing.defaultLocale;
-  }
-  return locale;
-}
-
 const LocaleToggle = () => {
   const currentLocale = validateLocale(useLocale());
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const handleChangeLocale = useCallback(
-    (newLocale: string) => {
+    (newLocale: Locale) => {
       const params = new URLSearchParams(searchParams).toString();
       const anchor = window.location.hash;
       const newPath = `${pathname}?${params.toString()}${anchor}`;

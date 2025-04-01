@@ -36,4 +36,13 @@ export const jsonLd: WithContext<Person> = {
         "Master of Science in Advanced Computer Science (Computationnal Intelligence)",
     },
   ],
+  knowsAbout: [
+    "Full Stack Development",
+    "Backend Development",
+    "Applied Research & Innovation",
+    "Data Processing and Analysis",
+    "Frontend Development",
+    "Design",
+    "Infrastructure",
+  ],
 };

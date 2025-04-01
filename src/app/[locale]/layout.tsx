@@ -1,12 +1,11 @@
 import { RootLayoutSkeleton } from "@/components/layout/root-layout";
-import { routing } from "@/lib/i18n/routing";
+import { validateLocale } from "@/lib/i18n/utils";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import PlausibleProvider from "next-plausible";
-import { notFound } from "next/navigation";
 import "~/styles/app.css";
 
 export const metadata: Metadata = {
@@ -22,17 +21,12 @@ type LayoutProps = Readonly<{
 }>;
 
 export default async function Layout({ children, params }: LayoutProps) {
-  const { locale } = await params;
+  const { locale: requestedLocale } = await params;
 
-  // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
-    notFound();
-  }
+  const locale = validateLocale(requestedLocale);
+
   // Enable static rendering
   setRequestLocale(locale);
-
-  // Providing all messages to the client side is the easiest way to get started
-  const messages = await getMessages();
 
   return (
     <html
@@ -55,10 +49,9 @@ export default async function Layout({ children, params }: LayoutProps) {
         sizes="96x96"
         href="/favicon/icon.png"
       />
-
       <body>
         <PlausibleProvider domain="lelabourier.com">
-          <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider>
             <RootLayoutSkeleton>{children}</RootLayoutSkeleton>
           </NextIntlClientProvider>
         </PlausibleProvider>
