@@ -10,6 +10,7 @@ import {
   TypographyP,
 } from "@/components/ui/typography";
 import { profile } from "@/data/profile";
+import * as Sentry from "@sentry/nextjs";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Home, RefreshCw } from "lucide-react";
 import { NextIntlClientProvider } from "next-intl";
@@ -24,8 +25,7 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
-    console.error(error);
+    Sentry.captureException(error);
   }, [error]);
 
   return (
