@@ -3,6 +3,7 @@ import { currentTechStack } from "@/data/skills";
 import {
   type JobPosting,
   type Person,
+  type PostalAddress,
   type ProfilePage,
   type WithContext,
 } from "schema-dts";
@@ -10,6 +11,15 @@ import { env } from "~/env";
 
 const yearsOfExperience = new Date().getFullYear() - 2011;
 const description = `French developer with ${yearsOfExperience}+ years of hands-on experience in computer science and software development, drawing from both cutting-edge R&I and dynamic startup environments, I honed my expertise in backend, applied research & innovation, data processing and analysis, while broadening my skills in frontend, design, and infrastructure.`;
+
+const address: WithContext<PostalAddress> = {
+  "@context": "https://schema.org",
+  "@type": "PostalAddress",
+  addressLocality: profile.address.locality,
+
+  addressRegion: profile.address.region,
+  addressCountry: profile.address.country,
+};
 
 const me: WithContext<Person> = {
   "@context": "https://schema.org",
@@ -19,11 +29,7 @@ const me: WithContext<Person> = {
   url: env.DOMAIN,
   email: profile.email,
   telephone: profile.phone,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: profile.locality,
-    addressCountry: profile.country,
-  },
+  address,
   sameAs: [profile.socials.linkedin.href, profile.socials.github.href],
   description,
   skills: currentTechStack.map((skill) => skill.name),
@@ -73,16 +79,20 @@ const jobPosting: WithContext<JobPosting> = {
   description,
   datePosted: new Date("2025-04-01").toISOString(),
   validThrough: new Date("2025-12-31").toISOString(),
-  hiringOrganization: me,
-  employmentType: "part-time",
+  hiringOrganization: {
+    "@type": "Organization",
+    name: profile.name,
+    url: env.DOMAIN,
+    logo: `${env.DOMAIN}/profile.jpg`,
+    email: profile.email,
+    telephone: profile.phone,
+    slogan: `French developer with ${yearsOfExperience}+ years of experience`,
+  },
+  employmentType: "Part-time",
   industry: "Software Development",
   jobLocation: {
     "@type": "Place",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: profile.locality,
-      addressCountry: profile.country,
-    },
+    address,
   },
   skills: currentTechStack.map((skill) => skill.name),
 };

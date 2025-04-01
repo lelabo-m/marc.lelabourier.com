@@ -6,8 +6,11 @@ export const profile = {
   email: "marc.lelabourier@gmail.com",
   phone: "(+33)0638415550",
   location: "SQY, Yvelines, France",
-  locality: "SQY",
-  country: "FR",
+  address: {
+    locality: "SQY",
+    region: "Île-de-France",
+    country: "FR",
+  },
   socials: {
     github: {
       text: "github.com/lelabo-m",
