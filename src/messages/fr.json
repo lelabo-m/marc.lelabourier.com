@@ -8,12 +8,12 @@
     "back-to-home-button": "Page d'accueil",
     "reset-button": "Essayez à nouveau"
   },
+  "sidebar": {
+    "about-me": "À propos de moi",
+    "background": "Expérience professionnelle et universitaire",
+    "misc": "... et plus"
+  },
   "home": {
-    "sidebar": {
-      "about-me": "À propos de moi",
-      "background": "Expérience professionnelle et universitaire",
-      "misc": "... et plus"
-    },
     "hero": {
       "intro": "Développeur français, fort de {yearsOfExperience}+ années d'expérience en informatique et développement logiciel, acquises sur le terrain au sein d'environnements en centre de recherche et de jeunes startups dynamiques, j'ai développé une expertise en backend, innovation et recherche appliquée, traitement et analyse de données, tout en développant mes compétences en frontend, design et infrastructure."
     },
@@ -247,9 +247,12 @@
       "title": "Brevets et Publications",
       "subtitle": "",
       "description": "Une sélection de mes publications académiques et professionnelles.",
-      "subsections": {
+      "labels": {
         "patents": "Brevets",
-        "publications": "Publications"
+        "patent-button": "Consulter le brevet",
+        "publications": "Publications",
+        "publication-button-1": "Consulter l'article",
+        "publication-button-2": "Consulter la conférence"
       }
     },
     "information": {

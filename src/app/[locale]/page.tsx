@@ -19,6 +19,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Section } from "./_components/sections";
 import { sections } from "./config";
 import { ContactAnimatedPill, ContactAnimatedText } from "./page.client";
+import { jsonLd } from "./schema";
 
 export default async function HomePage() {
   const t = await getTranslations("home");
@@ -36,6 +37,10 @@ export default async function HomePage() {
           {component()}
         </Section>
       ))}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </AppSkeleton>
   );
 }

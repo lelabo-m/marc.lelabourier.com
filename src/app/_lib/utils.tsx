@@ -17,6 +17,10 @@ export function objectEntries<Obj extends object>(obj: Obj) {
   return Object.entries(obj) as [keyof Obj, Obj[keyof Obj]][];
 }
 
+export function objectValues<Obj extends object>(obj: Obj): Obj[keyof Obj][] {
+  return Object.values(obj) as Obj[keyof Obj][];
+}
+
 // Utility type to recursively get all keys of a nested object
 export type DeepKeys<T> = T extends object
   ? {
@@ -49,17 +53,4 @@ export function assertIsDefined<Value>(
 
 export function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-export function pick<T extends object, K extends keyof T>(
-  obj: T,
-  keys: K[],
-): Pick<T, K> {
-  const result: Partial<Pick<T, K>> = {};
-  for (const key of keys) {
-    if (obj.hasOwnProperty(key)) {
-      result[key] = obj[key];
-    }
-  }
-  return result as Pick<T, K>;
 }
