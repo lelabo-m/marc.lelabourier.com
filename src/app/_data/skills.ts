@@ -1,4 +1,4 @@
-import type { CareerKey } from "@/lib/types";
+import type { CareerKey, TechStackTypeKey } from "@/lib/types";
 import { objectValues } from "@/lib/utils";
 import type { SkillBadge } from "~/app/[locale]/_components/skill-badges";
 import type { TechStackBadgeProps } from "~/app/[locale]/_components/tech-stack-badge";
@@ -98,7 +98,7 @@ export interface TechStack {
   ifNeeded: TechStackBadgeProps[];
 }
 
-export const techStack: Record<string, TechStack> = {
+export const techStack: Record<TechStackTypeKey, TechStack> = {
   frontend: {
     current: [
       {
@@ -183,7 +183,7 @@ export const techStack: Record<string, TechStack> = {
     ],
     ifNeeded: [],
   },
-} satisfies Record<string, TechStack>;
+} satisfies Record<TechStackTypeKey, TechStack>;
 
 export const currentTechStack = objectValues(techStack).flatMap(
   ({ current }) => current,
