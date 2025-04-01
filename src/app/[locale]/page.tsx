@@ -16,6 +16,7 @@ import {
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/utils";
 import { Mail, MapPin, Phone } from "lucide-react";
+import Script from "next/script";
 import { Section } from "./_components/sections";
 import { sections } from "./config";
 import { ContactAnimatedPill, ContactAnimatedText } from "./page.client";
@@ -37,7 +38,8 @@ export default async function HomePage() {
           {component()}
         </Section>
       ))}
-      <script
+      <Script
+        id="schema-markup"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
