@@ -14,6 +14,7 @@ import {
   type CopyToClipboardButtonProps,
 } from "@/components/utils/copy-to-clipboard-button";
 import { profile } from "@/data/profile";
+import { getNonce } from "@/lib/nextjs";
 import { cn } from "@/lib/utils";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Script from "next/script";
@@ -23,6 +24,7 @@ import { ContactAnimatedPill, ContactAnimatedText } from "./page.client";
 import { jsonLd } from "./schema";
 
 export default async function HomePage() {
+  const nonce = await getNonce();
   const t = await getTranslations("home");
 
   return (
@@ -42,16 +44,19 @@ export default async function HomePage() {
         id="schema-me"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.me) }}
+        nonce={nonce}
       />
       <Script
         id="schema-profile-page"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.profilePage) }}
+        nonce={nonce}
       />
       <Script
         id="schema-job-posting"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.jobPosting) }}
+        nonce={nonce}
       />
     </AppSkeleton>
   );
