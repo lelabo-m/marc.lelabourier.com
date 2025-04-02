@@ -13,7 +13,7 @@ const withNextIntl = createNextIntlPlugin("./src/app/_lib/i18n/request.ts");
 // Make sure adding Sentry options is the last code to run before exporting
 const sentryConfig: SentryBuildOptions = {
   org: "snacs",
-  project: "javascript-nextjs",
+  project: "marc-lelabourier-com",
   // Only print logs for uploading source maps in CI
   // Set to `true` to suppress logs
   silent: !process.env.CI,
