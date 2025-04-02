@@ -1,12 +1,12 @@
 import { routing } from "@/lib/i18n/routing";
 import createMiddleware from "next-intl/middleware";
-import { type NextRequest, NextResponse } from "next/server";
+import { type NextRequest } from "next/server";
+import { env } from "./env";
 
-const handleI18nRouting = createMiddleware(routing);
+const devCspHeader = (nonce: string) => `
+    `;
 
-export function middleware(request: NextRequest) {
-  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
-  const cspHeader = `
+const prodCspHeader = (nonce: string) => `
     default-src 'self';
     script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
     style-src 'self' 'nonce-${nonce}';
@@ -17,7 +17,15 @@ export function middleware(request: NextRequest) {
     form-action 'self';
     frame-ancestors 'none';
     upgrade-insecure-requests;
-`;
+    `;
+
+const handleI18nRouting = createMiddleware(routing);
+
+export function middleware(request: NextRequest) {
+  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+  const cspHeader =
+    env.NODE_ENV === "development" ? devCspHeader(nonce) : prodCspHeader(nonce);
+
   // Replace newline characters and spaces
   const contentSecurityPolicyHeaderValue = cspHeader
     .replace(/\s{2,}/g, " ")
@@ -31,11 +39,9 @@ export function middleware(request: NextRequest) {
     contentSecurityPolicyHeaderValue,
   );
 
-  const response = NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  const response = handleI18nRouting(request);
+
+  response.headers.set("x-nonce", nonce);
 
   response.headers.set(
     "Content-Security-Policy",
@@ -50,7 +56,7 @@ export function middleware(request: NextRequest) {
     "geolocation=(), microphone=(), camera=()",
   );
 
-  return handleI18nRouting(request);
+  return response;
 }
 
 export const config = {
@@ -63,18 +69,13 @@ export const config = {
      * - favicon.ico (favicon file)
      */
     {
-      source: "/((?!api|_next/static|_next/image|favicon\\.ico)(en|fr)/.*)",
-      missing: [
-        { type: "header", key: "next-router-prefetch" },
-        { type: "header", key: "purpose", value: "prefetch" },
-      ],
-    },
-    {
       source: "/((?!api|_next/static|_next/image|favicon\\.ico)$)",
       missing: [
         { type: "header", key: "next-router-prefetch" },
         { type: "header", key: "purpose", value: "prefetch" },
       ],
     },
+    "/",
+    "/(en|fr)/:path*",
   ],
 };
