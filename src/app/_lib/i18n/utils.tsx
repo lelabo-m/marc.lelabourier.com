@@ -7,7 +7,7 @@ import {
   type NestedValueOf,
 } from "next-intl";
 import { getMessages, type getTranslations } from "next-intl/server";
-import { routing } from "./routing";
+import { routing, routingExceptions } from "./routing";
 
 export type IntlNamespaceKeys = NamespaceKeys<Messages, NestedKeyOf<Messages>>;
 
@@ -89,5 +89,12 @@ export const validateLocale = (requestedLocale: string | undefined) => {
   const locale = hasLocale(routing.locales, requestedLocale)
     ? requestedLocale
     : routing.defaultLocale;
+
   return locale;
+};
+
+export const isRoutingException = (pathname: string | undefined) => {
+  return pathname === undefined
+    ? false
+    : routingExceptions.some((regex) => regex.test(pathname));
 };

@@ -28,13 +28,13 @@ export const config = {
      * - favicon.ico (favicon file)
      */
     {
-      source: "/((?!api|monitoring|_next/static|_next/image|favicon\\.ico)$)",
+      source:
+        "/((?!api|_next/static|_next/image|favicon\\.ico|monitoring|robots\\.txt|sitemap\\.xml|manifest\\.json|ads\\.txt|humans\\.txt)$)",
       missing: [
         { type: "header", key: "next-router-prefetch" },
         { type: "header", key: "purpose", value: "prefetch" },
       ],
     },
-    "/",
     "/(en|fr)/:path*",
   ],
 };
