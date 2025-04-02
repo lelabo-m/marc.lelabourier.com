@@ -1,4 +1,5 @@
 import { RootLayoutSkeleton } from "@/components/layout/root-layout";
+import { profile } from "@/data/profile";
 import { validateLocale } from "@/lib/i18n/utils";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistSans } from "geist/font/sans";
@@ -9,7 +10,7 @@ import PlausibleProvider from "next-plausible";
 import "~/styles/app.css";
 
 export const metadata: Metadata = {
-  title: "Marc Le Labourier | Full Stack Developer",
+  title: `${profile.name} | ${profile.jobTitle}`,
   description:
     "Marc Le Labourier own little space online. Maybe one day, a more complete description will be written. But for now, deal with it.",
   // icons: [{ rel: "icon", url: "/favicon.ico" }],
@@ -49,6 +50,7 @@ export default async function Layout({ children, params }: LayoutProps) {
         sizes="96x96"
         href="/favicon/icon.png"
       />
+
       <body>
         <PlausibleProvider domain="lelabourier.com">
           <NextIntlClientProvider>
