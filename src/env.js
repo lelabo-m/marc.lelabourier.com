@@ -10,6 +10,8 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "test", "production"]),
     DOMAIN: z.string().url(),
     SENTRY_AUTH_TOKEN: z.string(),
+    OPENAI_API_KEY: z.string(),
+    FIRECRAWL_API_KEY: z.string(),
   },
 
   /**
@@ -30,6 +32,8 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     DOMAIN: process.env.DOMAIN,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    FIRECRAWL_API_KEY: process.env.FIRECRAWL_API_KEY,
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
   },
   /**

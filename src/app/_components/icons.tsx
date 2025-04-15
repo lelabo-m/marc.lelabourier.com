@@ -2,7 +2,7 @@ import type { ComponentProps } from "react";
 
 export type CustomIcon = React.FC<React.SVGProps<SVGSVGElement>>;
 
-function Github(props: ComponentProps<"svg">) {
+export function Github(props: ComponentProps<"svg">) {
   // return <Image src={githubIcon} alt="Github logo" {...props} />;
   return (
     <svg
@@ -20,7 +20,7 @@ function Github(props: ComponentProps<"svg">) {
   );
 }
 
-function Linkedin(props: ComponentProps<"svg">) {
+export function Linkedin(props: ComponentProps<"svg">) {
   return (
     <svg
       width="192"
@@ -43,4 +43,4 @@ function Linkedin(props: ComponentProps<"svg">) {
   );
 }
 
-export { Github, Linkedin };
+export const brandIcons = { github: Github, linkedin: Linkedin };

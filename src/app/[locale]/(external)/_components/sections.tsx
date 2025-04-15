@@ -38,7 +38,7 @@ import type { CareerKey } from "@/lib/types";
 import {
   SkillLegend,
   SkillList,
-} from "~/app/[locale]/_components/skill-badges";
+} from "~/app/[locale]/(external)/_components/skill-badges";
 import { hobbiesIcons, skillsIcons, techStackIcons } from "../icons";
 
 export type SectionProps = {

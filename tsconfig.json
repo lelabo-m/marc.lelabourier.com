@@ -31,6 +31,7 @@
       "@/hooks/*": ["src/app/_hooks/*"],
       "@/data/*": ["src/app/_data/*"],
       "@/lib/*": ["src/app/_lib/*"],
+      "@/server/*": ["src/app/_server/*"],
       "~/*": ["./src/*"]
     }
   },

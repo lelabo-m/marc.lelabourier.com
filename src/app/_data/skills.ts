@@ -1,7 +1,7 @@
 import type { CareerKey, TechStackTypeKey } from "@/lib/types";
 import { objectValues } from "@/lib/utils";
-import type { SkillBadge } from "~/app/[locale]/_components/skill-badges";
-import type { TechStackBadgeProps } from "~/app/[locale]/_components/tech-stack-badge";
+import type { SkillBadge } from "~/app/[locale]/(external)/_components/skill-badges";
+import type { TechStackBadgeProps } from "~/app/[locale]/(external)/_components/tech-stack-badge";
 
 export const skillsByExperience = {
   entrepreneurialProgram: [

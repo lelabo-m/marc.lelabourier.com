@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/sidebar";
 import { Home } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import { sidebarMapping } from "~/app/[locale]/config";
-import { sidebarIcons } from "~/app/[locale]/icons";
+import { sidebarMapping } from "~/app/[locale]/(external)/config";
+import { sidebarIcons } from "~/app/[locale]/(external)/icons";
 import { ScrollToTopLink } from "./sidebar.client";
 
 export async function AppSidebar() {
