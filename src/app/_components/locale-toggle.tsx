@@ -15,7 +15,8 @@ import { useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
 const LocaleToggle = () => {
-  const currentLocale = validateLocale(useLocale());
+  const loadedLocale = useLocale();
+  const currentLocale = validateLocale(loadedLocale);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -25,7 +26,9 @@ const LocaleToggle = () => {
     (newLocale: Locale) => {
       const params = new URLSearchParams(searchParams).toString();
       const anchor = window.location.hash;
-      const newPath = `${pathname}?${params.toString()}${anchor}`;
+      const newPath = params
+        ? `${pathname}?${params.toString()}${anchor}`
+        : `${pathname}${anchor}`;
 
       router.replace(newPath, { locale: newLocale });
     },

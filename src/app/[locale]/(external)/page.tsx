@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
 import { Github, Linkedin } from "@/components/icons";
-import { AppSkeleton } from "@/components/layout/app";
+import HomePageLayout from "@/components/layout/page";
 import { ExternalLink } from "@/components/ui/link";
 import {
   TypographyH1,
@@ -26,7 +26,7 @@ export default async function HomePage() {
   const t = await getTranslations("home");
 
   return (
-    <AppSkeleton>
+    <HomePageLayout>
       <Hero />
       {sections.map(({ key, component }) => (
         <Section
@@ -38,22 +38,8 @@ export default async function HomePage() {
           {component()}
         </Section>
       ))}
-      <Script
-        id="schema-me"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.me) }}
-      />
-      <Script
-        id="schema-profile-page"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.profilePage) }}
-      />
-      <Script
-        id="schema-job-posting"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.jobPosting) }}
-      />
-    </AppSkeleton>
+      <StructuredData />
+    </HomePageLayout>
   );
 }
 
@@ -148,4 +134,24 @@ const CopyContactButton = ({
   >
     {children}
   </CopyToClipboardButton>
+);
+
+const StructuredData = () => (
+  <>
+    <Script
+      id="schema-me"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.me) }}
+    />
+    <Script
+      id="schema-profile-page"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.profilePage) }}
+    />
+    <Script
+      id="schema-job-posting"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.jobPosting) }}
+    />
+  </>
 );

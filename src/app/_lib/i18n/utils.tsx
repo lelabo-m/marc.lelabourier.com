@@ -85,7 +85,12 @@ export async function getMessageKeys<Namespace extends IntlNamespaceKeys>(
   return Object.keys(obj) as unknown as IntlKeysOf<Namespace>[];
 }
 
-export const validateLocale = (requestedLocale: string | undefined) => {
+export const validateLocale = (
+  requestedLocale: string[] | string | undefined,
+) => {
+  if (Array.isArray(requestedLocale)) {
+    requestedLocale = requestedLocale[0];
+  }
   const locale = hasLocale(routing.locales, requestedLocale)
     ? requestedLocale
     : routing.defaultLocale;

@@ -1,7 +1,7 @@
 "use client";
 
-import { AppSkeleton } from "@/components/layout/app";
 import { ErrorPage } from "@/components/layout/error";
+
 import type { NextErrorProps } from "@/lib/nextjs";
 import { useEffect } from "react";
 import "~/styles/app.css";
@@ -12,9 +12,5 @@ export default function Error({ error, reset }: NextErrorProps) {
     console.error(error);
   }, [error]);
 
-  return (
-    <AppSkeleton>
-      <ErrorPage error={error} reset={reset} />
-    </AppSkeleton>
-  );
+  return <ErrorPage error={error} reset={reset} />;
 }
