@@ -1,5 +1,6 @@
 "use client";
 
+import HomePageLayout from "@/components/layout/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "@tanstack/react-form";
@@ -46,7 +47,7 @@ export default function ResumeGenerator() {
     },
   });
   return (
-    <div>
+    <HomePageLayout>
       PDF Generator
       <form
         onSubmit={(e) => {
@@ -69,6 +70,6 @@ export default function ResumeGenerator() {
         />
         <Button type="submit">Generate PDF</Button>
       </form>
-    </div>
+    </HomePageLayout>
   );
 }

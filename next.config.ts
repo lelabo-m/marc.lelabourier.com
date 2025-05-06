@@ -8,7 +8,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 import { withPlausibleProxy } from "next-plausible";
 import { env } from "~/env";
 
-const withNextIntl = createNextIntlPlugin("./src/app/_lib/i18n/request.ts");
+const withNextIntl = createNextIntlPlugin("./src/lib/i18n/request.ts");
 
 // Make sure adding Sentry options is the last code to run before exporting
 const sentryConfig: SentryBuildOptions = {

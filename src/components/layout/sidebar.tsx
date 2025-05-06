@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Home } from "lucide-react";
+import { Factory, Home } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { sidebarMapping } from "~/app/[locale]/(external)/config";
 import { sidebarIcons } from "~/app/[locale]/(external)/icons";
@@ -53,6 +53,21 @@ export async function AppSidebar() {
             </SidebarGroupContent>
           </SidebarGroup>
         ))}
+        <SidebarGroup>
+          <SidebarGroupLabel>{"Tools"}</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <InternalLink href="/resume">
+                    <Factory />
+                    {"Resume Generator"}
+                  </InternalLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
     </Sidebar>
   );

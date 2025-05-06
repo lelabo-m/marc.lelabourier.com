@@ -1,6 +1,7 @@
-import { LocaleToggle } from "../locale-toggle";
-import { ThemeToggle } from "../theme-toggle";
-import { SidebarTrigger } from "../ui/sidebar";
+import { LocaleToggle } from "@/components/locale-toggle";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { HeaderBreadcrumbs } from "./header.client";
 
 export const Header = () => {
   return (
@@ -8,6 +9,7 @@ export const Header = () => {
       <SidebarTrigger />
       <ThemeToggle />
       <LocaleToggle />
+      <HeaderBreadcrumbs />
     </header>
   );
 };
