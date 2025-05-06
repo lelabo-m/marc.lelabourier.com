@@ -273,5 +273,9 @@
         }
       }
     }
+  },
+  "cv-gen": {
+    "title": "Curriculum Vitae Generator",
+    "cta": "Generate"
   }
 }
