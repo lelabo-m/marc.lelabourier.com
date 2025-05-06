@@ -4,6 +4,7 @@ import type { PropsWithChildren } from "react";
 import { AppSidebar } from "./layout/sidebar";
 import { AppProvider } from "./provider";
 import { SidebarProvider } from "./ui/sidebar";
+import { NextIntlClientProvider } from "next-intl";
 
 interface AppSkeletonProps extends PropsWithChildren {
   locale: Locale;
@@ -27,6 +28,16 @@ export const AppSkeleton = ({ locale, children }: AppSkeletonProps) => {
             </div>
           </SidebarProvider>
         </AppProvider>
+      </body>
+    </html>
+  );
+};
+
+export const VanillaAppSkeleton = ({ children }: PropsWithChildren) => {
+  return (
+    <html className={`${GeistSans.variable}`} suppressHydrationWarning>
+      <body>
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
   );

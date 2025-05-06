@@ -277,5 +277,15 @@
   "cv-gen": {
     "title": "Curriculum Vitae Generator",
     "cta": "Generate"
+  },
+  "cv-template": {
+    "sections": {
+      "tech-skills": "Technical Skills",
+      "soft-skills": "Soft Skills",
+      "lang": "Languages",
+      "education": "Education",
+      "experience": "Professional Experience",
+      "interest": "Interests"
+    }
   }
 }

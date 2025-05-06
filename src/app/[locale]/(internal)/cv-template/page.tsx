@@ -1,10 +1,11 @@
 import { tryCatch } from "@/lib/try-catch";
+import { type CurriculumVitaeSchema } from "@/server/api/routers/curriculum";
 import { TRPCError } from "@trpc/server";
 import { getHTTPStatusCodeFromError } from "@trpc/server/http";
 import type { SearchParams } from "nuqs/server";
 import { createLoader, parseAsString } from "nuqs/server";
-import { type ResumeSchema } from "~/_server/api/routers/resume";
 import { Resume } from "./components";
+import { getTranslations } from "next-intl/server";
 
 const loader = createLoader({
   url: parseAsString,
@@ -15,7 +16,7 @@ type PageProps = {
 };
 
 const mockData = {
-  resume: {
+  curriculum: {
     name: "Marc Le Labourier",
     jobTitle: "Full Stack Developer",
     description:
@@ -191,7 +192,7 @@ const mockData = {
 };
 
 const mockData2 = {
-  resume: {
+  curriculum: {
     name: "Dominik",
     jobTitle: "Web Developer",
     description:
@@ -237,14 +238,15 @@ const mockData2 = {
   },
 };
 
-const getData = async (): Promise<ResumeSchema> => mockData2;
+const getData = async (): Promise<CurriculumVitaeSchema> => mockData;
 
 export default async function Home({ searchParams }: PageProps) {
+  const t = await getTranslations("cv-template");
   const { url } = await loader(searchParams);
-  if (!url) {
-    return <div>URL is required</div>;
-  }
-  // const { data, error } = await tryCatch(api.resume.scrape({ url }));
+
+  if (!url) return <div>{"URL is required"}</div>;
+
+  // const { data, error } = await tryCatch(api.cv.scrape({ url }));
   const { data, error } = await tryCatch(getData());
 
   if (error) {
@@ -252,59 +254,61 @@ export default async function Home({ searchParams }: PageProps) {
       const statusCode = getHTTPStatusCodeFromError(error);
       return (
         <div>
-          <h1>Error: {statusCode}</h1>
+          <h1>{`Error: ${statusCode}`}</h1>
           <p>{error.message}</p>
         </div>
       );
     }
+
     return (
       <div>
-        <h1>Error: 500</h1>
-        <p>Internal Server Error</p>
+        <h1>{"Error: 500"}</h1>
+        <p>{"Internal Server Error"}</p>
       </div>
     );
   }
 
-  const { resume } = data;
-
-  console.log("resume", JSON.stringify(resume, null, 2));
+  const { curriculum } = data;
 
   return (
     <Resume.Page>
       <Resume.Container>
         <Resume.Header>
           <div className="grid grid-cols-3">
-            <Resume.Header.Contacts {...resume.contact} />
+            <Resume.Header.Contacts {...curriculum.contact} />
             <Resume.Header.Title
-              name={resume.name}
-              jobTitle={resume.jobTitle}
+              name={curriculum.name}
+              jobTitle={curriculum.jobTitle}
             />
-            <Resume.Header.Watermark source={url} />
           </div>
-          <Resume.Header.Socials socials={resume.contact.socials} />
+
           <Resume.Header.Introduction>
-            {resume.description}
+            {curriculum.description}
           </Resume.Header.Introduction>
+          <Resume.Header.Socials socials={curriculum.contact.socials} />
         </Resume.Header>
 
         <Resume.Layout>
           <Resume.Layout.LeftColumn>
-            {resume.technicalSkills}
             <Resume.Section>
-              <Resume.Section.Title>Technical Skills</Resume.Section.Title>
+              <Resume.Section.Title>
+                {t("sections.tech-skills")}
+              </Resume.Section.Title>
               <div className="flex flex-wrap gap-1">
-                {resume.technicalSkills.map((skill) => (
+                {curriculum.technicalSkills.map((skill) => (
                   <Resume.Skill key={skill} skill={skill} />
                 ))}
               </div>
             </Resume.Section>
 
             <Resume.Section>
-              <Resume.Section.Title>Soft Skills</Resume.Section.Title>
+              <Resume.Section.Title>
+                {t("sections.soft-skills")}
+              </Resume.Section.Title>
               <ul className="space-y-1 text-sm">
-                {resume.softSkills.map((skill) => (
+                {curriculum.softSkills.map((skill) => (
                   <li key={skill} className="flex items-start">
-                    <span className="mr-1">•</span>
+                    <span className="mr-1">{"•"}</span>
                     <span>{skill}</span>
                   </li>
                 ))}
@@ -312,21 +316,26 @@ export default async function Home({ searchParams }: PageProps) {
             </Resume.Section>
 
             <Resume.Section>
-              <Resume.Section.Title>Languages</Resume.Section.Title>
+              <Resume.Section.Title>{t("sections.lang")}</Resume.Section.Title>
               <ul className="space-y-1 text-sm">
-                {resume.languages.map((language) => (
+                {curriculum.languages.map((language) => (
                   <li key={language.name}>
                     <span className="font-medium">{language.name}</span>
-                    <span className="text-gray-600"> - {language.level}</span>
+                    <span className="text-gray-600">
+                      {" - "}
+                      {language.level}
+                    </span>
                   </li>
                 ))}
               </ul>
             </Resume.Section>
 
             <Resume.Section>
-              <Resume.Section.Title>Education</Resume.Section.Title>
+              <Resume.Section.Title>
+                {t("sections.education")}
+              </Resume.Section.Title>
               <ul className="space-y-3 text-sm">
-                {resume.education.map((degree) => (
+                {curriculum.education.map((degree) => (
                   <li key={degree.title}>
                     <div className="font-medium">{degree.title}</div>
                     <div>{degree.institution}</div>
@@ -340,10 +349,10 @@ export default async function Home({ searchParams }: PageProps) {
           <Resume.Layout.RightColumn>
             <Resume.Section>
               <Resume.Section.Title>
-                Professional Experience
+                {t("sections.experience")}
               </Resume.Section.Title>
-              <div className="space-y-4">
-                {resume.experience.map((exp) => (
+              <div className="space-y-8">
+                {curriculum.experience.map((exp) => (
                   <Resume.Experience
                     key={exp.jobTitle + exp.company}
                     jobTitle={exp.jobTitle}
@@ -357,13 +366,16 @@ export default async function Home({ searchParams }: PageProps) {
           </Resume.Layout.RightColumn>
           <Resume.Layout.Footer>
             <Resume.Section>
-              <Resume.Section.Title>Interests</Resume.Section.Title>
+              <Resume.Section.Title>
+                {t("sections.interest")}
+              </Resume.Section.Title>
               <div className="flex flex-wrap gap-1">
-                {resume.hobbies.map((hobby) => (
+                {curriculum.hobbies.map((hobby) => (
                   <Resume.Skill key={hobby} skill={hobby} />
                 ))}
               </div>
             </Resume.Section>
+            <Resume.Watermark source={url} />
           </Resume.Layout.Footer>
         </Resume.Layout>
       </Resume.Container>

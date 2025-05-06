@@ -9,6 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 import { useTRPC } from "~/trpc/utils";
+import { useLocale } from "next-intl";
 
 function downloadBlobOnClient(blob: Blob) {
   const fileURL = window.URL.createObjectURL(blob);
@@ -28,12 +29,13 @@ const schema = z.object({
 });
 
 export default function ResumeGenerator() {
+  const locale = useLocale();
   const t = useTranslations("cv-gen");
 
   const trpc = useTRPC();
 
   const generatePdfMutation = useMutation(
-    trpc.resume.generatePdf.mutationOptions({
+    trpc.cv.generatePdf.mutationOptions({
       onSuccess: (data) => {
         const blob = new Blob([data], { type: "application/pdf" });
         downloadBlobOnClient(blob);
@@ -50,6 +52,7 @@ export default function ResumeGenerator() {
     },
     onSubmit: async ({ value }) => {
       generatePdfMutation.mutate({
+        locale,
         url: value.url,
       });
     },

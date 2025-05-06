@@ -1,7 +1,7 @@
 import { brandIcons } from "@/components/icons";
 import { ExternalLink } from "@/components/ui/link";
-import { Link, LucideIcon, Mail, MapPin, Phone } from "lucide-react";
-import { PropsWithChildren } from "react";
+import { Link, type LucideIcon, Mail, MapPin, Phone } from "lucide-react";
+import type { PropsWithChildren } from "react";
 import QRCode from "react-qr-code";
 
 const Page = ({ children }: PropsWithChildren) => (
@@ -22,14 +22,14 @@ function shortenUrl(url: string): string {
   }
 }
 
-const WATERMARK_URL = "https://lelabourier.com";
+const WATERMARK_URL = "https://marc.lelabourier.com/en/cv";
 
 interface WatermarkProps {
   source: string;
 }
 function Header({ children }: PropsWithChildren) {
   return (
-    <header className="mb-4 border-b border-gray-300 pb-4">{children}</header>
+    <header className="mb-4 border-b border-gray-300 py-6">{children}</header>
   );
 }
 
@@ -39,26 +39,26 @@ interface TitleProps {
 }
 const HeaderTitle = ({ name, jobTitle }: TitleProps) => (
   <div className="col-span-1 text-center">
-    <h1 className="text-3xl font-bold text-gray-800">{name}</h1>
-    <h2 className="text-xl text-gray-600">{jobTitle}</h2>
+    <h1 className="text-3xl font-bold text-nowrap text-gray-800">{name}</h1>
+    <h2 className="text-xl text-nowrap text-gray-600">{jobTitle}</h2>
   </div>
 );
 
 const Watermark = ({ source }: WatermarkProps) => {
   return (
-    <div className="col-span-1 flex flex-col items-end text-right">
+    <div className="flex flex-col items-center p-16 text-right">
       <QRCode
         className="mb-1 rounded border border-gray-200"
         value={source}
         size={80}
       />
-      <div className="text-xs text-gray-500">
+      <div className="pt-6 text-sm text-gray-500">
         Content from{" "}
         <ExternalLink href={source} variant="text">
           {shortenUrl(source)}
         </ExternalLink>
       </div>
-      <div className="text-xs text-gray-500">
+      <div className="pt-2 text-sm text-gray-500">
         Generated with{" "}
         <ExternalLink href={WATERMARK_URL} variant="text">
           {shortenUrl(WATERMARK_URL)}
@@ -69,16 +69,15 @@ const Watermark = ({ source }: WatermarkProps) => {
 };
 
 const Introduction = ({ children }: PropsWithChildren) => (
-  <p className="mt-2 text-justify text-sm text-gray-700">{children}</p>
+  <p className="pt-4 text-justify text-sm text-gray-700">{children}</p>
 );
 
 interface ContactsProps {
   email?: string;
   phone?: string;
   address?: string;
-  socials: SocialPillProps[];
 }
-export const Contacts = ({ email, phone, address, socials }: ContactsProps) => {
+export const Contacts = ({ email, phone, address }: ContactsProps) => {
   return (
     <div className="col-span-1 text-sm">
       {email && <ContactInfo value={email} icon={Mail} />}
@@ -139,7 +138,6 @@ export const ContactInfo = ({ value, icon: IconComp }: ContactInfoProps) => (
 );
 
 Header.Title = HeaderTitle;
-Header.Watermark = Watermark;
 Header.Introduction = Introduction;
 Header.Contacts = Contacts;
 Header.Socials = Socials;
@@ -162,7 +160,7 @@ const Experience = ({
   duration,
   skills,
 }: ExperienceProps) => (
-  <>
+  <div>
     <div className="flex items-start justify-between">
       <div>
         <h4 className="font-medium">{jobTitle}</h4>
@@ -170,12 +168,12 @@ const Experience = ({
       </div>
       <div className="text-sm text-gray-600">{duration}</div>
     </div>
-    <div className="mt-1 flex flex-wrap gap-1">
+    <div className="mt-4 flex flex-wrap gap-1">
       {skills.map((skill) => (
         <Resume.Skill key={skill} skill={skill} />
       ))}
     </div>
-  </>
+  </div>
 );
 
 const Layout = ({ children }: PropsWithChildren) => (
@@ -183,7 +181,7 @@ const Layout = ({ children }: PropsWithChildren) => (
 );
 
 const LeftColumn = ({ children }: PropsWithChildren) => (
-  <div className="col-span-1 space-y-4">{children}</div>
+  <div className="col-span-1 space-y-8">{children}</div>
 );
 const RightColumn = ({ children }: PropsWithChildren) => (
   <div className="col-span-2">{children}</div>
@@ -214,4 +212,5 @@ export const Resume = {
   Section,
   Skill,
   Experience,
+  Watermark,
 };

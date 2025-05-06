@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { routing } from "@/lib/i18n/routing";
 import { saveAsPdf } from "@/lib/save-as-pdf";
 import { getBaseUrl } from "@/lib/utils";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
@@ -7,9 +8,9 @@ import FirecrawlApp, { type ScrapeResponse } from "@mendable/firecrawl-js";
 import { TRPCError } from "@trpc/server";
 import { env } from "~/env";
 
-export const resumeSchema = z
+export const curriculumVitaeSchema = z
   .object({
-    resume: z.object({
+    curriculum: z.object({
       name: z.string().describe("The name of the person"),
       jobTitle: z
         .string()
@@ -75,48 +76,49 @@ export const resumeSchema = z
       ),
     }),
   })
-  .describe("Resume Schema");
+  .describe("Curriculum Vitae Schema");
 
-export type ResumeSchema = z.infer<typeof resumeSchema>;
+export type CurriculumVitaeSchema = z.infer<typeof curriculumVitaeSchema>;
 
 const firecrawl = new FirecrawlApp({
   apiKey: env.FIRECRAWL_API_KEY,
 });
 
-export const resumeRouter = createTRPCRouter({
+async function parseWebsite(url: string) {
+  const scrapeResult = (await firecrawl.scrapeUrl(url, {
+    formats: ["json"],
+    jsonOptions: { schema: curriculumVitaeSchema },
+  })) as ScrapeResponse;
+
+  if (!scrapeResult.success) {
+    throw new TRPCError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: `Failed to scrape: ${scrapeResult.error}`,
+    });
+  }
+
+  const data = scrapeResult.json as CurriculumVitaeSchema | undefined;
+
+  if (!data) {
+    throw new TRPCError({
+      code: "BAD_REQUEST",
+      message: "No data found.",
+    });
+  }
+  return data;
+}
+
+export const curriculumRouter = createTRPCRouter({
   scrape: publicProcedure
     .input(z.object({ url: z.string().url() }))
     .query(async ({ input }) => {
-      const scrapeResult = await firecrawl.scrapeUrl(input.url, {
-        formats: ["json"],
-        jsonOptions: { schema: resumeSchema },
-      }) as ScrapeResponse;
-
-      if (!scrapeResult.success) {
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: `Failed to scrape: ${scrapeResult.error}`,
-        });
-      }
-
-
-      const data = (scrapeResult.json) as ResumeSchema | undefined;
-
-      if (!data) {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "No data found.",
-        });
-      }
-
-      return data;
+      return parseWebsite(input.url);
     }),
 
   generatePdf: publicProcedure
-    .input(z.object({ url: z.string().url() }))
+    .input(z.object({ locale: z.enum(routing.locales), url: z.string().url() }))
     .mutation(async ({ input }) => {
-      const url = `${getBaseUrl()}/en/resume-layout/?url=${input.url}`;
-      const pdf = await saveAsPdf(url);
-      return pdf;
+      const url = `${getBaseUrl()}/${input.locale}/cv-template/?url=${input.url}`;
+      return saveAsPdf(url);
     }),
 });
