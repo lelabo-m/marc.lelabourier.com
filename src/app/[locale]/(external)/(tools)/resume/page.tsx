@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
-import { useTRPC } from "~/app/trpc/utils";
+import { useTRPC } from "~/trpc/utils";
 
 export default function ResumeGenerator() {
   const trpc = useTRPC();

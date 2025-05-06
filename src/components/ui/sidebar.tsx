@@ -5,8 +5,8 @@ import { type VariantProps, cva } from "class-variance-authority";
 import { Menu } from "lucide-react";
 import * as React from "react";
 
-import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "~/_hooks/use-mobile";
 import { Button } from "./button";
 import { Input } from "./input";
 import { Separator } from "./separator";

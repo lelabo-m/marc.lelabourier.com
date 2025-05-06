@@ -27,16 +27,15 @@
     "baseUrl": ".",
     "paths": {
       "@/public/*": ["./public/*"],
-      "@/components/*": ["src/app/_components/*"],
-      "@/hooks/*": ["src/app/_hooks/*"],
-      "@/data/*": ["src/app/_data/*"],
-      "@/lib/*": ["src/app/_lib/*"],
-      "@/server/*": ["src/app/_server/*"],
+      "@/components/*": ["src/components/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/data/*": ["src/data/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/server/*": ["src/server/*"],
       "~/*": ["./src/*"]
     }
   },
   "include": [
-    ".eslintrc.cjs",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

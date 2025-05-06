@@ -1,9 +1,9 @@
 import { tryCatch } from "@/lib/try-catch";
-import { ResumeSchema } from "@/server/api/routers/resume";
 import { TRPCError } from "@trpc/server";
 import { getHTTPStatusCodeFromError } from "@trpc/server/http";
 import type { SearchParams } from "nuqs/server";
 import { createLoader, parseAsString } from "nuqs/server";
+import { type ResumeSchema } from "~/_server/api/routers/resume";
 import { Resume } from "./components";
 
 const loader = createLoader({

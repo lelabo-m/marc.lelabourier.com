@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { useTRPC } from "~/app/trpc/utils";
+import { useTRPC } from "~/trpc/utils";
 
 export const ClientTest = ({ url }: { url: string }) => {
   const trpc = useTRPC();
