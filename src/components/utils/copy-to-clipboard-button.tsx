@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import {
   type CopyToClipboardProps,
   useCopyToClipboard,
-} from "~/_hooks/use-copy-to-clipboard";
+} from "@/hooks/use-copy-to-clipboard";
 
 export type CopyToClipboardButtonProps = CopyToClipboardProps & {
   text: string;

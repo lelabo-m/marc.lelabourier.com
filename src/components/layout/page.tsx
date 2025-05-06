@@ -1,7 +1,7 @@
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { Toaster } from "@/components/ui/sonner";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 export default function HomePageLayout({ children }: PropsWithChildren) {
   return (

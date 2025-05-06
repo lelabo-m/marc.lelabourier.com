@@ -6,7 +6,7 @@ import { Menu } from "lucide-react";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import { useIsMobile } from "~/_hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "./button";
 import { Input } from "./input";
 import { Separator } from "./separator";

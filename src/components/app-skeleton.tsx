@@ -1,6 +1,6 @@
 import { GeistSans } from "geist/font/sans";
-import { Locale } from "next-intl";
-import { PropsWithChildren } from "react";
+import type { Locale } from "next-intl";
+import type { PropsWithChildren } from "react";
 import { AppSidebar } from "./layout/sidebar";
 import { AppProvider } from "./provider";
 import { SidebarProvider } from "./ui/sidebar";

@@ -1,5 +1,5 @@
-import { Metadata, Viewport } from "next";
-import { profile } from "~/_data/profile";
+import type { Metadata, Viewport } from "next";
+import { profile } from "@/data/profile";
 
 export const defaultMetadata: Metadata = {
   title: `${profile.name} | ${profile.jobTitle}`,

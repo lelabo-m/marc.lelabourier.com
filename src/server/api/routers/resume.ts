@@ -3,7 +3,7 @@ import { z } from "zod";
 import { saveAsPdf } from "@/lib/save-as-pdf";
 import { getBaseUrl } from "@/lib/utils";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import FirecrawlApp from "@mendable/firecrawl-js";
+import FirecrawlApp, { type ScrapeResponse } from "@mendable/firecrawl-js";
 import { TRPCError } from "@trpc/server";
 import { env } from "~/env";
 
@@ -90,23 +90,17 @@ export const resumeRouter = createTRPCRouter({
       const scrapeResult = await firecrawl.scrapeUrl(input.url, {
         formats: ["json"],
         jsonOptions: { schema: resumeSchema },
-      });
+      }) as ScrapeResponse;
 
       if (!scrapeResult.success) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "An unexpected error occurred, please try again later.",
+          message: `Failed to scrape: ${scrapeResult.error}`,
         });
       }
 
-      if (scrapeResult.error) {
-        throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: scrapeResult.error,
-        });
-      }
 
-      const { json: data } = scrapeResult;
+      const data = (scrapeResult.json) as ResumeSchema | undefined;
 
       if (!data) {
         throw new TRPCError({

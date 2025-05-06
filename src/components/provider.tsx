@@ -2,7 +2,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { NextIntlClientProvider } from "next-intl";
 import PlausibleProvider from "next-plausible";
 import { NuqsAdapter } from "nuqs/adapters/next";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { TRPCReactProvider } from "../trpc/react";
 import { ThemeProvider } from "./theme-provider";
 

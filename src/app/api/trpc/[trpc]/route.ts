@@ -24,6 +24,7 @@ const handler = (req: NextRequest) =>
     onError:
       env.NODE_ENV === "development"
         ? (opts) => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { error, type, path, input, ctx, req } = opts;
             console.error(
               `❌ tRPC failed on ${path ?? "<no-path>"}: ${error.message}`,
