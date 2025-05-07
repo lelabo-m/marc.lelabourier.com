@@ -10,9 +10,12 @@ import {
 } from "@/components/ui/breadcrumb";
 import { InternalLink } from "@/components/ui/link";
 import { usePathname } from "@/lib/i18n/navigation";
+import { collectsMessageKeys, IntlKeysOf } from "@/lib/i18n/utils";
+import { useMessages, useTranslations } from "next-intl";
 import * as React from "react";
 
 export const HeaderBreadcrumbs = () => {
+  const t = useTranslations();
   const pathname = usePathname();
   if (pathname === "/") return null;
 
@@ -25,14 +28,14 @@ export const HeaderBreadcrumbs = () => {
     (acc, segment) => {
       currentPath += segment;
       acc.push({
-        label: segment[0]!.toUpperCase() + segment.slice(1),
+        label: t(`routes.${segment as IntlKeysOf<"routes">}`),
         path: currentPath,
       });
       return acc;
     },
     [
       {
-        label: "Home",
+        label: t("routes.home"),
         path: currentPath,
       },
     ],

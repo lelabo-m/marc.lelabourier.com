@@ -8,6 +8,10 @@
     "back-to-home-button": "Back to Home",
     "reset-button": "Try Again"
   },
+  "routes": {
+    "home": "Home",
+    "cv": "Curriculum Generator"
+  },
   "sidebar": {
     "about-me": "About me",
     "background": "Professional & Academic Background",

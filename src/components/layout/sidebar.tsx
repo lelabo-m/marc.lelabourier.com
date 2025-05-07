@@ -26,7 +26,7 @@ export async function AppSidebar() {
             <SidebarMenuButton asChild>
               <ScrollToTopLink>
                 <Home />
-                {"Home"}
+                {t("routes.home")}
               </ScrollToTopLink>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -41,7 +41,7 @@ export async function AppSidebar() {
                   return (
                     <SidebarMenuItem key={section}>
                       <SidebarMenuButton asChild>
-                        <InternalLink href={`#${section}`}>
+                        <InternalLink href={`/#${section}`}>
                           <IconComponent />
                           {t(`home.${section}.title`)}
                         </InternalLink>
@@ -59,9 +59,9 @@ export async function AppSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <InternalLink href="/resume">
+                  <InternalLink href="/cv">
                     <Factory />
-                    {"Resume Generator"}
+                    {t("routes.cv")}
                   </InternalLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>

@@ -56,11 +56,10 @@ export function isAbstractIntlMessages(
   return typeof value === "object" && value !== null;
 }
 
-export async function getMessageKeys<Namespace extends IntlNamespaceKeys>(
+export function collectsMessageKeys<Namespace extends IntlNamespaceKeys>(
   namespace: Namespace,
+  messages: Messages,
 ) {
-  const messages = await getMessages();
-
   const path = namespace.split(".");
 
   let obj: AbstractIntlMessages = messages;
@@ -83,6 +82,13 @@ export async function getMessageKeys<Namespace extends IntlNamespaceKeys>(
   }
 
   return Object.keys(obj) as unknown as IntlKeysOf<Namespace>[];
+}
+
+export async function getMessageKeys<Namespace extends IntlNamespaceKeys>(
+  namespace: Namespace,
+) {
+  const messages = await getMessages();
+  return collectsMessageKeys(namespace, messages);
 }
 
 export const validateLocale = (
