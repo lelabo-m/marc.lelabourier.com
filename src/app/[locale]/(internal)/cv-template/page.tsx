@@ -141,7 +141,7 @@ export default async function Home({ searchParams }: PageProps) {
                     key={exp.jobTitle + exp.company}
                     jobTitle={exp.jobTitle}
                     company={exp.company}
-                    duration={exp.duration}
+                    year={exp.year}
                     skills={exp.responsibilities}
                   />
                 ))}

@@ -55,7 +55,7 @@ export const curriculumVitaeSchema = z
         z.object({
           jobTitle: z.string(),
           company: z.string(),
-          duration: z.string(),
+          year: z.string(),
           responsibilities: z.array(z.string()),
         }),
       ),

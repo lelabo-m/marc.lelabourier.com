@@ -151,22 +151,15 @@ const Skill = ({ skill }: { skill: string }) => (
 interface ExperienceProps {
   jobTitle: string;
   company: string;
-  duration: string;
+  year: string;
   skills: string[];
 }
-const Experience = ({
-  jobTitle,
-  company,
-  duration,
-  skills,
-}: ExperienceProps) => (
+const Experience = ({ jobTitle, company, year, skills }: ExperienceProps) => (
   <div>
-    <div className="flex items-start justify-between">
-      <div>
-        <h4 className="font-medium">{jobTitle}</h4>
-        <div className="text-gray-700">{company}</div>
-      </div>
-      <div className="text-sm text-gray-600">{duration}</div>
+    <div className="grid grid-cols-3 grid-rows-2 items-baseline">
+      <h4 className="col-span-2 row-span-1 font-medium">{jobTitle}</h4>
+      <div className="col-span-1 row-span-1 text-sm text-gray-600">{year}</div>
+      <div className="col-span-3 row-span-2 text-gray-700">{company}</div>
     </div>
     <div className="mt-4 flex flex-wrap gap-1">
       {skills.map((skill) => (

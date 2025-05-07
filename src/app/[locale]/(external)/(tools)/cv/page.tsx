@@ -34,6 +34,7 @@ import {
 import { useLocalStorage } from "@/hooks/use-localstorage";
 import { getBaseUrl } from "@/lib/utils";
 import { env } from "process";
+import { InternalLink } from "@/components/ui/link";
 
 function downloadBlobOnClient(blob: Blob) {
   const fileURL = window.URL.createObjectURL(blob);
@@ -193,6 +194,7 @@ const ScrapedContentEditor = ({
     env.NEXT_PUBLIC_ENVIRONMENT === "development"
       ? `${getBaseUrl()}/${locale}`
       : `/${locale}`;
+
   const iframeUrl = `${baseUrl}/cv-template?url=${encodeURIComponent(url ?? "")}&data=${encodeURIComponent(JSON.stringify(data))}`;
 
   return (
@@ -228,12 +230,25 @@ const ScrapedContentEditor = ({
         </Card>
       </div>
 
-      <div className="h-140 w-100 overflow-hidden rounded-lg bg-white shadow-lg">
-        <iframe
-          src={iframeUrl}
-          className="h-2/1 w-2/1 origin-[0_0] scale-50 border-0"
-          title="Resume Preview"
-        />
+      <div className="flex flex-col space-y-4">
+        <Card>
+          <div className="h-116 w-full overflow-hidden">
+            <iframe
+              src={iframeUrl}
+              className="h-2/1 w-2/1 origin-[0_0] scale-50 border-0"
+              title="Resume Preview"
+            />
+          </div>
+          <CardFooter className="flex justify-between">
+            <Button variant="outline" asChild>
+              <InternalLink
+                href={`/cv-template?url=${encodeURIComponent(url ?? "")}&data=${encodeURIComponent(JSON.stringify(data))}`}
+              >
+                {"Full Screen"}
+              </InternalLink>
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     </div>
   );
