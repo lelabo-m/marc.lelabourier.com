@@ -1,6 +1,7 @@
 import { brandIcons } from "@/components/icons";
 import { ExternalLink } from "@/components/ui/link";
 import { Link, type LucideIcon, Mail, MapPin, Phone } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import type { PropsWithChildren } from "react";
 import QRCode from "react-qr-code";
 
@@ -29,7 +30,9 @@ interface WatermarkProps {
 }
 function Header({ children }: PropsWithChildren) {
   return (
-    <header className="mb-4 border-b border-gray-300 py-6">{children}</header>
+    <header className="mb-4 border-b border-neutral-300 py-6">
+      {children}
+    </header>
   );
 }
 
@@ -39,27 +42,29 @@ interface TitleProps {
 }
 const HeaderTitle = ({ name, jobTitle }: TitleProps) => (
   <div className="col-span-1 text-center">
-    <h1 className="text-3xl font-bold text-nowrap text-gray-800">{name}</h1>
-    <h2 className="text-xl text-nowrap text-gray-600">{jobTitle}</h2>
+    <h1 className="text-3xl font-bold text-nowrap text-neutral-800">{name}</h1>
+    <h2 className="text-xl text-nowrap text-neutral-600">{jobTitle}</h2>
   </div>
 );
 
-const Watermark = ({ source }: WatermarkProps) => {
+const Watermark = async ({ source }: WatermarkProps) => {
+  const t = await getTranslations("cv-template");
+
   return (
     <div className="flex flex-col items-center p-16 text-right">
       <QRCode
-        className="mb-1 rounded border border-gray-200"
+        className="mb-1 rounded border border-neutral-200"
         value={source}
         size={80}
       />
-      <div className="pt-6 text-sm text-gray-500">
-        Content from{" "}
+      <div className="pt-6 text-sm text-neutral-500">
+        {t("texts.generated-from")}{" "}
         <ExternalLink href={source} variant="text">
           {shortenUrl(source)}
         </ExternalLink>
       </div>
-      <div className="pt-2 text-sm text-gray-500">
-        Generated with{" "}
+      <div className="pt-2 text-sm text-neutral-500">
+        {t("texts.generated-with")}{" "}
         <ExternalLink href={WATERMARK_URL} variant="text">
           {shortenUrl(WATERMARK_URL)}
         </ExternalLink>
@@ -69,7 +74,7 @@ const Watermark = ({ source }: WatermarkProps) => {
 };
 
 const Introduction = ({ children }: PropsWithChildren) => (
-  <p className="pt-4 text-justify text-sm text-gray-700">{children}</p>
+  <p className="pt-4 text-justify text-sm text-neutral-700">{children}</p>
 );
 
 interface ContactsProps {
@@ -102,7 +107,7 @@ const SocialPill = ({ platform, url }: SocialPillProps) => {
   return (
     <ExternalLink
       href={url}
-      className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 bg-white shadow-sm transition-shadow hover:shadow-md"
+      className="flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white shadow-sm transition-shadow hover:shadow-md"
       aria-label={platform}
     >
       <IconComp className="h-4 w-4" />
@@ -143,7 +148,7 @@ Header.Contacts = Contacts;
 Header.Socials = Socials;
 
 const Skill = ({ skill }: { skill: string }) => (
-  <span className="rounded bg-gray-100 px-2 py-1 text-xs text-gray-800">
+  <span className="rounded bg-neutral-100 px-2 py-1 text-xs text-neutral-800">
     {skill}
   </span>
 );
@@ -158,8 +163,10 @@ const Experience = ({ jobTitle, company, year, skills }: ExperienceProps) => (
   <div>
     <div className="grid grid-cols-3 grid-rows-2 items-baseline">
       <h4 className="col-span-2 row-span-1 font-medium">{jobTitle}</h4>
-      <div className="col-span-1 row-span-1 text-sm text-gray-600">{year}</div>
-      <div className="col-span-3 row-span-2 text-gray-700">{company}</div>
+      <div className="col-span-1 row-span-1 text-sm text-neutral-600">
+        {year}
+      </div>
+      <div className="col-span-3 row-span-2 text-neutral-700">{company}</div>
     </div>
     <div className="mt-4 flex flex-wrap gap-1">
       {skills.map((skill) => (
@@ -192,7 +199,7 @@ const Section = ({ children }: PropsWithChildren) => (
 );
 
 const SectionTitle = ({ children }: PropsWithChildren) => (
-  <h3 className="mb-2 text-lg font-semibold text-gray-800">{children}</h3>
+  <h3 className="mb-2 text-lg font-semibold text-neutral-800">{children}</h3>
 );
 
 Section.Title = SectionTitle;

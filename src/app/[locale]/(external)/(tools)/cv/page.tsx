@@ -24,17 +24,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  createLoader,
-  createParser,
-  parseAsJson,
-  parseAsString,
-  useQueryState,
-} from "nuqs";
-import { useLocalStorage } from "@/hooks/use-localstorage";
+import { parseAsJson, parseAsString, useQueryState } from "nuqs";
 import { getBaseUrl } from "@/lib/utils";
 import { env } from "process";
 import { InternalLink } from "@/components/ui/link";
+import { Loader2 } from "lucide-react";
+import { t } from "node_modules/framer-motion/dist/types.d-DSjX-LJB";
 
 function downloadBlobOnClient(blob: Blob) {
   const fileURL = window.URL.createObjectURL(blob);
@@ -49,35 +44,17 @@ function downloadBlobOnClient(blob: Blob) {
   URL.revokeObjectURL(fileURL);
 }
 
-function parseAsJsonUrlEncoded<T>(runtimeParser: (value: unknown) => T) {
-  return createParser({
-    parse: (query) => {
-      try {
-        const obj = JSON.parse(decodeURIComponent(query));
-        return runtimeParser(obj);
-      } catch (error) {
-        console.log("Error parsing content:", error);
-        return null;
-      }
-    },
-    serialize: (value) => encodeURIComponent(JSON.stringify(value)),
-    eq(a, b) {
-      // Check for referential equality first
-      return a === b || JSON.stringify(a) === JSON.stringify(b);
-    },
-  });
-}
-
 export default function ResumeGenerator() {
   const [curriculum, setCurriculum] = useQueryState(
     "curriculum",
-    parseAsJsonUrlEncoded(curriculumVitaeSchema.parse),
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    parseAsJson(curriculumVitaeSchema.parse),
   );
   const [scrapUrl, setScrapeUrl] = useQueryState("url", parseAsString);
 
   const handleReset = () => {
-    setCurriculum(null);
-    setScrapeUrl(null);
+    void setCurriculum(null);
+    void setScrapeUrl(null);
   };
 
   return (
@@ -103,7 +80,7 @@ interface InitialFormProps {
 
 const InitialForm = ({ setUrl, setData }: InitialFormProps) => {
   const trpc = useTRPC();
-  const t = useTranslations("cv-gen");
+  const t = useTranslations();
 
   const schema = z.object({
     url: z.string().url(),
@@ -135,12 +112,8 @@ const InitialForm = ({ setUrl, setData }: InitialFormProps) => {
   return (
     <div className="space-y-6">
       <div>
-        <TypographyH1>{t("title")}</TypographyH1>
-        <TypographyLead>
-          {
-            "Enter the URL of your profile page to generate a professional resume"
-          }
-        </TypographyLead>
+        <TypographyH1>{t("cv-gen.title")}</TypographyH1>
+        <TypographyLead>{t("cv-gen.lead")}</TypographyLead>
       </div>
       <div className="w-full p-16">
         <form
@@ -164,7 +137,16 @@ const InitialForm = ({ setUrl, setData }: InitialFormProps) => {
                 />
               )}
             />
-            <Button type="submit">{t("cta")}</Button>
+            <Button type="submit">
+              {scrapePdfData.isPending ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  {t("common.loading")}
+                </>
+              ) : (
+                t("cv-gen.cta")
+              )}
+            </Button>
           </div>
         </form>
       </div>
@@ -185,29 +167,40 @@ const ScrapedContentEditor = ({
   setData,
   reset,
 }: ScrapedContentEditorProps) => {
+  const trpc = useTRPC();
+  const t = useTranslations("cv-gen");
+  const generatePdf = useMutation(
+    trpc.cv.generatePdf.mutationOptions({
+      onSuccess: (data) => {
+        const blob = new Blob([data], { type: "application/pdf" });
+        downloadBlobOnClient(blob);
+      },
+    }),
+  );
+
   const [editorContent, setEditorContent] = useState(
     JSON.stringify(data, null, 2),
   );
   const locale = useLocale();
+
+  const searchParams = `/cv-template?url=${encodeURIComponent(url ?? "")}&data=${encodeURIComponent(JSON.stringify(data))}`;
 
   const baseUrl =
     env.NEXT_PUBLIC_ENVIRONMENT === "development"
       ? `${getBaseUrl()}/${locale}`
       : `/${locale}`;
 
-  const iframeUrl = `${baseUrl}/cv-template?url=${encodeURIComponent(url ?? "")}&data=${encodeURIComponent(JSON.stringify(data))}`;
+  const iframeUrl = `${baseUrl}${searchParams}`;
 
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
       <div className="flex flex-col space-y-4">
         <Card>
           <CardHeader>
-            <CardTitle>{"Resume Data (JSON)"}</CardTitle>
-            <CardDescription>
-              {"Edit the JSON data to customize your resume"}
-            </CardDescription>
+            <CardTitle>{t("editor-title")}</CardTitle>
+            <CardDescription>{t("editor-description")}</CardDescription>
           </CardHeader>
-          <CardContent className="">
+          <CardContent>
             <Textarea
               placeholder="Enter your resume data in JSON format"
               className="max-h-100 overflow-y-scroll font-mono text-sm"
@@ -217,14 +210,14 @@ const ScrapedContentEditor = ({
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button variant="outline" onClick={reset}>
-              {"Start Over"}
+              {t("editor-btn-start-over")}
             </Button>
             <Button
               onClick={() =>
                 setData(curriculumVitaeSchema.parse(editorContent))
               }
             >
-              {"Apply Changes"}
+              {t("editor-btn-apply")}
             </Button>
           </CardFooter>
         </Card>
@@ -241,11 +234,19 @@ const ScrapedContentEditor = ({
           </div>
           <CardFooter className="flex justify-between">
             <Button variant="outline" asChild>
-              <InternalLink
-                href={`/cv-template?url=${encodeURIComponent(url ?? "")}&data=${encodeURIComponent(JSON.stringify(data))}`}
-              >
-                {"Full Screen"}
+              <InternalLink href={searchParams}>
+                {t("editor-btn-full-screen")}
               </InternalLink>
+            </Button>
+
+            <Button
+              onClick={() =>
+                generatePdf.mutate({
+                  url: `${getBaseUrl()}/${locale}/${searchParams}`,
+                })
+              }
+            >
+              {t("editor-btn-download")}
             </Button>
           </CardFooter>
         </Card>

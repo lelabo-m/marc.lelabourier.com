@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import { InternalLink } from "@/components/ui/link";
 import { usePathname } from "@/lib/i18n/navigation";
-import { collectsMessageKeys, IntlKeysOf } from "@/lib/i18n/utils";
-import { useMessages, useTranslations } from "next-intl";
+import { type IntlKeysOf } from "@/lib/i18n/utils";
+import { useTranslations } from "next-intl";
 import * as React from "react";
 
 export const HeaderBreadcrumbs = () => {

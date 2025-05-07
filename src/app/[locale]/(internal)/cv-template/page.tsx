@@ -1,35 +1,13 @@
-import { tryCatch } from "@/lib/try-catch";
-import { type CurriculumVitaeSchema } from "@/server/api/routers/curriculum";
-import { TRPCError } from "@trpc/server";
-import { getHTTPStatusCodeFromError } from "@trpc/server/http";
 import type { SearchParams } from "nuqs/server";
-import { createLoader, createParser, parseAsString } from "nuqs/server";
+import { createLoader, parseAsJson, parseAsString } from "nuqs/server";
 import { Resume } from "./components";
 import { getTranslations } from "next-intl/server";
 import { curriculumVitaeSchema } from "~/schema/curriculum";
 
-function parseAsJsonUrlEncoded<T>(runtimeParser: (value: unknown) => T) {
-  return createParser({
-    parse: (query) => {
-      try {
-        const obj = JSON.parse(decodeURIComponent(query));
-        return runtimeParser(obj);
-      } catch (error) {
-        console.log("Error parsing content:", error);
-        return null;
-      }
-    },
-    serialize: (value) => encodeURIComponent(JSON.stringify(value)),
-    eq(a, b) {
-      // Check for referential equality first
-      return a === b || JSON.stringify(a) === JSON.stringify(b);
-    },
-  });
-}
-
 const loader = createLoader({
   url: parseAsString,
-  data: parseAsJsonUrlEncoded(curriculumVitaeSchema.parse),
+  // eslint-disable-next-line @typescript-eslint/unbound-method
+  data: parseAsJson(curriculumVitaeSchema.parse),
 });
 
 type PageProps = {
