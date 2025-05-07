@@ -29,7 +29,6 @@ import { getBaseUrl } from "@/lib/utils";
 import { env } from "process";
 import { InternalLink } from "@/components/ui/link";
 import { Loader2 } from "lucide-react";
-import { t } from "node_modules/framer-motion/dist/types.d-DSjX-LJB";
 
 function downloadBlobOnClient(blob: Blob) {
   const fileURL = window.URL.createObjectURL(blob);
