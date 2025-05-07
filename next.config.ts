@@ -30,9 +30,35 @@ const sentryConfig: SentryBuildOptions = {
   tunnelRoute: "/monitoring",
 };
 
-const config: NextConfig = {};
+const config: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/",
+        locale: false,
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+        ],
+      },
+      {
+        source: "/cv-template",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+        ],
+      },
+    ];
+  },
+};
 
-export default withSentryConfig(
+const withConf = withSentryConfig(
   withPlausibleProxy()(withNextIntl(config)),
   sentryConfig,
 );
+
+export default withConf;
