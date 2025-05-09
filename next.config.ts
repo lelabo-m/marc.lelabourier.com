@@ -8,7 +8,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 import { withPlausibleProxy } from "next-plausible";
 import { env } from "~/env";
 
-const withNextIntl = createNextIntlPlugin("./src/app/_lib/i18n/request.ts");
+const withNextIntl = createNextIntlPlugin("./src/lib/i18n/request.ts");
 
 // Make sure adding Sentry options is the last code to run before exporting
 const sentryConfig: SentryBuildOptions = {
@@ -30,9 +30,35 @@ const sentryConfig: SentryBuildOptions = {
   tunnelRoute: "/monitoring",
 };
 
-const config: NextConfig = {};
+const config: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/",
+        locale: false,
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+        ],
+      },
+      {
+        source: "/cv-template",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+        ],
+      },
+    ];
+  },
+};
 
-export default withSentryConfig(
+const withConf = withSentryConfig(
   withPlausibleProxy()(withNextIntl(config)),
   sentryConfig,
 );
+
+export default withConf;

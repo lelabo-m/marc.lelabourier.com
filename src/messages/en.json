@@ -6,7 +6,12 @@
     "error-description": "An error occurred while processing your request. Please try again later.",
     "back-button": "Go back",
     "back-to-home-button": "Back to Home",
-    "reset-button": "Try Again"
+    "reset-button": "Try Again",
+    "loading": "Loading..."
+  },
+  "routes": {
+    "home": "Home",
+    "cv": "Curriculum Generator"
   },
   "sidebar": {
     "about-me": "About me",
@@ -272,6 +277,31 @@
           }
         }
       }
+    }
+  },
+  "cv-gen": {
+    "title": "Curriculum Vitae Generator",
+    "lead": "Enter the URL of your profile page to generate a professional resume",
+    "cta": "Generate",
+    "editor-title": "Curriculum Data (JSON)",
+    "editor-description": "Edit the JSON data to customize your curriculum vitae.",
+    "editor-btn-start-over": "Start Over",
+    "editor-btn-apply": "Apply Changes",
+    "editor-btn-full-screen": "Full Screen",
+    "editor-btn-download": "Download"
+  },
+  "cv-template": {
+    "sections": {
+      "tech-skills": "Technical Skills",
+      "soft-skills": "Soft Skills",
+      "lang": "Languages",
+      "education": "Education",
+      "experience": "Professional Experience",
+      "interest": "Interests"
+    },
+    "texts": {
+      "generated-with": "Generated with",
+      "generated-from": "Content from"
     }
   }
 }

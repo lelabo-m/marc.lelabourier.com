@@ -1,6 +1,7 @@
-import type { PropsWithChildren } from "react";
-import "~/styles/app.css";
+type LayoutProps = Readonly<{
+  children: React.ReactNode;
+}>;
 
-export default async function RootLayout({ children }: PropsWithChildren) {
+export default async function RootLayout({ children }: LayoutProps) {
   return children;
 }
