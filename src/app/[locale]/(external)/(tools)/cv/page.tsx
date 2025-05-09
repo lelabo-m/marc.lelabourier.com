@@ -49,6 +49,8 @@ export default function ResumeGenerator() {
     // eslint-disable-next-line @typescript-eslint/unbound-method
     parseAsJson(curriculumVitaeSchema.parse),
   );
+  console.log("🚀 ~ ResumeGenerator ~ curriculum:", curriculum);
+
   const [scrapUrl, setScrapeUrl] = useQueryState("url", parseAsString);
 
   const handleReset = () => {
@@ -88,7 +90,7 @@ const InitialForm = ({ setUrl, setData }: InitialFormProps) => {
   const scrapePdfData = useMutation(
     trpc.cv.scrapePdfData.mutationOptions({
       onSuccess: (data) => {
-        setData(data.curriculum);
+        setData(data);
       },
     }),
   );

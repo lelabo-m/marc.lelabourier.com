@@ -7,10 +7,11 @@ const compat = new FlatCompat({
 
 export default tseslint.config(
   {
-    ignores: [".next", "src/lib/firecrawl.ts"],
+    ignores: [".next", "src/lib/firecrawl.ts", "./experiments"],
   },
   ...compat.extends("next/core-web-vitals"),
   {
+    ignores: ["src/lib/firecrawl.ts", "./experiments"],
     files: ["src/**/*.ts", "src/**/*.tsx"],
     extends: [
       ...tseslint.configs.recommended,

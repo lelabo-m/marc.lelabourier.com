@@ -19,7 +19,6 @@ export const curriculumRouter = createTRPCRouter({
   generatePdf: publicProcedure
     .input(z.object({ url: z.string() }))
     .mutation(async ({ input }) => {
-      console.log("Generating PDF for URL:", input.url);
       return saveAsPdf(input.url);
     }),
 });

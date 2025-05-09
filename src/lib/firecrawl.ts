@@ -1,7 +1,8 @@
-/* eslint-disable */
+// This file has a too deep type instatiation and make ESLint and TSC crash
+// @ts-nocheck
+// eslint-disable
 import FirecrawlApp from "@mendable/firecrawl-js";
 import { TRPCError } from "@trpc/server";
-import { z } from "zod";
 import { env } from "~/env";
 import {
   curriculumVitaeSchema,
@@ -12,14 +13,13 @@ const firecrawl = new FirecrawlApp({
   apiKey: env.FIRECRAWL_API_KEY,
 });
 
-
 export async function parseWebsite(url: string) {
-    const options = {
-        formats: ["json"],
-        jsonOptions: { schema: z.object({ curriculum: curriculumVitaeSchema}) },
-      };
+  const options = {
+    formats: ["json"],
+    jsonOptions: { schema: curriculumVitaeSchema },
+  } as any;
 
-  const scrapeResult = await firecrawl.scrapeUrl(url, options);
+  const scrapeResult = (await firecrawl.scrapeUrl(url, options)) as any;
 
   if (!scrapeResult.success) {
     throw new TRPCError({
@@ -28,7 +28,7 @@ export async function parseWebsite(url: string) {
     });
   }
 
-  const data = scrapeResult.json as { curriculum: CurriculumVitaeSchema} | undefined;
+  const data = scrapeResult.json;
 
   if (!data) {
     throw new TRPCError({
@@ -36,5 +36,5 @@ export async function parseWebsite(url: string) {
       message: "No data found.",
     });
   }
-  return data;
+  return data as CurriculumVitaeSchema;
 }
