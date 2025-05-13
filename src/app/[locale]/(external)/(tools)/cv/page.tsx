@@ -169,7 +169,8 @@ const ScrapedContentEditor = ({
   reset,
 }: ScrapedContentEditorProps) => {
   const trpc = useTRPC();
-  const t = useTranslations("cv-gen");
+  const t = useTranslations();
+
   const generatePdf = useMutation(
     trpc.cv.generatePdf.mutationOptions({
       onSuccess: (data) => {
@@ -198,8 +199,8 @@ const ScrapedContentEditor = ({
       <div className="flex flex-col space-y-4">
         <Card>
           <CardHeader>
-            <CardTitle>{t("editor-title")}</CardTitle>
-            <CardDescription>{t("editor-description")}</CardDescription>
+            <CardTitle>{t("cv-gen.editor-title")}</CardTitle>
+            <CardDescription>{t("cv-gen.editor-description")}</CardDescription>
           </CardHeader>
           <CardContent>
             <Textarea
@@ -211,14 +212,14 @@ const ScrapedContentEditor = ({
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button variant="outline" onClick={reset}>
-              {t("editor-btn-start-over")}
+              {t("cv-gen.editor-btn-start-over")}
             </Button>
             <Button
               onClick={() =>
                 setData(curriculumVitaeSchema.parse(editorContent))
               }
             >
-              {t("editor-btn-apply")}
+              {t("cv-gen.editor-btn-apply")}
             </Button>
           </CardFooter>
         </Card>
@@ -236,7 +237,7 @@ const ScrapedContentEditor = ({
           <CardFooter className="flex justify-between">
             <Button variant="outline" asChild>
               <InternalLink href={searchParams}>
-                {t("editor-btn-full-screen")}
+                {t("cv-gen.editor-btn-full-screen")}
               </InternalLink>
             </Button>
 
@@ -247,7 +248,14 @@ const ScrapedContentEditor = ({
                 })
               }
             >
-              {t("editor-btn-download")}
+              {generatePdf.isPending ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  {t("common.loading")}
+                </>
+              ) : (
+                t("cv-gen.editor-btn-download")
+              )}
             </Button>
           </CardFooter>
         </Card>
