@@ -215,9 +215,9 @@ const ScrapedContentEditor = ({
               {t("cv-gen.editor-btn-start-over")}
             </Button>
             <Button
-              onClick={() =>
-                setData(curriculumVitaeSchema.parse(editorContent))
-              }
+              onClick={() => {
+                setData(curriculumVitaeSchema.parse(JSON.parse(editorContent)));
+              }}
             >
               {t("cv-gen.editor-btn-apply")}
             </Button>
