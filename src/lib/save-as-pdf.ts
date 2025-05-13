@@ -1,7 +1,8 @@
-import puppeteer, { type Browser, type Page } from "puppeteer";
+import { type Browser, type Page } from "puppeteer";
+import { getPuppeterBrowser } from "./puppeter";
 
 export const saveAsPdf = async (url: string) => {
-  const browser: Browser = await puppeteer.launch();
+  const browser: Browser = await getPuppeterBrowser();
   const page: Page = await browser.newPage();
 
   await page.goto(url, {
