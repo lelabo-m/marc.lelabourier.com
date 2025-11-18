@@ -5,10 +5,10 @@ export const profile = {
   jobTitle: "Full Stack Developer",
   email: "marc.lelabourier@gmail.com",
   phone: "(+33)0638415550",
-  location: "SQY, Yvelines, France",
+  location: "Clermont-Ferrand, Auvergne-Rhône-Alpes, France",
   address: {
-    locality: "SQY",
-    region: "Île-de-France",
+    locality: "Clermont-Ferrand",
+    region: "Auvergne-Rhône-Alpes",
     country: "FR",
   },
   socials: {
